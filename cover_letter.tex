@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage{url}
+
+\begin{document}
+
+We are very grateful to the reviewers for having accepted to review our 
+work, for the care they took in examining it and their resulting 
+comments which have been appreciated in order to improve the quality of
+the paper.
+
+In the following three sections, we try to address separately each of
+the concerns of our three reviewers.
+
+\section{Comments of the first reviewer}
+
+\subsection{How robust is the approach with regard to perceptual recognition
+errors?}
+
+We are aware that perception is not robust and therefore one of our next steps
+is to include a probabilistic layer to the approach (as already mentioned in
+the discussion section). We believe though that a robot (specially interacting
+with people) should be allowed to make mistakes due to perception noise, or not
+to be sure about something (for instance, "I think that..."), which represents
+the certainty the robot has about a fact. In the meantime, to overcome
+perception errors, the robot provides visual feedback (looking at objects) to
+the user when possible and/or verifies the information with the user whenever
+is needed (for instance, "do you mean the box\_01"?). 
+
+\subsection{Does the cognitive model enable a meaningful interaction with a
+real user in a real-world setting?}
+
+Due to the perception problems and computational delays, fully realistic
+settings are not yet possible.  The interaction based only on a static setting,
+i.e. objects don't move, the interaction with a real user is accurate enough.
+We have developed some experiments, where the user interacts with the system
+only through a keyboard (no gestures are included) asking questions, providing
+information, etc. and the outcome is quite promising. However, for dynamic
+settings where the user can point at things, move the objects around, etc., the
+interaction is not fast enough and the user should perform slow movements for
+the robot to create a consistent state of world.
+
+At recent video showing the current state of the interaction can be viewed
+here: \url{http://www.youtube.com/watch?v=IODx50uV_k4}
+
+\subsection{Rework of the introduction} The paper starts off with a discussion
+of Austins speech act theory, including locutionary act, illocutionary force
+and perlocutionary act. As the concept of speech acts is not really picked up
+in the remainder of the paper, I do not see the point in starting with such a
+discussion. It would be more appropriate to motivate how a robot could benefit
+from a symbolic knowledge base etc.
+
+I very strongly recommend that section I.A. be completely revised.
+
+
+\section{Comments of the second reviewer}
+
+\begin{itemize}
+\item All reviewer comments regarding citations have been addressed, as suggested by the reviewer,
+\item The reviewer's remark on human tendency to explain in a consistent way the world has been added
+\item Language issues have been addressed as well.
+\end{itemize}
+
+\section{Comments of the third reviewer}
+
+\subsection{``Explain the relation of the presented approach to the Open World
+Assumption''}
+
+
+\subsection{``Present a systematic overview of the formalisms and
+representations used (OWL, RDF, DL, ...), and choose one consistent syntax for
+listing the examples''}
+
+The paragraph 2.2 has been reorganized to clarify the vocabulary and better
+define the various acronyms.
+
+\subsection{``The authors are encouraged to explain the notion of curiosity
+with respect to the Dora robot by Hawes et al. (2011, ICRA) and Hanheide et al.
+(2011, IJCAI)''}
+
+\subsection{``Give examples of the alignment of ORO with OpenCyc''}
+
+\subsection{Typography and notation consistency}
+
+Typography has been throughly revised for better consistency. Notation varients have been
+made explicit (for instance, section 2.4).
+
+\subsection{``p.6, II.E. explain "multi-lingual support"''}
+
+
+\subsection{``Points At: please describe how you manage the critical aspect of
+timing''}
+
+PointsAt relation is computed continuously during the interaction by 
+selecting the objects that "might" be pointed at by the human. The outcome
+of the computation (facts like "human1 pointsAt bottle1") are then
+continously updated in the knowledge base.
+
+In the current system, the decision on whether the human is pointing at an 
+object in a given time is left to the reasoning on the dialog or on the human gestures:
+when the dialogue module analyses a sentence like "give me this", it tries to
+resolve the atom "this" by querying the ontology.
+
+Both sitatuation assessement and dialogue processing chains induce 
+small delays, but these are roughly the same (below 200ms), and 
+compensate for each other.
+
+\subsection{``p.8, III.B.Location according to an object: the authors are
+kindly referred to the work done by, e.g., K. Sjöö or J. Kelleher''}
+
+\subsection{``p.8, III.B. "creation of imaginary objects...hinted by verbal
+assertions..." -- this phenomenon is called presupposition accommodation''}
+
+\subsection{``p.9, Alg. IV.1: the crucial bits are left out; please explain
+"GenerateDescription", "Ontology.Find", "Ontology.CheckEquivalent", and
+"Discrimination"''}
+
+\subsection{``how does the system deal with restrictive information vs.
+attributive information expressed by adjectives (e.g., in "the yellow banana is
+big")?''}
+
+\subsection{``the authors are kindly referred to the work by Zender et al.
+(2009, IJCAI) on reference resolution in OWL-DL ontology knowledge bases using
+SPARQL queries''}
+
+\subsection{``VI. the authors are advised to present an initial overview of the
+robot hardware and the common software architecture used in the systems''}
+
+\subsection{``VI. which university in Munich? LMU or TUM?''}
+
+\subsection{``VI. please present the anecdote of unexpected behavior elsewhere
+or give some more context''}
+
+\subsection{``Fig. 15. please make the spelling and the presentation more
+consistent''}
+
+\subsection{``the authors are kindly referred to work on the Generation and
+Resolution of Referring Expressions (GRE, RRE) from the Computational
+Linguistics and Natural Language Processing community, e.g. Dale\&Reiter,
+Krahmer\&Theune, Kelleher ''}
+
+\subsection{``please improve the quality of the references (sometimes, the
+publisher is missing, sometimes capitalization is omitted, sometimes
+abbreviations are used and sometimes full names''}
+
+\end{document}
