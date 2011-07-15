@@ -452,28 +452,25 @@ the robot builds models for several agents and interacts with the users using
 this knowledge.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{ORO, a knowledge management platform}
-\label{cognitivekernel}
+\section{ORO, a knowledge management platform} \label{cognitivekernel}
 
-\subsection{On knowledge representation}
-\label{knowledge_representation}
+\subsection{On knowledge representation} \label{knowledge_representation}
 
 While \emph{knowledge} has no general definition that researchers agree on, for
 our own purposes we define knowledge as \emph{an information interpreted in the
 cultural and social context of the robot}, where an information is a
 \emph{statement} or an \emph{assertion} on the world\footnote{In this paper,
 statements are always triples \texttt{<subject, predicate, object>}, following
-the Description Logics formalism.}. In practical terms, knowledge is made
-of statements that are \emph{contextualized}, if possible \emph{synthesized}
-and \emph{limited} to a domain of validity.
+the Description Logics formalism.}. In practical terms, knowledge is made of
+statements that are \emph{contextualized}, if possible \emph{synthesized} and
+\emph{limited} to a domain of validity.
 
 These three features have important consequences on the way a knowledge
 representation and storage system must be designed. Let us examine them:
 
-\paragraph{Contextualizing} The information contextualizing is the ability for
-a cognitive system to connect a fact with a \emph{cultural context}, an
-\emph{interpretive scope} and the set of other facts previously acquired by
-the agent.
+\paragraph{Contextualizing} is the ability for a cognitive system to connect a
+fact with a \emph{cultural context}, an \emph{interpretive scope} and the set
+of other facts previously acquired by the agent.
 %~ Since machines are limited to syntactic (in contrast to semantic)
 %processing, we are mostly looking for a syntactic (\ie, based on symbols)
 %matching between concepts representations (in our case, sets of alphanumeric
@@ -481,12 +478,11 @@ the agent.
 %sémantique/syntactique que propose Choamsky}.
 
 We call \textit{cultural context} a broad set of common, general facts that are
-considered as widely accepted amongst the interactors (like \textit{bottles may
-contain water}). This knowledge is often referred as \emph{common-sense
-knowledge}.
+considered widely accepted among the inter-actors (\eg ``bottles may contain
+water''). This knowledge is often referred as \emph{common-sense knowledge}.
 
-By \emph{interpretive scope}, we mean that a concept may have different
-interpretation depending on the agent, the current situation or the time frame
+By \emph{interpretive scope} we mean that a concept may have different
+interpretations depending on the agent, the current situation or the time frame
 the statement belongs to. Since a fact in one scope can be different (or even
 inconsistent) with a fact in another scope (for instance, one object can be
 visible for the robot and invisible for another agent), the underlying
@@ -501,29 +497,29 @@ natural language resolution, self-awareness of its own activity), much remains
 to be done for a robot to actually identify its current context as well as
 contexts that may be referred to.
 
-\paragraph{Synthesis} The synthesis of knowledge is the identification process
-of facts (and their components, concepts and predicates) with each others. For
-instance, if the robot observes a human sitting down at a table, and at the
-same time, we tell it that ``Peter is sitting at the table'', we would like the
-robot to infer that ``Peter'' may be the name of the human. \textit{Synthesis}
-refers to the fact that several, \textit{a priori} non correlated, facts must
-be associated to the same common concept. This process requires the ability to
-control the logical consistency of the knowledge corpus. For instance, if we
-add to the previous example the fact that the human that is sitting is a woman,
-the synthesis ``Peter is the name of the human'' is not valid anymore.
+\paragraph{Synthesis} corresponds to the identification of facts and their
+components (concepts and predicates) with respect to other facts. For instance,
+if the robot observes a human sitting down at a table, and at the same time, we
+tell it that ``Peter is sitting at the table'', we would like the robot to
+infer that ``Peter'' may be the name of the human. \textit{Synthesis}
+refers to the fact that several, \textit{a priori} non correlated, facts
+must be associated to the same common concept. This process requires the
+ability to control the logical consistency of the knowledge corpus. To
+continue with the previous example,  if we add the fact that the human that
+is sitting is a woman, the synthesis ``Peter is the name of the human'' is
+not valid anymore.
 
-\paragraph{Domain of validity} The domain of validity of an information,
-lastly, covers several aspects: temporal, situational and probabilistic. The
-main role of the domain of validity is to specify the scope in which an
-information is (believed to be) true. While related to the previously concept
-of \emph{interpretive scopes}, the domain of validity addresses the
-question whether a fact must be or not considered in a given context. This
-limitation of the validity is usually not carried by the fact itself. In the
-previous example, for instance, the robot observes a human sitting at a table.
-This fact ``a human is sitting at the table'' is true only for a limited
-period, until the human stand up. This period of time is not directly
-accessible (the robot does not know how long the human plans to stay), but the
-knowledge representation system must be able to deal with this uncertainty and
+\paragraph{Domain of validity} its main role is to specify the scope in which
+an information is (believed to be) true. It covers several aspects: temporal,
+situational and probabilistic. While related to the previous concept of
+\emph{interpretive scopes}, the domain of validity addresses the question
+whether a fact must be or not considered in a given context. This validity
+limitation is not usually carried by the fact itself. In the previous example,
+for instance, the robot observes a human sitting at a table.  The fact ``a
+human is sitting at the table'' is true only for a limited period of time,
+until the human stands up. This period of time is not directly accessible
+(the robot does not know how long the human plans to stay), but the
+knowledge representation must be able to deal with this uncertainty and
 should explicitly label this fact as being limited in time.
 %~ ~ To know if a fact is permanent or transitional (as defined by Pollock
 %\fxfatal{citation de Langage et Cognition, page 50}) is difficult (especially
@@ -532,25 +528,26 @@ should explicitly label this fact as being limited in time.
 %translation!}, the fact ``the human is sitting at the table'' could be
 %considered as permanent. Conversely, ``ground is static'' is generally
 %considered as a static fact, expect if we are talking of planetary mechanics
-%for instance. The difficuly lies in the selection of the relevant situation in
-%which reasonning must be carried out at a given time) and have currently to be
-%defined in the cultural background of the robot.
+%for instance. The difficulty lies in the selection of the relevant situation
+%in which reasoning must be carried out at a given time) and have currently to
+%be defined in the cultural background of the robot.
 
-Those three aspects translate into a set of features that are desirable for a knowledge representation system:
+These three aspects lead us to envisage a knowledge representation system
+characterized by the following features: 
 \begin{itemize}
 	\item represent raw information,
-	\item render a general cultural background, in form of common-sense knowledge,
+	\item render a general cultural background, in the form of common-sense knowledge,
 	\item attach interpretive scopes to new statements,
 	\item add and connect new statements to knowledge already present,
 	\item store restrictions on the domain of validity of the knowledge.
 \end{itemize}
 
-Besides, active processes would be desirable to:
+Besides, the following active processes would be desirable to:
 \begin{itemize}
 	\item acquire and maintain knowledge perceived from the physical world or
 	retrieved from other sources (interaction with other agents, web-based contents,...)
 	\item synthesize facts as much as possible,
-	\item monitor contexts and manage accordingly the validity of the stored knowledge,
+	\item monitor contexts and accordingly manage the validity of the stored knowledge,
 	\item ensure the logical consistency of the knowledge repository, and
 	explicit inconsistencies when required\footnote{One may argue that the real world is 
 	inherently inconsistent. In this article, we however make a
@@ -563,26 +560,26 @@ Besides, active processes would be desirable to:
 This list does not cover all the possible features that could be exposed by a
 symbolic knowledge management system. Bio-inspired memory management ---the
 ability to forget or reinforce knowledge--- or curiosity ---the ability to
-identify where knowledge is lacking and actively trigger behaviours to acquire
-it---, to give some examples, could arguably be added to the list. However,
-this first analysis sets a convenient reference frame to understand and
-evaluate knowledge representation systems, including the \textsc{ORO} knowledge
-management system we propose.
+identify lacking knowledge and actively trigger behaviors to acquire
+it\fixme{cite Howa}---, to give some examples, could arguably be added to the
+list. However, this first analysis sets a convenient reference frame to
+understand and evaluate knowledge representation systems, including the
+\textsc{ORO} knowledge management system we propose.
 
 \begin{figure}[!ht]
 \centering
   \includegraphics[width=\columnwidth]{images/snapshot_oroview.png}
   \caption{Live snapshot from the \emph{oro-view} viewer depicting the
-  knowledge model of the Jido robot during an experiment. Dots represent
-  instances (ABox) while circles pyramids are classes (TBox)}
+  knowledge model of the robot during an experiment. Dots represent
+  instances (ABox), while circles pyramids are classes (TBox)}
   \label{fig|oro-view}
 \end{figure}
 
 \subsection{ORO Architecture}
 
 The ORO platform~\cite{Lemaignan2010} is primarily designed as a central
-knowledge storage service implemented as a server: at run-time, the robot
-components can add or query statements. Figure~\ref{fig|oro-overview}
+knowledge storage service implemented as a server where the robot
+components can add or query statements at run-time. Figure~\ref{fig|oro-overview}
 illustrates the overall architecture. The \emph{front-end} accepts and manages
 connections from client components. The clients' requests are processed by a
 set of internal modules: basic operations on statements, but also higher
@@ -591,21 +588,23 @@ cognitive and human-robot interaction related functionalities are available
 rely on several parallel ontology \emph{back-ends} where the knowledge is
 actually stored.
 
-Knowledge is represented in ORO in the Description Logics formalism (using the OWL-DL -- \emph{Web Ontology Language - Description Logics} -- language), as RDF (\emph{Resource Description Framework})
-triples (for instance \stmt{robot isIn kitchen}). We use the
-Jena\footnote{\url{http://jena.sourceforge.net/}} framework as the underlying
-library to load and build in-memory OWL model. We use it in conjunction with
-the Pellet\footnote{\url{http://clarkparsia.com/pellet/}} reasoner to ensure
-the continuous classification of the OWL concept graph: at run-time, newly
-added statements are continuously reasoned about (\emph{classified}), and at
-anytime, the server expose a complete set of statements, both the asserted ones
-and the inferred ones. For instance, if \stmt{socrates type Human}
-and \stmt{Human subClassOf Mortal} are asserted, the server
-transparently adds the inferred statement \stmt{socrates type
-Mortal}, and a later query retrieving all mortal entities would return
-\concept{socrates} as well. The language of the OWL family use the \emph{Open World
-Assumption} (if a fact can not be inferred as true, it does not mean that it is
-inferred to be false), and the Pellet reasoner honors this assumption as well.
+Knowledge is represented in ORO in the Description Logics formalism (using the
+OWL-DL -- \emph{Web Ontology Language - Description Logics} -- language), as
+RDF (\emph{Resource Description Framework}) triples (for instance \stmt{robot
+isIn kitchen}). We use the Jena\footnote{\url{http://jena.sourceforge.net/}}
+framework as the underlying library to load and build in-memory OWL model. We
+use it in conjunction with the
+Pellet\footnote{\url{http://clarkparsia.com/pellet/}} reasoner to ensure the
+continuous classification of the OWL concept graph: at run-time, newly added
+statements are continuously reasoned about (\emph{classified}), and at anytime,
+the server expose a complete set of statements, both the asserted ones and the
+inferred ones. For instance, if \stmt{socrates type Human} and \stmt{Human
+subClassOf Mortal} are asserted, the server transparently adds the inferred
+statement \stmt{socrates type Mortal}, and a later query retrieving all mortal
+entities would return \concept{socrates} as well. The language of the OWL
+family use the \emph{Open World Assumption} (if a fact can not be inferred as
+true, it does not mean that it is inferred to be false), and the Pellet
+reasoner honors this assumption as well.
 
 \begin{figure}[!ht]
 \centering
@@ -625,15 +624,16 @@ The ORO server can be loaded with an initial set of statements which we call
 the \emph{OpenRobots Common Sense Ontology}. It defines a small set of concepts
 (and implicitly, a vocabulary) that can be used by all the modules of the robot
 to unambiguously add or query facts. Moreover, the same ontology declares rules
-and logical properties that are later used for inference.
+and logical properties that are later on used for inference.
 
-The \emph{OpenRobots Common Sense Ontology} defines a small set of classes (56 are
-currently defined) and predicates (60 are currently defined) focused on
-concepts useful for robot interaction with humans. It includes both very broad
-categories like \concept{SpatialThing}, \concept{Event} or \concept{Action}, and much more
-concrete concepts as \concept{Table}, \concept{Book} or colors. Predicates allow to
-describe the state of the agents and the world with relations like \concept{isOn},
-\concept{sees}, \concept{currentlyPerforms}, etc.
+The \emph{OpenRobots Common Sense Ontology} defines a small set of classes (56
+are currently defined) and predicates (60 are currently defined) focused on
+concepts useful for human-robot interaction. It includes both very broad
+categories like \concept{SpatialThing}, \concept{Event} or \concept{Action},
+and much more concrete concepts as \concept{Table}, \concept{Book} or colors.
+Available predicates allow to describe the state of the agents and the world
+with relations like \concept{isOn}, \concept{sees},
+\concept{currentlyPerforms}, etc.
 
 Several significant projects are trying to provide such a machine-processable
 repository of common sense facts produced by humans (the \textsc{OpenMind}
@@ -643,15 +643,15 @@ because of both their incompleteness and the lack of good connections with
 underlying, unambiguous concepts.
 %\cite{Singh2002}
 
-Our common sense ontology is closely aligned on the open-source
+Our common sense ontology is closely aligned with the open-source
 \textsc{OpenCyc}\footnote{\url{http://www.opencyc.org}} upper ontology.
 \textsc{OpenCyc} defines a large taxonomy of concepts and semantic
 relationships between concepts that are used in several other projects
 (\textsc{WordNet, DBpedia}). This potentially eases the exchange and addition
-of knowledge from these other sources. Relying on the \textit{de facto}
-\textsc{OpenCyc} standard enables as well knowledge exchange with other robots
-(for instance, the works previously mentioned by Daoutis and Tenorth rely on
-the same \textsc{Cyc} concepts).
+of knowledge from these other sources. Moreover, it also enables knowledge
+exchange with other robots (for instance, the works previously mentioned by
+Daoutis and Tenorth rely on the same \textsc{Cyc} concepts\fixme{Give
+examples}).
 
 Figure~\ref{fig|oro-view} shows a snapshot of the knowledge model during an
 experiment. Both concepts from the common sense ontology and
@@ -698,28 +698,31 @@ such knowledge restructuring.
 \label{features}
 
 Besides storing and reasoning about knowledge, we have developed in ORO several
-features to manage knowledge at higher level: independent cognitive models for
-each agent the robot interacts with, categorization capabilities, different
-profiles of memory and events registration.
+features to manage knowledge at higher level: 
+%independent cognitive models for
+%each agent the robot interacts with, categorization capabilities, different
+%profiles of memory and events registration.
 
 \subsubsection{Base functionalities}
 \label{base}
-ORO offers an extended set of methods for processing of facts at the triples level. It includes:
+
+ORO offers an extended set of methods to process facts at the triples level,
+including:
 \begin{itemize}
-	\item statement ({\it i.e.}, RDF triples) insertion, removal, update,
-	\item pattern-based removal of statements,
+	\item statement (\ie RDF triples) insertion, removal, update,
+	\item pattern-based statements removal,
+	\item pattern-based queries (for instance, \stmt{ * isOn
+	table}, which means ``return me all objects on table'') and filters (for
+	instance, \concept{weight < 150.0}),
 	\item consistency check, insertion of statements with consistency
 	constraint (only if the new fact does not lead to inconsistencies),
 	\item fast concept lookup, with multi-lingual support,
-	\item queries with patterns (for instance, \stmt{ * isOn
-	table}, which means ``return me all objects on table'') and filters (for
-	instance, \concept{weight < 150.0}),
-	\item standard SPARQL\footnote{\url{http://www.w3.org/TR/rdf-sparql-query/}} queries.
+	\item standard SPARQL\footnote{{\em SPARQL Protocol and RDF Query Language}, \url{http://www.w3.org/TR/rdf-sparql-query/}} queries.
 \end{itemize}
 
-These basic functionalities enable the incremental construction (and
-exploitation) of a consistent knowledge model, and the \emph{Common Sense Ontology}
-core set of concepts helps to build assertions that are related to previous one by offering
+While these basic functionalities enable the incremental construction (and
+exploitation) of a consistent knowledge model, the \emph{Common Sense Ontology}
+helps building assertions that are related to previous one by offering
 a predefined vocabulary.
 
 \subsubsection{Representation of alternative cognitive models}
@@ -728,19 +731,20 @@ a predefined vocabulary.
 As pictured in Figure~\ref{fig|oro-overview}, ORO stores independent cognitive
 models for each agent it interacts with. When ORO actually identifies a new
 agent (or infers that some instance is an agent), it automatically creates a
-new, separate, in-memory OWL model. Robot's components like supervision or
-situation assessment may then store the agents' beliefs in a
-separate model. All knowledge processing functions available on the robot
-primary model are equally available in every agent model. This allows to store
-and reason on different (and possibly globally inconsistent) models of the
-world.
+new, separate, in-memory OWL model for that agent. Thus, different robot's
+components, like supervision or situation assessment, may then store the
+agents' beliefs in separate models. All knowledge processing functions in the
+robot's primary model are equally available in every agent's model, which
+allows to store and reason on different (and possibly globally inconsistent)
+models of the world.
 
 This feature actually allows us to consider the robot to be endowed with a
 \emph{theory of mind}~\cite{Scassellati2002}: the robot can explicitly model
-the belief state of its interactors, opening new possibilities for the control
-architecture. We present in the section~\ref{dialog} on natural language
-grounding how we use this feature to make sense of the human sentences from the
-human own point of view.
+the belief state of its inter-actors, opening new possibilities for the control
+architecture. In the section~\ref{dialog} we present how we use this feature to
+make sense of the user sentences from the his/her point of view. Moreover,
+these multiple models can be viewed as well as different interpretive scopes,
+allowing to interpret the same reality from different points of view.
 
 These multiple models can be viewed as well as different interpretive
 scopes, allowing to interpret the same reality from different points of
@@ -752,15 +756,16 @@ view.
 We have implemented several algorithms (common ancestors, computation of the
 best discriminant, see~\cite{Ros2010b}) to help the robot cluster a set of
 concepts based on their symbolic similarities (common properties, common
-ancestors). One particular application of these functions is discrimination:
-when interacting with a user, the robot often needs to clarify an ambiguity
-produced by its human partner. For instance, a user may refer to a ``bottle''
-whereas two bottles are currently visible: the discrimination routines can
-identify possible (symbolic) differences (maybe the color or the size of the
-bottles) that permit the robot to ask an accurate question to the user to solve
-the ambiguity. This discrimination can occur from the robot perspective or from
-a specific agent perspective. Usage of these categorization abilities are
-illustrated in the \emph{Spy Game} experiment (section~\ref{spygame}).
+ancestors). One particular application of these functions is discrimination.
+While interacting with a user, the robot quite often needs to clarify an
+ambiguity produced by its human partner. For instance, a user may refer to a
+``bottle'' whereas two bottles are currently visible. Discrimination routines
+can identify possible (symbolic) differences (\eg the color or the size of the
+bottles) that permit the robot to ask an accurate question to the user in order
+to solve the ambiguity. This discrimination can occur from the robot's
+perspective or from a specific agent's perspective. Usage of these
+categorization abilities are illustrated in the \emph{Spy Game}
+(section~\ref{spygame}).
 
 \subsubsection{Memory profiles}
 \label{memory}
@@ -771,19 +776,21 @@ memory} and \emph{long term memory}. Each profile is characterized with a
 lifetime, which is assigned to the stored facts. When the lifetime of a fact
 expires, ORO automatically removes it.
 
-\subsubsection{The events framework} \label{events} Lastly, ORO allows external
-modules to be triggered when specific events occur. For instance, when a
-logical sentence becomes true or false, or if a new instance of a certain class
-is added. One immediate application is reactive supervision: a component could
-for instance subscribe to events of kind \setstmt{?agent isVisible true, ?agent type Human}. As soon as the perception layer detects a human in the
-robot's field of view and accordingly updates the knowledge base, the
-supervision component would be triggered back.
+\subsubsection{The events framework} 
+\label{events} 
 
-The event framework also takes advantage of the inference capabilities of ORO.
-Thus an event can be indirectly triggered if its triggering conditions can be
-inferred to be true.
+Lastly, ORO allows external modules to be triggered when specific events occur.
+For instance, when a logical sentence becomes true or false, or if a new
+instance of a certain class is added. One immediate application is reactive
+supervision: a component could for instance subscribe to events of kind
+\setstmt{?agent isVisible true, ?agent type Human}. As soon as the perception
+layer detects a human in the robot's field of view and accordingly updates the
+knowledge base, the supervision component would be triggered back. The event
+framework also takes advantage of the inference capabilities of ORO. Thus an
+event can be indirectly triggered if its triggering conditions can be inferred
+to be true.
 
-Next sections present how symbolic knowledge is actually produced and added to
+Next sections describe how symbolic knowledge is actually produced and added to
 ORO.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
