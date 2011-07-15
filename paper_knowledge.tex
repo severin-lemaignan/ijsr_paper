@@ -1122,7 +1122,7 @@ asserts a new one: ``The yellow banana is big!''.
 	\hline
 	\hspace{0.3cm}\stmt{?obj type Banana} \\
     	\hspace{0.3cm}\stmt{?obj hasColor yellow} \\
-    	\hspace{0.7cm}$\Rightarrow$ {\tt ?obj = banana\_01}\\
+    	\hspace{0.7cm}$\Rightarrow$ \concept{?obj = banana\_01}\\
 
 	\vspace{0.5em}
 	\emph{Newly created statements}\\
@@ -1195,7 +1195,7 @@ described in Figure~\ref{dialog|ex2}.
 	\emph{Generated partial statements}\\
 	\hline
     	\hspace{0.3cm}\stmt{?obj type Banana} \\
-	\hspace{0.7cm}$\Rightarrow$ {\tt ?obj = banana\_01}\\
+	\hspace{0.7cm}$\Rightarrow$ \concept{?obj = banana\_01}\\
 
 	\end{tabular} \\
 
@@ -1396,6 +1396,13 @@ by the \emph{verbalization} module, and uttered to the human.
 This section presents several experiments where the different features of our
 approach are represented.
 
+Experiments have been conducted on two different platforms: the
+\emph{Rosie} manipulator from the Technical Universtiy of Munich, a dual-arm,
+holonomic service robot, running the ROS\footnote{\emph{Robotic Operating
+System}, \url{http://www.ros.org}} middleware, and the \emph{Jido} robot from
+LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
+Genom/pocolibs} stack.
+
 \subsection{\emph{Naming} experiment}
 \label{naming}
 
@@ -1415,7 +1422,7 @@ objects and their symbolic representation in ORO.}
 
 The \emph{Naming} task uses ORO to anchor perception into the robot's knowledge
 through interaction with the user. This task has been implemented on the Rosie
-robot at Munich Technical University.
+robot at Munich university.
 
 The robot picks an unknown object from the table, shows it to the user, and
 asks about its name and type (Figure~\ref{fig|kimpwatching}). The user
@@ -1685,7 +1692,7 @@ the table, and another one inside the cardboard box. Thus, the knowledge
 base returns both: 
 
 \begin{center}
-\hspace{0.7cm}$\Rightarrow$ {\tt ?obj = [videoTape1, videoTape2]}
+\hspace{0.7cm}$\Rightarrow$ \concept{?obj = [videoTape1, videoTape2]}
 \end{center}
 
 However, only one is visible for Tom (the one on the
@@ -1696,7 +1703,7 @@ the one inside the box which is not visible from his view. Therefore,
 non-visible objects are removed obtaining:
 
 \begin{center}
-{\tt ?obj = [videoTape1]}
+\concept{?obj = [videoTape1]}
 \end{center}
 
 Since only one object is available, the robot infers
@@ -1755,7 +1762,7 @@ situation, there are two available boxes:
 \begin{center}
 \begin{tabular}{l}
 \stmt{?obj type Box}\\
-\hspace{0.7cm}$\Rightarrow$ {\tt ?obj = [cardBoardBox, toolbox]}
+\hspace{0.7cm}$\Rightarrow$ \concept{?obj = [cardBoardBox, toolbox]}
 \end{tabular}
 \end{center}
 
@@ -1763,20 +1770,20 @@ However both are visible and the cognitive ambiguity resolution cannot be
 applied. The only option is to ask Jerry which box he is referring to: ``Which
 box, the toolbox or the cardboard box?'' Jerry could now simply answer the
 question. Instead, he decides to point at it while indicating: ``This box''
-(Figure~\ref{fig|pointing}b). The robot's perception identifies the {\tt
-cardBoardBox} as being pointed at and looked at by the human and updates the
-ontology with this new information using a rule available in the commonsense
-ontology ({\tt pointsAt(?ag, ?obj) $\land$ looksAt(?ag, ?obj) $\to$
-focusesOn(?ag, ?obj)}) The \textsc{Dialogs} module is then able to merge both
-sources of information, verbal (``this'') and gestural to distinguish the box
-Jerry refers to.
+(Figure~\ref{fig|pointing}b). The robot's perception identifies the
+\concept{cardBoardBox} as being pointed at and looked at by the human and
+updates the ontology with this new information using a rule available in the
+commonsense ontology ({\tt pointsAt(?agt, ?obj) $\land$ looksAt(?agt, ?obj)
+$\to$ focusesOn(?agt, ?obj)}) The \textsc{Dialogs} module is then able to merge
+both sources of information, verbal (``this'') and gestural to distinguish the
+box Jerry refers to.
 
 \begin{center}
 \begin{tabular}{l}
 \stmt{Jerry pointsAt carboardBox}\\
 \stmt{Jerry looksAt carboardBox}\\
 $\to$ \stmt{Jerry focusesAt carboardBox}\\
-\hspace{0.7cm}$\Rightarrow$ {\tt ?obj = [cardBoardBox]}
+\hspace{0.7cm}$\Rightarrow$ \concept{?obj = [cardBoardBox]}
 \end{tabular}
 \end{center}
 
@@ -1788,7 +1795,7 @@ given by the users.
 \begin{center}
 \begin{tabular}{l}
 \stmt{?obj isIn cardBoardBox}\\
-\hspace{0.7cm}$\Rightarrow$ {\tt ?obj = videoTape2}\\
+\hspace{0.7cm}$\Rightarrow$ \concept{?obj = videoTape2}\\
 \end{tabular}
 \end{center}
 
@@ -1801,7 +1808,7 @@ video which they were just talking about, but to the other one:
 \begin{tabular}{l}
 \stmt{?obj type VideoTape}\\
 \stmt{?obj differentFrom videoTape2}\\
-\hspace{0.7cm}$\Rightarrow$ {\tt ?obj = [videoTape1]}
+\hspace{0.7cm}$\Rightarrow$ \concept{?obj = [videoTape1]}
 \end{tabular}
 \end{center}
 
@@ -2051,7 +2058,6 @@ is \url{http://spark.openrobots.org}.
 \item \textsc{Dialogs} is the natural-language interpretation module. Its
 homepage is \url{http://dialogs.openrobots.org}. 
 \end{itemize}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{acknowledgements} 
