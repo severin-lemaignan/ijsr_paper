@@ -713,14 +713,23 @@ ORO offers an extended set of methods to process facts at the triples level,
 including:
 \begin{itemize}
 	\item statement (\ie RDF triples) insertion, removal, update,
+
 	\item pattern-based statements removal,
+
 	\item pattern-based queries (for instance, \stmt{ * isOn
 	table}, which means ``return me all objects on table'') and filters (for
 	instance, \concept{weight < 150.0}),
+
 	\item consistency check, insertion of statements with consistency
 	constraint (only if the new fact does not lead to inconsistencies),
-	\item fast concept lookup, with multi-lingual support,
-	\item standard SPARQL\footnote{{\em SPARQL Protocol and RDF Query Language}, \url{http://www.w3.org/TR/rdf-sparql-query/}} queries.
+	
+	\item fast concept lookup, with possible multi-lingual support (through the
+	\concept{@lang} XML annotation, labels of concept can be translated, and
+	specific translations can be queried for),
+
+	\item standard SPARQL\footnote{{\em SPARQL Protocol and RDF Query
+	Language}, \url{http://www.w3.org/TR/rdf-sparql-query/}} queries.
+
 \end{itemize}
 
 While these basic functionalities enable the incremental construction (and
