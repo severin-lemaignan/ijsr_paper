@@ -963,8 +963,9 @@ by Mavridis and Roy~\cite{Mavridis2005} in the sense that they both provide an
 amodal physical representation of the world used as a mediator between the
 sensor space and symbolic models. They have however a different set of
 features: while GSM enables representation of time and imaginary objects (whose
-existence is hinted by verbal assertions from a human), SPARK offers a richer
-3D model that enables the computation of several spatial relationships between
+existence is hinted by verbal assertions from a human, also called
+\emph{presupposition accomodation}), SPARK offers a richer 3D model that
+enables the computation of several spatial relationships between
 objects and an effective implementation of perspective taking capabilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1445,17 +1446,19 @@ semantics and roles of objects in the scenario.
 \centering
 	\begin{tabular}{r|p{7cm}}
 	\chatN{rosie} & Servus! The Bavarian robot is up and fit! \\
-	\chatN{rosie} & What is the name of the WHITE CLUSTER on the TABLE? \\
+	\chatN{rosie} & What is the name of the white cluster on the table? \\
 	\chatN{human} & ``Rosie's mug'' \\
-	\chatN{rosie} &\emph{[add \stmt{obj\_01 label "Rosie's mug"}]}\\
+	\chatN{rosie} &\emph{[\stmt{obj\_01 label "Rosie's mug"} added]}\\
 				& What kind of object is ``Rosie's mug''? \\
 	\chatN{human} & Mug \\
-	\chatN{rosie} & \emph{[add \stmt{obj\_01 type Mug}]}\\
+	\chatN{rosie} & \emph{[\stmt{obj\_01 type Mug} added]}\\
 			& What is a Mug?\\ 
 	\chatN{human} & Tableware\\
-	\chatN{rosie} & \emph{[adds \stmt{Mug subClassOf Tableware}. Rosie knows about \emph{Tableware} --it belongs to the common-sense ontology--.}\\
-	 & (...) \\
-	\chatN{rosie} &  What is the name of the BLACK CLUSTER on the TABLE? \\
+	\chatN{rosie} & \emph{[\stmt{Mug subClassOf Tableware} added. Rosie already
+	knows about \emph{Tableware} (it belongs to the common-sense ontology), so
+	the interaction stops.]}\\
+	& (...) \\
+	\chatN{rosie} &  What is the name of the black cluster on the table? \\
 	\chatN{human} & ``my\_laptop'' \\
 	\chatN{rosie} & What kind of object is ``my\_laptop''? \\
 	\chatN{human} & Computer \\
