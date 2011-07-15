@@ -796,32 +796,31 @@ ORO.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Geometric reasoner for situation assessment} 
 
-Anchoring perceptions in a symbolic model requires perception abilities and
-their symbolic assessments. In this section we present SPARK (\emph{SPAtial
-Reasoning \& Knowledge}), a situation assessment reasoner that generates
-relevant symbolic information from the geometry of the environment with respect
-to relations between objects, robots and humans. Moreover, the notion of
-\emph{Perspective Taking}~\cite{Flavell1992,Tversky1999} is employed in the
-heart of the reasoner to provide the robot with the ability to put itself at
-the human’s place and to reason about the world from different perspectives.
+Anchoring perceptions in a symbolic model requires first perception abilities
+and second, a symbolic assessment of the percepts. In this section we present
+SPARK (\emph{SPAtial Reasoning \& Knowledge}), a situation assessment reasoner
+that generates relevant symbolic information from the geometry of the
+environment with respect to relations between objects and human capabilities.
+Moreover, the notion of \emph{Perspective
+Taking}~\cite{Flavell1992,Tversky1999} is employed in the heart of the
+reasoning to provide the robot with the ability to put itself at the human's
+place and to reason about the world from different perspectives.
 
 As mentioned in the introduction, this paper do not focus on the sensor-level
 perception. We rather assume that the perception of the humans and the objects
 is provided as a list of unique identifiers with associated 3D meshes and 6DOF
 poses.
 
-
 \subsection{Capabilities}
 
 There are a number of common properties for a robot and a human related to
 their capabilities in a given situation: they can both reach, grasp, look,
-point, etc. In our context, we group the robot and the human into a single
-category. Thus, we define the ``agent'' as an entity that can act in the
-environment and manipulate it. In this work we focus on the following
-capabilities from each agents' perspective \footnote{Note that each of the
-capabilities described are computed from each agent point of view, and
-therefore, also stored in different models in ORO for further use at the
-decisional level.}.
+point, etc. In our context, we group robots and humans into a single category.
+Thus, we define agents as entities that can act in the environment and
+manipulate it. In this work we focus on the following capabilities from each
+agent's perspective\footnote{Note that each of the capabilities described are
+computed from each agent point of view, and therefore, also stored in different
+models in ORO for further use at the decisional level.}.
 
 \begin{itemize}
 
@@ -838,10 +837,10 @@ table in front of the him, the big box on his right is out of this FOV, and
 therefore, he is not able to see it. 
 
 \item \emph{Looks At}: this relation corresponds to what the agent is focused
-on, \ie, where its focus of attention is directed to. This model is based on a
+on, \ie where its focus of attention is directed to. This model is based on a
 narrower field of view, the field of attention (FOA). Figure~\ref{fig::vis}
 shows the field of attention of a person with a green cone (narrower one). In
-this example only the grey box satisfies the \verb"looksAt" relation.
+this example only the grey box satisfies the \concept{looksAt} relation.
 
 \begin{figure}[!t] \centering
 \includegraphics[width=\columnwidth]{images/looks.jpg} \caption{Representation
@@ -853,12 +852,13 @@ relation is particularly useful during interaction when one of the agents is
 referring to an object saying ``this" or ``that" while pointing at it. 
  
 If a big object occludes a smaller one, and an agent is pointing at them, the
-outcome of the evaluation will result only in one relation, \ie, \stmt{Agent
-\textbf{pointsAt} BigObject} since the small one is not visible to the agent.
-On the contrary, if the small object is in front of the big one, then both
-objects will be pointed at by the human, generating an ambiguity which should
-be solved through higher level reasoning (\eg context analysis or
-clarification through verbal interaction as shown later on).
+outcome of the evaluation will result only in one relation, \ie \stmt{agent\_01
+pointsAt object\_01} since the small one is not visible to the agent.  On the
+contrary, if the small object is in front of the big one, then both objects
+will satisfy the relation, which may generate an ambiguity (which object the
+agent refers to?) that should be solved through higher level reasoning (\eg
+context analysis or clarification through verbal interaction as shown later
+on).
 
 \item \emph{Reachable}: it allows the robot to estimate the agents capability
 to reach an object, which is fundamental for task planning. For example, if the
@@ -880,53 +880,57 @@ the teddy bear is reachable, while the bottle is not.
 
 \end{itemize}
 
-While the first three relations (\emph{sees, looksAt} and \emph{pointsAt}) are
-computed through a model based approach, the latter one is based on the
-Generalized Inverse Kinematics with pseudo inverse
+While the first three relations (\concept{sees}, \concept{looksAt} and
+\concept{pointsAt}) are computed through a model based approach, the latter one
+is based on the Generalized Inverse Kinematics with pseudo inverse
 method~\cite{Nakamura90,Baerlocher04} to find a collision free posture for the
 agent where its end-effector is at the center of the object within a given
 tolerance. The details of these computations are out of the scope of this
 article.
 
-\subsection{Locations} As humans, one way of referring to the object's
+\subsection{Locations} As humans, one way of referring to object's
 positions is based on their symbolic descriptors instead of using their precise
 position. In fact, in many cases, this information is the most precise one that
 we can give since we do not store the numeric coordinates of objects. The
 following relations are computed with respect to the position of the agents and
 the objects.
 
-\begin{itemize} \item \emph{Location according to an agent} The predicate
-\verb"isLocatedAt" represents spatial locations between agents and objects. For
-example we say ``it is on my right, on your left,...'' We compute these spatial
-locations by dividing the space around the referent (an agent) into $n$ regions
-based on arbitrary angle values relative to the referent orientation. For
-example, for $n = 4$ we would have the space divided into \emph{front, left,
-right} and \emph{back}. Additionally, two proximity values, \emph{near} and
-\emph{far}, may also be considered. The number of regions and proximity values
-can be chosen depending on the context where the interaction takes place.
+\begin{itemize} 
 
-\item \emph{Location according to an object} We can also refer to object
-locations with respect to other objects in the environment, such as, above,
-next to, in, etc. These types of relations are widely studied in language
-grounding (e.g.~\cite{Regier01} presented different models to define the
+\item \emph{Location according to an agent}: The predicate
+\concept{isLocatedAt} represents spatial locations between agents and objects.
+For example we say ``it is on my right, on your left,...'' We compute these
+spatial locations by dividing the space around the referent (an agent) into $n$
+regions based on arbitrary angle values relative to the referent orientation.
+For example, for $n = 4$ we would have the space divided into \emph{front,
+left, right} and \emph{back}. Additionally, two proximity values, \emph{near}
+and \emph{far}, may also be considered. The number of regions and proximity
+values can be chosen depending on the context where the interaction takes
+place.
+
+\item \emph{Location according to an object}: We can also refer to object
+locations with respect to other objects in the environment, such as \emph{above,
+next to, in}, etc. These types of relations are widely studied in language
+grounding (\eg \cite{Regier01} presented different models to define the
 \emph{above} relation). In this work we use similar models based on the
 bounding boxes and center of mass of the objects to define three main relations
-(Figure~\ref{fig::sprelation}): \begin{itemize}
+(Figure~\ref{fig::sprelation}): 
 
-\item \textit{isOn}: computes if an object $O_1$ is on another object $O_2$ by
-evaluating the center of mass of $O_1$ according to the bounding box of $O_2$.
+\begin{itemize}
+	\item \concept{isOn}: computes if an object $O_1$ is on another object $O_2$ by
+	evaluating the center of mass of $O_1$ according to the bounding box of $O_2$.
 
-\item \textit{isIn}: evaluates if an object $O_1$ is inside another object
-$O_2$ based on their bounding boxes $BB_{O_1}$ and $BB_{O_2}$.
+	\item \concept{isIn}: evaluates if an object $O_1$ is inside another object
+	$O_2$ based on their bounding boxes $BB_{O_1}$ and $BB_{O_2}$.
 
-\item \textit{isNextTo}: indicates whether an object $O_1$ is next to another
-object $O_2$. We cannot use a simple distance threshold to determine if two
-objects are next to each other since the relation is highly dependent on the
-dimensions of the objects. For instance, the maximum distance between large
-objects (e.g. two houses) to consider them as being next to each other is much
-larger than the maximum distance we would consider for two small objects (\eg
-two bottles). Thus, the relation between the dimensions and the distances of
-the objects are taken into account.  
+	\item \concept{isNextTo}: indicates whether an object $O_1$ is next to another
+	object $O_2$. We cannot use a simple distance threshold to determine if two
+	objects are next to each other since the relation is highly dependent on the
+	dimensions of the objects. For instance, the maximum distance between large
+	objects (\eg two houses) to consider them as being next to each other is much
+	larger than the maximum distance we would consider for two small objects (\eg
+	two bottles). Thus, the relation between the dimensions and the distances of
+	the objects are taken into account.  
 
 \begin{figure} 
 	\centering
@@ -942,14 +946,14 @@ the objects are taken into account.
 To ensure the different agent's models are up-to-date, all these properties are
 always computed on-line, each time the current state of the world changes.
 
-SPARK can be compared to the \emph{Grounded Situation Model} (GSM) by
-Mavridis and Roy~\cite{Mavridis2005} in the sense that they both provide an amodal physical
-representation of the world used as mediator between the sensor space and
-symbolic models. They have however a different set of features: while GSM
-enable representation of time and imaginary objects (whose existence is hinted
-by verbal assertions from a human), SPARK offers a richer 3D model that enable
-computation of several spatial relationships between objects and an effective
-implementation of the perspective taking.
+SPARK can be compared to the \emph{Grounded Situation Model} (GSM) introduced
+by Mavridis and Roy~\cite{Mavridis2005} in the sense that they both provide an
+amodal physical representation of the world used as a mediator between the
+sensor space and symbolic models. They have however a different set of
+features: while GSM enables representation of time and imaginary objects (whose
+existence is hinted by verbal assertions from a human), SPARK offers a richer
+3D model that enables the computation of several spatial relationships between
+objects and an effective implementation of perspective taking capabilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The natural language grounding process}
