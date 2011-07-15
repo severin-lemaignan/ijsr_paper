@@ -79,6 +79,21 @@ I very strongly recommend that section I.A. be completely revised.
 \subsection{``Explain the relation of the presented approach to the Open World
 Assumption''}
 
+The Open World assumption mainly allows us to model that we may not know
+if a fact is true or not.
+
+One very common example is the {\tt knowsAbout} predicate. This predicate
+defines if some agent knows about some object.
+
+It is important (especially for dialog) to be able to equally model that an agent knows or 
+does not know about the object, or that the robot simply does not know if 
+the human knows about it.
+
+The Open World Assumption has important consequences on the reasoning
+abilities of the system, since it prevents the classical "negation by 
+failure" and leads to tighter modelling requirement to locally "close the
+world" (for instance, the {\tt Color} class is defined as the equivalent of
+the union of the 10 or so color instances we consider).
 
 \subsection{``Present a systematic overview of the formalisms and
 representations used (OWL, RDF, DL, ...), and choose one consistent syntax for
