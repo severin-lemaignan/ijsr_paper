@@ -407,7 +407,7 @@ Third, the same symbolic knowledge base enables richer language capabilities
 for the robot.  We propose a new approach to natural language grounding that is
 robust, situated and more generic than what can be found in previous work
 on situated language grounding. We present several examples that include a
-generic recognition and semantic validation of thematic roles (\ie, the
+generic recognition and semantic validation of thematic roles (\ie the
 semantic roles played by the different nominal groups around a verb), which
 can be translated into input for a symbolic task planner, or disambiguation
 based on attention foci.
@@ -446,8 +446,8 @@ Section 4 covers in detail the dialogue processing component. The main
 algorithms for natural language grounding are described, as well as the
 interactions between these component and the knowledge base.
 
-Section 5 presents three use-cases that were conducted on three different
-robotic platforms: the \emph{naming} experiment, where a robot anchors new
+Section 5 presents three use-cases that were conducted on two different
+robotic platforms: the \emph{Naming} experiment, where a robot anchors new
 knowledge in its model through verbal interaction; the \emph{Spy Game} where
 either the user or the robot tries to guess which object the other player is
 thinking of; and a more complex experiment situated in an everyday setup, where
@@ -808,17 +808,17 @@ ORO.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Geometric reasoner for situation assessment} 
 
-Anchoring perceptions in a symbolic model requires first perception abilities
-and second, a symbolic assessment of the percepts. In this section we present
+Anchoring perceptions in a symbolic model requires perception abilities
+and their symbolic assessments. In this section we present
 SPARK (\emph{SPAtial Reasoning \& Knowledge}, \cite{Sisbot2011}), a situation assessment reasoner
 that generates relevant symbolic information from the geometry of the
-environment with respect to relations between objects and human capabilities.
+environment with respect to relations between objects, robots and humans.
 Moreover, the notion of \emph{Perspective
-Taking}~\cite{Flavell1992,Tversky1999} is employed in the heart of the
-reasoning to provide the robot with the ability to put itself at the human's
+Taking}~\cite{Flavell1992,Tversky1999} is employed at the heart of the
+reasoner to provide the robot with the ability to put itself at the human's
 place and to reason about the world from different perspectives.
 
-As mentioned in the introduction, this paper do not focus on the sensor-level
+As mentioned in the introduction, this paper does not focus on the sensor-level
 perception. We rather assume that the perception of the humans and the objects
 is provided as a list of unique identifiers with associated 3D meshes and 6DOF
 poses.
@@ -826,13 +826,13 @@ poses.
 \subsection{Capabilities}
 
 There are a number of common properties for a robot and a human related to
-their capabilities in a given situation: they can both reach, grasp, look,
-point, etc. In our context, we group robots and humans into a single category.
+their capabilities in a given situation: they can both reach, grasp, look at,
+point at, etc. In our context, we group robots and humans into a single category.
 Thus, we define agents as entities that can act in the environment and
 manipulate it. In this work we focus on the following capabilities from each
 agent's perspective\footnote{Note that each of the capabilities described are
 computed from each agent point of view, and therefore, also stored in different
-models in ORO for further use at the decisional level.}.
+models in ORO for further use at the decisional level.}:
 
 \begin{itemize}
 
@@ -1399,7 +1399,7 @@ approach are represented.
 Experiments have been conducted on two different platforms: the
 \emph{Rosie} manipulator from the Technical Universtiy of Munich, a dual-arm,
 holonomic service robot, running the ROS\footnote{\emph{Robotic Operating
-System}, \url{http://www.ros.org}} middleware, and the \emph{Jido} robot from
+System}, \url{http://www.ros.org}} middleware, and the \emph{Jido} robot~\cite{Alami1998a} from
 LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
 Genom/pocolibs} stack.
 
@@ -1408,12 +1408,13 @@ Genom/pocolibs} stack.
 
 \begin{figure}
 \centering
-
-\parbox[c]{4.3cm}{\includegraphics[width=4.3cm]{images/kimp1.jpg}} \hspace{0.2em}
-\parbox[c]{4.1cm}{\includegraphics[width=4.1cm]{images/rviz.png}}
+\includegraphics[width=0.45\columnwidth]{images/kimp1.jpg}
+\includegraphics[width=0.45\columnwidth]{images/rviz.png}
+%\parbox[c]{4.3cm}{\includegraphics[width=0.5\columnwidth]{images/kimp1.jpg}}
+%\parbox[c]{4.1cm}{\includegraphics[width=4cm]{images/rviz.png}}
 \flushleft
 \hspace{1.8cm} (a) \hspace{3.9cm} (b)
-\caption{(a) Rosie, looking for objects it may know, and (b) viewed in Willow
+\caption{(a) Rosie, looking for objects it may know, and (b) view from Willow
 Garage's RViz. The clusters of point are given a unique identifier by the
 perception that allows the supervision to create the link between the physical
 objects and their symbolic representation in ORO.} 
@@ -1424,14 +1425,13 @@ The \emph{Naming} task uses ORO to anchor perception into the robot's knowledge
 through interaction with the user. This task has been implemented on the Rosie
 robot at Munich university.
 
-The robot picks an unknown object from the table, shows it to the user, and
+The robot selects an unknown object from the table, shows it to the user, and
 asks about its name and type (Figure~\ref{fig|kimpwatching}). The user
 interacts with the robot through a dedicated bridge, allowing to chat with
 the robot with a standard Jabber instant messaging client.
 Figure~\ref{tab|transcript_kimp} shows a chat session with Rosie performing the
 naming experiment. The human describes the object until the robot recognizes a
-type it already knows: by asking in loop the human for the categories of an
-object until it can connect it to a concept it already knows, the robot
+type it already knows. More precisely, the robot recursively asks the human for the categories the object belongs to until reaching a known one. At this point, the robot is able to connect the new object information to already known concepts. Therefore, the robot
 accurately anchors perception in its symbolic model and it is able to reason
 about it.  The learning process starts over again with each unknown object. To
 further exploit the knowledge reasoner in this experiment, we ask the robot
@@ -1439,12 +1439,12 @@ which object do not belong to a typical breakfast table, \ie we ask for the odd
 objects. In this case, it corresponds to objects that are neither of type
 \concept{Tableware} nor \concept{Food}. 
 
-The supervision (\textsc{cram}\footnote{\textsc{cram} (Cognitive Robotic
+The supervision module (\textsc{cram}\footnote{\textsc{cram} (Cognitive Robotic
 Abstract Machine) is a RPL-derived framework for rapid development of cognitive
 robot control programs we currently develop.}~\cite{Beetz2010}) automatically
 updates the ORO server whenever an object enters or leaves the field of view.
 %(the perception is based on the \textsc{CoP} framework~\cite{Klank2009}). 
-Therefore, the integration of ORO can be seen as an extension to
+Therefore, the integration of ORO can be seen as an extension of
 the robot's belief state that not only contains abstract identifiers
 of the internal object representation used in plans, but also the
 semantics and roles of objects in the scenario.
@@ -1490,10 +1490,10 @@ object was set to have two different colors at the same time. Since the
 \concept{hasColor} predicate we had decided to use was a functional predicate
 (\ie objects can have only one color), ORO inferred an inconsistency and
 discarded the new fact. This kind of logical failure can be used to improve
-low-level perception results by ``closing the loop'' with high-level, symbolic
+low-level perception outcomes by ``closing the loop'' with high-level, symbolic
 knowledge.
 
-\subsection{``Spy Game'' experiment}
+\subsection{\emph{Spy Game} experiment}
 
 \label{spygame}
 
@@ -1507,9 +1507,10 @@ perspective taking abilities~\cite{Moll2006}.
 
 \begin{figure}
 \centering
-
-\parbox[c]{4.3cm}{\includegraphics[width=4.3cm]{images/spy-game-real.jpg}} \hspace{0.2em}
-\parbox[c]{4.1cm}{\includegraphics[width=4.1cm]{images/spy-game-mhp.jpg}}
+\includegraphics[width=0.45\columnwidth]{images/spy-game-real.jpg}
+\includegraphics[width=0.45\columnwidth]{images/spy-game-mhp.jpg}
+%\parbox[c]{4.3cm}{\includegraphics[width=4.3cm]{images/spy-game-real.jpg}} \hspace{0.2em}
+%\parbox[c]{4.1cm}{\includegraphics[width=4.1cm]{images/spy-game-mhp.jpg}}
 \flushleft
 \hspace{1.8cm} (a) \hspace{3.9cm} (b)
 \caption{Spy game scenario: (a) Real environment and (b) 3D environment model, viewed in \textsc{SPARK}.}
@@ -1566,7 +1567,7 @@ failing (\ie no object found).
 %	- shelf: pink_shelf
 %GameObject: spacenavbox, orangebox, accesskit
 
-We have integrated the game in the LAAS-CNRS Jido robot~\cite{Alami1998a}.
+We have integrated the game on the LAAS-CNRS Jido robot.
 Objects are identified through a tag-based vision approach\footnote{ARToolKit:
 \url{http://www.hitl.washington.edu/artoolkit/}} and motion capture is used for
 human tracking. Their descriptions regarding categories (type of object) and
@@ -1582,14 +1583,14 @@ shows an example of a round game.
 \centering
 	\begin{tabular}{r|p{6cm}}
 		\chatN{human} & It is a tableware.\\
-		\chatN{jido} & \emph{[retrieves possible objects: coke-bottle, yellow-bottle, orange-bottle, cup-with-handle]} \\
-	 			& \emph{[keeps visible objects: coke-bottle, yellow-bottle, cup-with-handle]}\\
-				& \emph{[obtains discriminants: type, color.]}\\
+		\chatN{jido} & \emph{[retrieve possible objects: coke-bottle, yellow-bottle, orange-bottle, cup-with-handle]} \\
+	 			& \emph{[keep visible objects: coke-bottle, yellow-bottle, cup-with-handle]}\\
+				& \emph{[obtain discriminants: type, color.]}\\
 				& Which type of object is: bottle or cup? \\
 		\chatN{human} & Bottle.\\
-		\chatN{jido} & \emph{[obtains possible objects: coke-bottle, yellow-bottle.]}\\
-				& \emph{[obtains discriminants: color.]}\\
-				& What color the object is: red or yellow?\\
+		\chatN{jido} & \emph{[obtain possible objects: coke-bottle, yellow-bottle.]}\\
+				& \emph{[obtain discriminants: color.]}\\
+				& What color is the object: red or yellow?\\
 		\chatN{human} & Red.\\
 		\chatN{jido} & \emph{[obtains possible objects: coke-bottle.]}\\
 				& The object is the Coke bottle!	
@@ -1600,8 +1601,7 @@ shows an example of a round game.
 
 \subsection{``Moving to London'' scenario}
 
-In order to illustrate some of different reasoning abilities of the robot,
-based on the approach presented in this paper, we have designed the following
+In order to illustrate some of different reasoning abilities of the robot presented in this paper, we have designed the following
 daily life situation. Tom and Jerry are moving to London, so they are packing
 things in boxes. The scenario takes places in the living-room, where Jido (our
 robot) is observing while they move things here and there. To assess the
@@ -1609,7 +1609,7 @@ reasoning abilities of the robot they ask Jido for information (entered through
 keyboard). Ideally, the robot should also perform actions when required (\eg
 hand an object when asking ``give me...''). However, since it is out of the
 scope of this work, we do not include any motion from the robot's side. Similar
-to the Spy Game scenario, perception of objects is done through a tag-based
+to the \emph{Spy Game} scenario, perception of objects is done through a tag-based
 system and humans are detected through motion capture. We next describe in
 detail three situations where we can follow the internal robot's reasoning and
 the interaction with the users.
@@ -1630,21 +1630,21 @@ the interaction with the users.
 	\label{fig|sitAssessRoman}
 \end{figure}
 
-First Tom enters the room and places on the table some of the things to pack: a
+First Tom enters the room with some of the things they need to pack: a
 toolbox and two videos. He leaves one of the videos (``Jido-E'') inside one of
 the boxes (the cardboard box), and the other one (``Lord of the Robots'') on the
 table. We next describe how the situation assessment takes place, \ie how the
 ontology is updated with the information obtained from the geometric reasoner
 SPARK.
 
-The initial information in the ontology corresponds to:
+The initial information in ORO corresponds to:
 
 \begin{center}
     \begin{tabular}{l}
       \stmt{table type Table}\\
       \stmt{cardBoardBox type Box}\\
       \stmt{toolbox type Box}\\
-      \stmt{videoTape1 type VideoiTape}\\
+      \stmt{videoTape1 type VideoTape}\\
       \stmt{videoTape1 label "Lord of the Robots"}\\
       \stmt{videoTape2 type VideoTape}\\
       \stmt{videoTape2 label "Jido-E"}\\
@@ -1654,7 +1654,7 @@ The initial information in the ontology corresponds to:
 \end{center}
 \vspace{0.10cm}
 	
-There is a cardboard box on the table:
+SPARK detects that there is a cardboard box on the table. It thus sends the fact to ORO:
 
 \begin{center}
     \begin{tabular}{l}
@@ -1664,7 +1664,7 @@ There is a cardboard box on the table:
 
 Tom enters carrying several objects (Figure~\ref{fig|sitAssessRoman}a).
 He places a toolbox and a video tape on the table, and another video tape
-inside the box next to Jido and the leaves. (Figure~\ref{fig|sitAssessRoman}b):
+inside the box next to Jido and the leaves. (Figure~\ref{fig|sitAssessRoman}b). The following facts are computed and sent to ORO:
 
 \begin{center}
     \begin{tabular}{l}
@@ -1706,7 +1706,7 @@ non-visible objects are removed obtaining:
 \concept{?obj = [videoTape1]}
 \end{center}
 
-Since only one object is available, the robot infers
+Since only one object is available now, the robot infers
 that the human refers to it and can eventually execute the command, \ie give
 it to the human. Alternatively, the robot could first verify with the human if
 that was the object being referred to or not before proceeding to execute the
@@ -1770,19 +1770,21 @@ However both are visible and the cognitive ambiguity resolution cannot be
 applied. The only option is to ask Jerry which box he is referring to: ``Which
 box, the toolbox or the cardboard box?'' Jerry could now simply answer the
 question. Instead, he decides to point at it while indicating: ``This box''
-(Figure~\ref{fig|pointing}b). The robot's perception identifies the
-\concept{cardBoardBox} as being pointed at and looked at by the human and
-updates the ontology with this new information using a rule available in the
-commonsense ontology ({\tt pointsAt(?agt, ?obj) $\land$ looksAt(?agt, ?obj)
-$\to$ focusesOn(?agt, ?obj)}) The \textsc{Dialogs} module is then able to merge
-both sources of information, verbal (``this'') and gestural to distinguish the
-box Jerry refers to.
-
+(Figure~\ref{fig|pointing}b). The robot's perception identifies the {\tt
+cardBoardBox} as being pointed at and looked at by the human and updates the
+ontology with this new information using a rule available in the commonsense
+ontology:
 \begin{center}
 \begin{tabular}{l}
 \stmt{Jerry pointsAt carboardBox}\\
 \stmt{Jerry looksAt carboardBox}\\
 $\to$ \stmt{Jerry focusesAt carboardBox}\\
+\end{tabular}
+\end{center}
+In the meantime, the \textsc{Dialogs} module is processing the human verbal input. When trying to resolve the reference ``this'' it is able to merge\footnote{Due to synchronization issues, the user should perform the gesture (pointing at) before answering the robot's question and maintain it until the resolution process takes place.} both sources of information, verbal and gestural, to distinguish the box Jerry refers to:
+\begin{center}
+\begin{tabular}{l}
+\stmt{Jerry focusesAt ?obj}\\
 \hspace{0.7cm}$\Rightarrow$ \concept{?obj = [cardBoardBox]}
 \end{tabular}
 \end{center}
@@ -1862,14 +1864,14 @@ the reasoner, we take full advantage of the inference abilities of ORO to
 trigger events whose \textit{True} conditions can be inferred.}
 \item{Finally, this architecture allows for merging very different knowledge
 modalities in a single homogeneous environment, bringing mutual benefits to
-components: for instance, the dialogue processing module can perfectly run
+components. For instance, the dialogue processing module can perfectly run
 without any geometric perception, but its disambiguation routines can
 transparently benefit from it when available (since richer symbolic
 descriptions of objects are then available).}
 \end{itemize}
 
 Regarding the anchoring question, this architecture is
-bidirectional: the components we described provide a \textit{bottom-up}
+bidirectional. The components we described provide a \textit{bottom-up}
 grounding process: SPARK and \textsc{Dialogs} constantly build and push new
 symbolic contents about the world to ORO where it becomes accessible to
 decisional layers. In parallel, ORO relies on reasoning in a \textit{top-bottom}
@@ -1882,10 +1884,8 @@ to information alignment and fusion in complex robotic systems.
 The versatility of this paradigm could be illustrated by a simple imaginary
 scenario with a blind robot and a deaf robot. The blind robot does not see (no
 cameras or alike), but someone can verbally describe a scene to it, while the
-deaf robot has a good vision system but can not hear anything.  Without any
-changes to the software architecture above the language processing module or
-the vision module, supervisors of both robot would be able to perform equally
-well.
+deaf robot has a good vision system but can not hear.  Without any
+changes to the software architecture described, supervisors of both robots would be able to perform equally well.
 
 %(to actually implement this imaginary
 %situation, the blind robot would of course need \textit{a priori} 3D models
@@ -1898,9 +1898,7 @@ robotics and psychology. Our architecture provides easier-to-reach entry points
 to implement some classical psychology tests to robots. We presented
 experiments focused on issues related to perspective taking. By explicitly
 enabling independent modeling of the beliefs of each agent, our architecture is
-especially well suited to set up \emph{False-Belief}
-experiments~\cite{Leslie2000}, and we plan to further explore those kinds of
-applications.
+especially well suited to set up cognitive and psychological experiments (such as the \emph{False-Belief} experiment~\cite{Leslie2000}), which we plan to further explore.
 
 \subsection{Discussion}
 
@@ -1924,11 +1922,11 @@ the domain of concepts accessible to the robot. We could call this type of
 grounding \emph{bottom-up} grounding, and Steels~\cite{Steels2007} claims it is
 a solved issue.
 
-For us, \emph{Grounding} is on the contrary a \emph{top-bottom} activity: the
+For us, \emph{grounding} is on the contrary a \emph{top-bottom} activity: the
 robot needs to automatically bind a representation (for instance, a word
 uttered by a human, an image taken from a camera, a sentence extracted from
-Wikipedia) to an unambiguous, context-dependent, internal concept. This very
-concept can (or not) be \textit{a priori} available to the robot as a
+Wikipedia) to an unambiguous, context-dependent, internal concept. This 
+concept may (or may not) be \textit{a priori} available to the robot as a
 pre-loaded ontology (what we previously called the cultural background of the
 robot).
 
@@ -1981,23 +1979,21 @@ lexicon of English verbs along with their thematic roles.
 
 The three experiments that were presented in the paper all illustrate how the
 robot make use of its embodied nature to establish a meaningful communication
-with a human: because the robot and the human share the same physical
+with a human. Mainly, because the robot and the human share the same physical
 environment and they perceive each other, we are able to create a mutual
 context.
 
 Sloman, in~\cite{Sloman2009}, argues however that the strong focus on
 embodiment in the robotics community has hindered progress towards natural
 human-robot interaction. Our approach has hopefully made clear that, similar to
-Beetz et al.~\cite{Beetz2010}, we do not consider embodiment \emph{per se}, outside of
-a broader symbolic system: our architecture is not bound to the morphology or
+Beetz et al.~\cite{Beetz2010}, we do not consider embodiment \emph{per se} outside of
+a broader symbolic system, \ie our architecture is not bound to the morphology or
 the low-level sensori-motor capabilities of a specific agent. 
 
 However, we can build a model of the ``human point of view'' because the robot
-sees the human, and is able to deduce, at least partially, what the human
-perceives or not. This relies on the embodied nature of the interaction. We
-infer that a human focuses on some object because it points at it, looks at it,
-and besides, the object is visible to him. This relies as well on the embodied
-nature of the interaction. And this allow us, in turn, to understand the
+perceives the human, and is able to deduce, at least partially, what the human
+perceives or not. We infer that a human focuses on some object because it points at it, looks at it, and besides, the object is visible to him. This relies on the embodied
+nature of the interaction. And this allows us, in turn, to understand the
 meaning of sentences like ``Give me this''.
 
 We hope that this contribution shows that considering embodiment as the most
@@ -2005,12 +2001,12 @@ challenging and fruitful characteristic of robotics in regards to the whole AI
 community does not contradict with a formal, highly symbolic approach of the
 representation and decision problems that arise in robotics. 
 
-Let conclude this article by a short glance back at Roy's list of challenges
+Let us conclude this article by a short glance back at Roy's list of challenges
 for human-robot dialogue: 
 \begin{itemize}
 
 	\item While more modalities (especially, deictic gestures and social gazes)
-	can be added, we have proposed in this article a \emph{cross-modal
+	can be added, we have actually proposed a \emph{cross-modal
 	representation system},
 
 	\item One of the main feature of the \textsc{Dialogs} module is its ability
