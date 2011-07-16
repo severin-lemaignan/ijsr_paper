@@ -103,8 +103,8 @@ on several robotic platforms that demonstrate these cognitive capabilities.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grounding human interaction into robot knowledge}
 
-\subsection{Situated speech acts}
-\label{intro_example}
+%\subsection{Situated speech acts}
+%\label{intro_example}
 
 A messy table, covered with cardboard boxes, books, video tapes... Thomas is
 moving out and is packing everything with the help of Jido, his robot
@@ -116,29 +116,51 @@ video tape. The robot smoothly grasps the tape, and hands it to the him.
 While this kind of interaction should hopefully sound quite familiar in a
 foreseeable future, our robots are not yet quite up to the task, neither
 regarding natural language understanding nor plan-making and manipulation.
-
 To be combined together, those abilities require an unambiguous and shared
 representation of concepts (objects, agents, actions...) underlying the
 interaction: what are the prerequisites for such a sentence --``Jido,
 give me that''-- to be understood by the robot, correctly interpreted in the
 spatial context of the interaction, and eventually transformed into an action?
 
-Austin~\cite{Austin1962} would have at first glance analyzed this kind of
-sentence as a \emph{speech act}, comprising of \emph{locutionary},
-\emph{illocutionary} and possibly \emph{perlocutionary} acts. First, we want to
-understand the direct meaning of the sentence (\emph{locutionary act}): we must
-acquire the sentence, convert it into a useful syntactic form (probably through
+The first step is to understand the meaning of the sentence. To this end, we must acquire the sentence, convert it into a useful syntactic form (probably through
 speech recognition), and understand the semantics of the sentence, \ie What is
 referred by ``\textit{Jido}''? What is ``\textit{give}''? What is
 ``\textit{me}''? And ``\textit{that}''?
 
-Working in a situated context, we want furthermore to \emph{resolve} these
+Working in a situated context, we need to \emph{resolve} these
 semantics atoms, \ie ground them in the sensory-motor space of the robot. For
 instance, ``\textit{this}'' is a demonstrative pronoun that refers in this
 context to the object the human is focusing on (whatever \textit{focusing}
 means). In this example Thomas is looking at something, which is a possible
 cue. But it could as well be pointing at something or making reference to some
 previously mentioned concept. 
+
+The next step is to extract and understand the \emph{intent} of the utterance
+as thought by the agent. In our example, Thomas obviously wants an action to be performed by the robot. The action parametrization is conveyed by the semantics attached to the words and the grammatical structure of the sentence. In our example, the type of action is
+given by the verb ``\textit{give}''. Assuming the robot has some procedural
+knowledge attached to this symbol, the action type can be considered as
+grounded for the robot. We can as well understand that the recipient of the
+action is the human, the performer is the robot itself, and the object acted
+upon is the tape. These are the basic \emph{thematic roles}~\cite{Gruber1965}
+that can be extracted from the sentence that allow for fully grounding the action.\footnote{This analysis has been inspired on the work of Austin et al.~\cite{Austin1962}, where this type of sentences correspond to \emph{speech acts}, comprising of \emph{locutionary act} (the meaning), \emph{illocutionary} (the intent) and possibly \emph{perlocutionary acts} (implicit speaker's expectation).}
+
+
+%\footnote{The third class of speech acts, the \emph{perlocutionary acts}, deal
+%with implicit speaker's expectations. We will not consider it further in this
+%article}.
+%Austin~\cite{Austin1962} would have at first glance analyzed this kind of
+%sentence as a \emph{speech act}, comprising of \emph{locutionary},
+%\emph{illocutionary} and possibly \emph{perlocutionary} acts. 
+%Firstly, we want to understand the direct meaning of the sentence (\emph{locutionary act}): 
+%Second, the \emph{illocutionary force}, \ie the \emph{intent} of the utterance
+%as thought by the agent, must be extracted and understood. 
+%Finally, the implicit speaker's expectation can sometimes be conveyed --the
+%\emph{perlocutionary act}-- and should be taken into account. If Thomas would
+%have said instead ``Jido, this box is too heavy for me'', he may implicitly
+%expect the robot to memorize the fact that the box's weight is over his
+%capabilities, and it may as well imply that Thomas is requiring help to carry
+%the box.
+
 
 \begin{figure}%[!ht] 
 	\centering
@@ -151,36 +173,12 @@ previously mentioned concept.
 \end{figure}
 
 
-Second, the \emph{illocutionary force}, \ie the \emph{intent} of the utterance
-as thought by the agent, must be extracted and understood. In our example,
-Thomas obviously wants an action to be performed by the robot. The action
-parametrization is conveyed by the semantics attached to the words and the
-grammatical structure of the sentence. In our example, the type of action is
-given by the verb ``\textit{give}''. Assuming the robot has some procedural
-knowledge attached to this symbol, the action type can be considered as
-grounded for the robot. We can as well understand that the recipient of the
-action is the human, the performer is the robot itself, and the object acted
-upon is the tape. These are the basic \emph{thematic roles}~\cite{Gruber1965}
-that can be extracted from the sentence that allow for fully grounding the action
-\footnote{The third class of speech acts, the \emph{perlocutionary acts}, deal
-with implicit speaker's expectations. We will not consider it further in this
-article}.
-
-%Finally, the implicit speaker's expectation can sometimes be conveyed --the
-%\emph{perlocutionary act}-- and should be taken into account. If Thomas would
-%have said instead ``Jido, this box is too heavy for me'', he may implicitly
-%expect the robot to memorize the fact that the box's weight is over his
-%capabilities, and it may as well imply that Thomas is requiring help to carry
-%the box.
 
 \subsection{Approach}
 
-Extracting these speech acts and turning them into content processable by the
-robot is a difficult challenge in the general case. We base our approach on
-three distinct, inter-related cognitive functions.
-Figure~\ref{fig|overall-process} illustrates the general context, while
-Figure~\ref{fig|main-components} summarizes the interactions between the three
-main components:
+In this work we propose an approach aiming at grounding the interaction with users, verbal and non-verbal, following the steps described above. To this end, we have developed three distinct, inter-related cognitive components, which we believe fulfill the minimum requisites for situated human interaction. Figure~\ref{fig|overall-process} illustrates the general context, while
+Figure~\ref{fig|main-components} summarizes the interactions between these three
+main components.
 
 \begin{inparaenum}[\itshape 1)]
 
@@ -1093,12 +1091,11 @@ queries, except for the verbs that are currently stored in a dedicated library
 (the \emph{action library} in the diagram).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Technical analysis}
-\label{examples}
+%\section{Technical analysis}
+%\label{examples}
 
 
-In order to better understand the overall process we next describe the
-different steps of the approach based on three examples. In these examples, we
+In order to better understand the overall process the {\sc Dialogs} module and its relation with ORO, we next describe the different steps of the approach based on three examples. In these examples, we
 assume that some initial facts are present in the knowledge base, both in the
 robot's own model and in the human's model.  Since the robot tries to ground a
 human utterance, all queries are sent to the human model in order to interpret
@@ -1149,15 +1146,14 @@ algorithm of nominal groups is described in algorithm~\ref{algo|Resolution}.
 
 To resolve the nominal group \emph{The yellow banana} a set of partial
 statements that describe the concept is generated based on the grammatical
-parsing of the sentence (algorithm~\ref{algo|Resolution},
-\emph{(\ref{res.desc})}). In the example, a banana (\stmt{?obj type Banana})
+parsing of the sentence (algorithm~\ref{algo|Resolution}(\ref{res.desc})). In the example, a banana (\stmt{?obj type Banana})
 that is yellow (\stmt{?obj hasColor yellow})\footnote{Predicates like
 \concept{hasColor} or \concept{hasSize} that bind \concept{banana\_01} to
 adjectives are extracted from a predefined database of $[Predicate \rightarrow
 AdjectiveCategory]$, and falls back on the generic \concept{hasFeature}
 predicate if the adjective is not known.}.  Based on these partial statements a
 query is sent to the ontology server to retrieve possible instances that match
-the description (algorithm~\ref{algo|Resolution}, \emph{(\ref{res.onto})}).
+the description (algorithm~\ref{algo|Resolution}(\ref{res.onto})).
 
 In this first simple case, the concept \concept{banana\_01} is unambiguously
 matched (since there is only one possible banana) and returned. Finally, we can now add
@@ -1353,8 +1349,7 @@ This last example (Figure~\ref{dialog|ex3}) shows the resolution of ambiguous
 concepts. In this case the user refers to ``the banana'' while two instances of 
 the \concept{Banana} class exist in the ontology. The robot needs to find out
 to which instance the user is actually referring to. To this end,
-disambiguation routines (algorithm~\ref{algo|Resolution},
-\emph{(\ref{st.discrimination})}, see \cite{Ros2010b} for details of the routines)
+disambiguation routines (algorithm~\ref{algo|Resolution}(\ref{st.discrimination}), see \cite{Ros2010b} for details of the routines)
 find differences between the instances (in the example, one banana is yellow
 while the other one is green) and build a sentence through the
 \emph{verbalization} module to ask the user a closed question that will
@@ -1608,7 +1603,7 @@ shows an example of a round game.
 	\label{fig|spyGameExample}
 \end{figure}
 
-\subsection{``Moving to London'' scenario}
+\subsection{\emph{Moving to London} scenario}
 
 In order to illustrate some of different reasoning abilities of the robot presented in this paper, we have designed the following
 daily life situation. Tom and Jerry are moving to London, so they are packing
@@ -1645,7 +1640,6 @@ the boxes (the cardboard box), and the other one (``Lord of the Robots'') on the
 table. We next describe how the situation assessment takes place, \ie how the
 ontology is updated with the information obtained from the geometric reasoner
 SPARK.
-
 The initial information in ORO corresponds to:
 
 \begin{center}
@@ -1662,8 +1656,7 @@ The initial information in ORO corresponds to:
     \end{tabular}
 \end{center}
 \vspace{0.10cm}
-	
-SPARK detects that there is a cardboard box on the table. It thus sends the fact to ORO:
+	SPARK detects that there is a cardboard box on the table. It thus sends the fact to ORO:
 
 \begin{center}
     \begin{tabular}{l}
