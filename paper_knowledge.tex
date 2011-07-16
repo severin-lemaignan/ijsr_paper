@@ -1072,14 +1072,14 @@ retrieved (verbal phrase resolution).
       \EXIT \\
     \END
    \ELSEIF \left|{candidates}\right| = 1 \THEN
-      id \GETS candidates[0] \STMTNUM{8em}{res.easy}\\
+      id \GETS candidates[0]\\
 
    \ELSE
       \BEGIN
 	\IF \CALL{Ontology.CheckEquivalent}{candidates} \THEN
 	  id \GETS candidates[0] \\
 	\ELSE
-	  id \GETS \CALL{Discrimination}{candidates} \\ %\STMTNUM{0em}{st.discrimination}\\
+	  id \GETS \CALL{Discrimination}{candidates} \STMTNUM{0em}{st.discrimination}\\
       \END \\
    \CALL{Replace}{g, id, sentence}
 \END
@@ -1351,15 +1351,17 @@ Discrimination routines handle the disambiguation process.} \label{dialog|ex3}
 
 This last example (Figure~\ref{dialog|ex3}) shows the resolution of ambiguous
 concepts. In this case the user refers to ``the banana'' while two instances of 
-the \concept{Banana} class exist in the ontology. The robot needs to find out 
-to which instance the user is actually referring to. To this end, 
-disambiguation routines~\cite{Ros2010b} find differences between the instances 
-(in the example, one banana is yellow while the other one is green) and build a 
-sentence through the \emph{verbalization} module to ask the user a closed 
-question that will help clarify the ambiguity: ``Is it yellow or green?'' The 
-user's answer is parsed and merged with the previous sentence. The resulting, 
-augmented, sentence (``The green banana is good") goes again through all 
-the interpretation steps. This process is repeated until no ambiguities arise. 
+the \concept{Banana} class exist in the ontology. The robot needs to find out
+to which instance the user is actually referring to. To this end,
+disambiguation routines (algorithm~\ref{algo|Resolution},
+\emph{(\ref{st.discrimination})}, see \cite{Ros2010b} for details of the routines)
+find differences between the instances (in the example, one banana is yellow
+while the other one is green) and build a sentence through the
+\emph{verbalization} module to ask the user a closed question that will
+help clarify the ambiguity: ``Is it yellow or green?'' The user's answer is
+parsed and merged with the previous sentence. The resulting, augmented,
+sentence (``The green banana is good") goes again through all the
+interpretation steps. This process is repeated until no ambiguities arise. 
 In the example, the \concept{banana\_02} is finally returned.
 
 %If no differences \fxfatal{should we say 'in the human model', even if 

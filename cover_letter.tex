@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[inner=2cm,outer=2cm, top=2cm, bottom=2cm]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
 
+\usepackage{pseudocode}
 \usepackage{url}
 
 \title{Responses to reviewers' comments and list of modifications done\\ on paper SORO226\\
@@ -179,6 +180,22 @@ We thank the reviewer for this input that has been added to the article.
 "GenerateDescription", "Ontology.Find", "Ontology.CheckEquivalent", and
 "Discrimination"''}
 
+{\tt GenerateDescription} translates the parsing tree of each nominal group
+into statements. A set of rules (like the one for adjectives mentioned 
+in footnote, section 5.1) help with this task.
+
+The detailled algorithm is provided in appendix to this letter.
+We would be happy to add it to the paper as well if the editor want to consider it.
+
+{\tt Ontlogy.Find} and {\tt Ontlogy.CheckEquivalent} are simple, atomic calls to
+the ontology server. The first one send a SPARQL query build from the set of 
+partial statement build at the {\tt GenerateDescription} step, the second
+one check for each candidate pair if {\tt candidate1 owl:sameAs candidate2}.
+This check uses the classified knowledge model.
+
+The {\tt Discrimation} algorithm is explained in details in Ros2010. The
+reference has been made more explicit.
+
 \subsection{``how does the system deal with restrictive information vs.
 attributive information expressed by adjectives (e.g., in "the yellow banana is
 big")?''}
@@ -206,5 +223,97 @@ the paper as well.
 \subsection{``VI. please present the anecdote of unexpected behavior elsewhere
 or give some more context''}
 
+
+\section{Appendix}
+
+\subsection{GenerateDescription algorithms}
+\label{GenerateDescription}
+\begin{pseudocode}[ruled]{GenerateDescription}{group}
+\label{algo|GenerateDescription}
+
+\PROCEDURE{GenerateDescription}{group} 
+   noun \GETS \CALL{GetNoun}{group} \\ 
+   \IF \CALL{Ontology.Lookup}{noun} \in (Instances) \THEN
+   		\BEGIN
+		id \GETS \CALL{Ontology.lookup}{noun}\\	
+		\RETURN {\mathcal{D} + \{ *\ {\tt sameAs}\ <id> \}}\\
+		\END
+   \ELSE
+    	\mathcal{D} = \mathcal{D} + \{ *\ {\tt type}\ <noun>\} \\
+   
+   \\
+   det \GETS \CALL{GetDeterminant}{group} \\
+   \IF det \in {\mbox(possessives)} \THEN
+       \mathcal{D} = \mathcal{D} + \{ *\ {\tt isRelatedTo}\ <possessor>\} \\
+    
+    \IF det \in {\mbox(demonstratives)} \THEN
+        \BEGIN
+        \IF \CALL{Ontology.Check}{\{<currentSpeaker>\ {\tt focusesOn}\ *\}} \THEN 
+            \mathcal{D} = \mathcal{D} + \{<currentSpeaker>\ {\tt focusesOn}\ *\}
+        \ELSE
+            \mathcal{D} = \mathcal{D} + \CALL{AnaphoricMatching}{} \\
+        \END \\
+   \\
+   adjs \GETS \CALL{GetAdjectives}{group} \\
+   \FOREACH adj \in adjs \DO
+   	\BEGIN
+   		\IF adj == <other> \THEN 
+   			\BEGIN
+   			id \GETS \CALL{History.GetMatchingGroup}{group} \STMTNUM{8em}{st.history}\\
+   			\mathcal{D} = \mathcal{D} + \{ *\ {\tt differentFrom}\ <id> \}\\
+   			\RETURN{D}\\
+			\END   		
+   		\ELSE
+	     	\mathcal{D} = \mathcal{D} + \{ *\ {\tt hasFeature}\ <adj>\} \\
+    \END\\
+    
+   \\  
+   nounComplements \GETS \CALL{GetNounComplements}{group} \\
+   \FOREACH nouncmpl \in nounComplements \DO
+     \mathcal{D} = \mathcal{D} + {\CALL{GenerateDescription}{nouncmpl}}\\
+   
+   
+   \\  
+   relativeClauses \GETS \CALL{GetSubordinateRelativeClauses}{group} \\
+   \FOREACH relative \in relativeClauses \DO
+   	\BEGIN
+   	 \mathcal{G} \GETS \CALL{GetNominalGroups}{relative} \\
+   	 \FOREACH g \in \mathcal{G} \DO
+     	\mathcal{D} = \mathcal{D} + {\CALL{GenerateDescription}{g}}
+    \END\\
+     
+   \\
+   \RETURN{\mathcal{D}} 
+\ENDPROCEDURE
+\end{pseudocode}
+
+The method called at (\ref{st.history}) consists in looking through sentences 
+that have been stored in the conversation history, then extracting their nominal
+group in order to retrieve the identifier of the most recently mentioned 
+concept that holds the same characteristics as the nominal group that is being 
+processed (algorithm~\ref{algo|History}).
+
+\begin{pseudocode}[ruled]{History.GetMatchingGroup}{group}
+\label{algo|History}
+\PROCEDURE{History.GetMatchingGroup}{group}
+\COMMENT{Extract Nominal group from sentences stored in the history}\\
+\mathcal{H} \GETS \CALL{History.GetAllNominalGoup}{}\\
+\COMMENT{Generate description of the nominal group that is being processed.} \\
+\COMMENT{The adjective  "other" is to be removed before calling this routine} \\
+	\mathcal{G} \GETS \CALL{GenerateDescription}{group} \\ 
+	
+	candidates \GETS \mathcal{H} \cap \mathcal{G}\\
+	\IF \left|{candidates}\right| = 0 \THEN
+    \BEGIN
+      \OUTPUT{\mbox{Couldn't find another object with the same characteristics!}} \\
+      \EXIT \\
+    \END
+   \ELSEIF \left|{candidates}\right| = 1 \THEN
+      id \GETS candidates[0]
+   \ELSE
+   	  id \GETS \CALL{Discrimination}{candidates}\\
+   \RETURN{id}
+\ENDPROCEDURE
+\end{pseudocode}
 
 \end{document}
