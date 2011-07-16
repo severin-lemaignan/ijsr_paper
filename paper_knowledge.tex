@@ -204,9 +204,11 @@ enabling reasoning on different perspectives of the world that would otherwise
 be considered inconsistent (for instance, an object can be visible for the
 robot but not for the human. This object can have at the same time the property
 \concept{isVisible \textbf{true}} and \concept{isVisible \textbf{false}} using
-two different models).  Our platform relies on OWL ontologies (a decidable
-subset of the predicate logics) featuring continuous storage, querying and
-event triggering over the pool of facts known by the robot.
+two different models).  Our platform relies on OWL-DL\footnote{\emph{Web
+Ontology Language - Description Logics}, a decidable subset of the first-order
+logics, \url{http://www.w3.org/TR/owl2-primer/}} ontologies and features
+continuous storage, querying and event triggering over the pool of facts known
+by the robot.
 
 Used in combination with the situation assessment framework, the robot is thus
 able to maintain different symbolic models of the world, one per agent. This
@@ -306,15 +308,22 @@ out as well that compared to the cognitive psychology community, the ``situated
 AI'' community started only recently to take into account agents' focus of
 attention, perspective and temporal projection abilities.
 
-Dialogue processing in real robots has been explored by several teams.  Brick
+Dialogue processing in real robots have been explored by several teams.  Brick
 and Scheutz~\cite{Brick2007} have contributions regarding natural language
 processing in an incremental way, and how this enables instant back-channel
-feedback (like nodding). H\"uwel et al.~\cite{Huwel2006} propose the concept of the
-\textit{Situated Semantic Unit}: atoms are extracted from sentences, exposing
+feedback (like nodding). Hüwel et al.~\cite{Huwel2006} propose the concept of
+\textit{Situated Semantic Unit}: atoms are extracted from sentences exposing
 semantic links to other units. The parser tries to satisfy these links and
 rates the semantic interpretation of the sentence. Used in conjunction with
 ontologies, their approach offers robustness to ungrammatical or partial
 utterances. They validated the approach with an extensive user-study.
+
+Zender et al.~\cite{Zender2009} address the generation of referring expressions
+(\emph{GRE}) in situated dialogue for topological knowledge.  They consider
+both the reference resolution and reference description tasks, and rely on
+OWL-DL representation and SPARQL\footnote{{\em SPARQL Protocol and RDF Query
+Language}, \url{http://www.w3.org/TR/rdf-sparql-query/}} to extract
+\emph{topological contexts} from their knowledge base.
 
 While mostly implemented on virtual agents, the GLAIR cognitive architecture by
 Shapiro and Bona~\cite{Shapiro2009} is an architecture explicitly built to
@@ -363,11 +372,9 @@ logic modeling and access to a large common-sense knowledge base.
 Beetz et al.~\cite{Beetz2010} proposes a cognitive architecture called
 \textsc{CRAM} (Cognitive Robot Abstract Machine) that integrates
 \textsc{KnowRob}~\cite{Tenorth2009a}, a knowledge processing framework based on
-Prolog. Its underlying storage is based on an RDF/OWL\footnote{RDF/OWL is a
-standard for Description Logics based ontology
-(\url{http://www.w3.org/TR/owl2-primer/}).} ontology, derived from
-OpenCyc. \textsc{CRAM} and \textsc{KownRob} have been demonstrated on
-several real-world scenarios, where natural language recipes extracted from the
+Prolog. Its underlying storage is based on an OWL ontology, derived from
+\textsc{OpenCyc}. \textsc{CRAM} and \textsc{KownRob} have been demonstrated on
+several real-world scenarios, where natural language recipes extracted from
 Internet had to be translated into plans and executed in a kitchen environment,
 perceived and rebuilt on-line by the robots. While Prolog offers more flexible
 modeling (no constraints on the arity of predicate, where Description Logics as
@@ -727,8 +734,7 @@ including:
 	\concept{@lang} XML annotation, labels of concept can be translated, and
 	specific translations can be queried for),
 
-	\item standard SPARQL\footnote{{\em SPARQL Protocol and RDF Query
-	Language}, \url{http://www.w3.org/TR/rdf-sparql-query/}} queries.
+	\item standard SPARQL queries.
 
 \end{itemize}
 
@@ -1023,7 +1029,7 @@ VP: \textbf{remember} (present simple)
           NP: \textbf{you}
         secondary VP: \textbf{give} ()
               direct objects:
-                NP: \textbf{bottle}
+                NP: my \emph{nice blue} \textbf{bottle}
               indirect objects:
                 NP: \textbf{me}
 \end{alltt}
