@@ -162,7 +162,7 @@ grounded for the robot. We can as well understand that the recipient of the
 action is the human, the performer is the robot itself, and the object acted
 upon is the tape. These are the basic \emph{thematic roles}~\cite{Gruber1965}
 that can be extracted from the sentence that allow for fully grounding the action
-\footnote{The third class of speech acts, the \emph{perlocutionary acts}, deals
+\footnote{The third class of speech acts, the \emph{perlocutionary acts}, deal
 with implicit speaker's expectations. We will not consider it further in this
 article}.
 
@@ -909,7 +909,8 @@ the objects.
 
 \item \emph{Location according to an agent}: The predicate
 \concept{isLocatedAt} represents spatial locations between agents and objects.
-For example we say ``it is on my right, on your left, ...'' We compute these
+For example we say ``it is on my right, on your left, ...'' These type of direction commands are studied
+in the literature in the context of language grounding (\eg \cite{OKeefe1999,Matuszek10}). We compute these
 spatial locations by dividing the space around the referent (an agent) into $n$
 regions based on arbitrary angle values relative to the referent orientation.
 For example, for $n = 4$ we would have the space divided into \emph{front,
@@ -922,7 +923,7 @@ place.
 locations with respect to other objects in the environment, such as \emph{above,
 next to, in}, etc. These types of relations are widely studied in language
 grounding (\eg \cite{Regier01} presented different models to define the
-\emph{above} relation). In this work we use similar models based on the
+\emph{above} relation; \cite{Kelleher09} presented two computational models of topological and projective spatial prepositions; \cite{Blisard05} employed contour points of segmented objects to determine \emph{front, behind, left,right} relations). In this work we use similar models based on the
 bounding boxes and center of mass of the objects to define three main relations
 (Figure~\ref{fig::sprelation}): 
 
