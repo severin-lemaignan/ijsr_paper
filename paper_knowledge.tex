@@ -23,9 +23,6 @@
 \usepackage{pseudocode}
 \usepackage{alltt}
 
-% fixme notes
-\usepackage[draft,footnote,marginclue]{fixme}
-
 \usepackage{subfigure}
 %diagrams
 \usepackage{tikz}
@@ -364,7 +361,7 @@ low-level percepts (including view-point independent SIFT based object
 recognition) to a high-level knowledge representation and reasoning system via
 a dedicated anchoring module. They base their knowledge model directly on the
 \textit{ResearchCyc} ontology (including the \textit{MicroTheories} concept),
-used in combination with the CycL language. This enables second-order
+used in combination with the {\sc CycL} language. This enables second-order
 logic modeling and access to a large common-sense knowledge base.
 
 Beetz et al.~\cite{Beetz2010} proposes a cognitive architecture called
@@ -434,10 +431,8 @@ versatility and hardware-agnosticism of these developments.
 
 \subsection{Article overview}
 
-In the next section we present in depth the so-called {\sc ORO}
-(\emph{OpenRobots Ontology} server) knowledge base, a dynamic knowledge
-representation system based on Description Logics ontologies and relying on the
-\emph{Open World Assumption}. We present it first, along with its objectives,
+In the next section we present the {\sc ORO}
+(\emph{OpenRobots Ontology} server) knowledge base. We present it first, along with its objectives,
 since it is the knowledge \textit{hub} of the system, used pervasively by other
 components.
 
@@ -447,9 +442,7 @@ builds a symbolic interpretation of the world from the robot's point of view,
 as well as an individual symbolic model for each agent currently present in the
 environment. 
 
-Section 4 covers in detail the dialogue processing component. The main
-algorithms for natural language grounding are described, as well as the
-interactions between these component and the knowledge base.
+Section 4 covers in detail the dialogue processing component.
 
 Section 5 presents three use-cases that were conducted on two different
 robotic platforms: the \emph{Naming} experiment, where a robot anchors new
@@ -468,8 +461,8 @@ While \emph{knowledge} has no general definition that researchers agree on, for
 our own purposes we define knowledge as \emph{information interpreted in the
 cultural and social context of the robot}, where information is a
 \emph{statement} or an \emph{assertion} about the world\footnote{In this paper,
-statements are always triples \texttt{<subject, predicate, object>}, following
-the Description Logics formalism.}. In practical terms, knowledge is made of
+statements are always triples \stmt{subject predicate object}, \ie binary
+relations between entities.}. In practical terms, knowledge is made of
 statements that are \emph{contextualized}, if possible \emph{synthesized}, and
 \emph{limited} to a domain of validity.
 
@@ -660,8 +653,7 @@ relationships between concepts that are used in several other projects
 (\textsc{WordNet, DBpedia}). This potentially eases the exchange and addition
 of knowledge from these other sources. Moreover, it also enables knowledge
 exchange with other robots (for instance, the works previously mentioned by
-Daoutis and Tenorth rely on the same Cyc concepts\fixme{Give
-examples}).
+Daoutis and Tenorth rely on the same Cyc concepts).
 
 Figure~\ref{fig|oro-view} shows a snapshot of the knowledge model during an
 experiment. Both concepts from the common sense ontology and
@@ -861,9 +853,11 @@ this example only the grey box satisfies the \concept{looksAt} relation.
 of the field of view (FOV) and the field of attention (FOA) of the human.}
 \label{fig::vis} \end{figure}
 
-\item \emph{Points At}: verifies whether an object is pointed at by an agent. This
-relation is particularly useful during interaction when one of the agents is
-referring to an object saying ``this" or ``that" while pointing at it. Section~\ref{disamb-gestures} describes in more detail the combination of both sources of information (verbal and non-verbal).
+\item \emph{Points At}: verifies whether an object is pointed at by an agent.
+This relation is particularly useful during interaction when one of the agents
+is referring to an object saying ``this" or ``that" while pointing at it.
+Section~\ref{disamb-gestures} describes in more detail the combination of both
+sources of information (verbal and non-verbal).
  
 If a big object occludes a smaller one, and an agent is pointing at them, the
 outcome of the evaluation will result only in one relation, \ie \stmt{agent\_01
@@ -1390,7 +1384,7 @@ While no examples involving questions have been detailed, \emph{W-} questions
 and \emph{yes/no} questions can be processed in a similar way by
 \textsc{Dialogs}. For instance, a question like ``What is on the table?''
 is grounded (to extract the relation \concept{isOn} and to find what \emph{table}
-refers to) and transformed into the following kind of query: {\tt find ?var
+refers to) and transformed into the following kind of query: \concept{find ?var
 [\stmt{?var isOn table1}]}.  Answers are converted back to a full sentence
 by the \emph{verbalization} module, and uttered to the human.
 
@@ -1745,6 +1739,8 @@ Robot's beliefs about Tom (\emph{Tom's model}):\\
 \end{table}
 
 \subsubsection{Explicit disambiguation through verbal interaction and gestures}
+\label{disamb-gestures}
+
 \begin{figure}[!ht]
   \centering
   \subfigure[]
