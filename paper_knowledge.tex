@@ -568,10 +568,10 @@ Besides, the following active processes would be desirable:
 This list does not cover all the possible features that could be exposed by a
 symbolic knowledge management system. Bio-inspired memory management (the
 ability to forget or reinforce knowledge) or curiosity (the ability to identify
-lacking knowledge and actively trigger behaviours to acquire it -- Hawes et
-al.~\cite{Hawes2011} have contributions in this field, with their \emph{Dora}
-robot which is endowed with motivation mechanisms to explore unknown parts of
-the environment), to give some examples, could arguably be added to the list.
+lacking knowledge and actively trigger behaviours to acquire it --Hawes et
+al.~\cite{Hawes2011} have contributed in this area with \emph{Dora}, a
+robot endowed with motivation mechanisms to explore unknown regions of
+the environment--), to give some examples, could arguably be added to the list.
 However, this first analysis sets a convenient reference frame to understand
 and evaluate knowledge representation systems, including the \textsc{ORO}
 knowledge management system we propose.
@@ -599,7 +599,7 @@ rely on several parallel ontology \emph{back-ends} where the knowledge is
 actually stored.
 
 Knowledge is represented in ORO in the Description Logics formalism (using the
-OWL-DL -- \emph{Web Ontology Language - Description Logics} -- language), as
+OWL-DL --\emph{Web Ontology Language - Description Logics}-- language), as
 RDF (\emph{Resource Description Framework}) triples (for instance \stmt{robot
 isIn kitchen}). We use the Jena\footnote{\url{http://jena.sourceforge.net/}}
 framework as the underlying library to load and build in-memory OWL model. We
@@ -607,7 +607,7 @@ use it in conjunction with the
 Pellet\footnote{\url{http://clarkparsia.com/pellet/}} reasoner to ensure the
 continuous classification of the OWL concept graph: at run-time, newly added
 statements are continuously reasoned about (\emph{classified}), and at any time,
-the server expose a complete set of statements, both the asserted ones and the
+the server exposes a complete set of statements, both the asserted ones and the
 inferred ones. For instance, if \stmt{socrates type Human} and \stmt{Human
 subClassOf Mortal} are asserted, the server transparently adds the inferred
 statement \stmt{socrates type Mortal}, and a later query retrieving all mortal
@@ -863,7 +863,7 @@ of the field of view (FOV) and the field of attention (FOA) of the human.}
 
 \item \emph{Points At}: verifies whether an object is pointed at by an agent. This
 relation is particularly useful during interaction when one of the agents is
-referring to an object saying ``this" or ``that" while pointing at it. 
+referring to an object saying ``this" or ``that" while pointing at it. Section~\ref{disamb-gestures} describes in more detail the combination of both sources of information (verbal and non-verbal).
  
 If a big object occludes a smaller one, and an agent is pointing at them, the
 outcome of the evaluation will result only in one relation, \ie \stmt{agent\_01
@@ -876,7 +876,7 @@ on).
 
 \item \emph{Reachable}: it allows the robot to estimate the agent's capability
 to reach an object, which is fundamental for task planning. For example, if the
-user asks the robot to give her an object, the robot must compute a transfer
+user asks the robot to give him/her an object, the robot must compute a transfer
 point where the user is able to get the object afterward. 
 
 Figure~\ref{fig::reach} shows different reachability postures for each object
@@ -929,7 +929,7 @@ place.
 locations with respect to other objects in the environment, such as \emph{above,
 next to, in}, etc. These types of relations are widely studied in language
 grounding (\eg \cite{Regier2001} presented different models to define the
-\emph{above} relation; \cite{Kelleher2009} presented two computational models of topological and projective spatial prepositions; \cite{Blisard2005} employed contour points of segmented objects to determine \emph{front, behind, left,right} relations). In this work we use similar models based on the
+\emph{above} relation; \cite{Kelleher2009} introduced two computational models of topological and projective spatial prepositions; \cite{Blisard2005} employed contour points of segmented objects to determine \emph{front, behind, left,right} relations). In this work we use similar models based on the
 bounding boxes and center of mass of the objects to define three main relations
 (Figure~\ref{fig::sprelation}): 
 
@@ -1095,7 +1095,7 @@ queries, except for the verbs that are currently stored in a dedicated library
 %\label{examples}
 
 
-In order to better understand the overall process the {\sc Dialogs} module and its relation with ORO, we next describe the different steps of the approach based on three examples. In these examples, we
+In order to better understand the overall process of the {\sc Dialogs} module and its relation with ORO, we next describe the different steps of the approach based on three examples. In these examples, we
 assume that some initial facts are present in the knowledge base, both in the
 robot's own model and in the human's model.  Since the robot tries to ground a
 human utterance, all queries are sent to the human model in order to interpret
