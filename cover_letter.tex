@@ -198,8 +198,18 @@ The {\tt Discrimation} algorithm is explained in details in Ros2010. The
 reference has been made more explicit.
 
 \subsection{``how does the system deal with restrictive information vs.
-attributive information expressed by adjectives (e.g., in "the yellow banana is
+attributive information expressed by adjectives (e.g., in ``the yellow banana is
 big")?''}
+
+When sentences like ``the yellow banana is big" are processed, they are
+recognized as statements to be added to the ontology because of the state verb ``to be''
+({\sc Dialogs} maintains a list of such verbs).
+
+The nominal group is first resolved as usual (``the yellow banana''), and a new statement
+is then generated that describe the new feature to be added to the concept.
+
+Please refer to the {\sc GenerateDescription} algorithm in appendix to see how the
+new statements are created.
 
 \subsection{``Mention work on Generation and Resolution of Referring Expressions''}
 
