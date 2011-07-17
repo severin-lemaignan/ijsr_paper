@@ -4,6 +4,8 @@
 \usepackage{pseudocode}
 \usepackage{url}
 
+\newcommand{\stmt}[1]{{\footnotesize $\langle$\stmttt#1\relax$\rangle$}}
+
 \title{Responses to reviewers' comments and list of modifications done\\ on paper SORO226\\
 \LARGE{\textbf{Grounding the interaction: anchoring situated discourse in everyday human-robot interaction}}}
 \author{S\'everin Lemaignan \and Raquel Ros \and E. Akin Sisbot \and Rachid Alami \and Michael Beetz}
@@ -13,9 +15,13 @@
 
 \maketitle
 
-The authors would like to thank the reviewers for their constructive feedback that helped us to strengthen the paper.
+The authors would like to thank the reviewers for their constructive feedback
+that helped us to strengthen the paper.
 
-Below follow our answers to the reviewersÕ comments and suggestions. Each answer also indicates the changes made in the paper to address the reviewerÕs concern. An important number of language corrections are made, and the paper is proof-read by a native English speaker.
+We next answer the reviewers comments and suggestions. Besides, each answer
+indicates the changes made in the paper to address the reviewers' concerns. An
+important number of language corrections have been made, and the paper has been
+proof-read by a native English speaker.
 
 %We are very grateful to the reviewers for having accepted to review our 
 %work, for the care they took in examining it and their resulting 
@@ -39,50 +45,52 @@ We are aware that perception is not robust and therefore one of our next steps
 is to include a probabilistic layer to the approach (as already mentioned in
 the discussion section). We believe though that a robot (specially interacting
 with people) should be allowed to make mistakes due to perception noise, or not
-to be sure about something (for instance, "I think that..."), which represents
+to be sure about something (for instance, ``I think that..."), which represents
 the uncertainty the robot has about a fact. In the meantime, to overcome
-perception errors, the robot provides visual feedback (looking at objects) to
-the user when possible and/or verifies the information with the user whenever
-is needed (for instance, "do you mean the box\_01"?). 
+perception errors, the robot provides visual feedback (looking at objects,
+showing in screen its 3D model of the environment) to the user when possible
+and/or verifies the information with the user whenever is needed (for instance,
+``do you mean the box\_01"?). 
 
 \subsection{Does the cognitive model enable a meaningful interaction with a
 real user in a real-world setting?}
 
-Due to the perception problems and computational delays, fully realistic
-settings are not yet possible.  The interaction based only on a static setting,
-i.e. objects don't move, the interaction with a real user is accurate enough.
-We have developed some experiments, where the user interacts with the system
-only through a keyboard (no gestures are included) asking questions, providing
-information, etc. and the outcome is quite promising. However, for dynamic
-settings where the user can point at things, move the objects around, etc., the
-interaction is not fast enough and the user should perform slow movements for
-the robot to create a consistent state of world.
+Due to perception problems and computational delays, fully realistic settings
+are not yet possible. In static settings, where neither humans nor objects
+move, the interaction with real users is meaningful and the flow of information
+between robot and user is accurate enough.  We have developed some experiments
+where the user interacts with the system only through a keyboard (no gestures
+are included) asking questions, providing information, etc. and the outcome is
+quite promising. However, for dynamic settings, where the user can point at
+things, move the objects around, etc., the interaction is not fast enough and
+the user should perform slow movements for the robot to create a consistent
+state of world.
 
 A recent video showing the current state of the interaction can be viewed
 here: \url{http://www.youtube.com/watch?v=IODx50uV_k4}
 
 \subsection{Rework of the introduction} 
 
-Reviewer comment: ``The paper starts off with a discussion
-of Austins speech act theory, including locutionary act, illocutionary force
-and perlocutionary act. As the concept of speech acts is not really picked up
-in the remainder of the paper, I do not see the point in starting with such a
-discussion. It would be more appropriate to motivate how a robot could benefit
-from a symbolic knowledge base etc.''
+%Reviewer comment: ``The paper starts off with a discussion
+%of Austins speech act theory, including locutionary act, illocutionary force
+%and perlocutionary act. As the concept of speech acts is not really picked up
+%in the remainder of the paper, I do not see the point in starting with such a
+%discussion. It would be more appropriate to motivate how a robot could benefit
+%from a symbolic knowledge base etc.''
 
-Austin's \emph{speech acts} were actually one of the starting point of our
-analysis of dialogue understanding, and we think it is worthwhile to briefly mention
-them in the introduction, as one of the theoritical ground of our work.
+The analysis of dialogue understanding we have followed has been inspired by
+Austin's \emph{speech acts}. Thus, we believe it is worthwhile to briefly mention
+them in the introduction as a theoretical ground of our work. 
 
-The reviewer however rightfully notes that \emph{perlocutionnary acts}, while mentioned, are not
-actually used further. We moved this paragraph to a simple footnote.
+However, since we do not directly refer to them in the remainder of the paper,
+we refer to Austin's definitions in a footnote.
 
 \section{Reviewer 2}
 % \section{Comments of the second reviewer}
 
 \begin{itemize}
-\item All reviewer comments regarding citations have been addressed, following reviewer's suggestions,
-\item The reviewer's remark on human tendency to explain in a consistent way the world has been added
+\item All reviewer's comments regarding citations have been addressed.
+\item The reviewer's remark on human tendency to explain in a consistent way the world has been added.
 \item Language issues have been addressed as well.
 \end{itemize}
 
@@ -92,19 +100,15 @@ actually used further. We moved this paragraph to a simple footnote.
 \subsection{``Explain the relation of the presented approach to the Open World
 Assumption''}
 
-The Open World assumption mainly allows us to model that we may not know
-if a fact is true or not.
-
-One very common example is the {\tt knowsAbout} predicate. This predicate
-defines if some agent knows about some object.
-
-It is important (especially for dialog) to be able to equally model that an agent knows or 
-does not know about the object, or that the robot simply does not know if 
-the human knows about it.
+The Open World assumption mainly allows us to model that we may not know if a
+fact is true or not. A common example is the {\tt knowsAbout} predicate. This
+predicate defines if some agent knows about some object. It is important
+(especially for dialog) to model that an agent knows or  does not know about an
+object, or that the robot simply does not know if the human knows about it.
 
 The Open World Assumption has important consequences on the reasoning
-abilities of the system, since it prevents the classical "negation by 
-failure" and leads to tighter modelling requirement to locally "close the
+abilities of the system, since it prevents the classical ``negation by 
+failure" and leads to tighter modelling requirement to locally ``close the
 world" (for instance, the {\tt Color} class is defined as the equivalent of
 the union of the 10 or so color instances we consider).
 
@@ -112,80 +116,77 @@ the union of the 10 or so color instances we consider).
 representations used (OWL, RDF, DL, ...), and choose one consistent syntax for
 listing the examples''}
 
-The paragraph 2.2 has been reorganized to clarify the vocabulary and better
+Paragraph 2.2 has been reorganized to clarify the vocabulary and better
 define the various acronyms.
 
 \subsection{``The authors are encouraged to explain the notion of curiosity
 with respect to the Dora robot by Hawes et al. (2011, ICRA) and Hanheide et al.
 (2011, IJCAI)''}
 
-A mention to the Dora robot has been added in section 2.1.
+A reference to the Dora robot has been added in section 2.1. However, at the
+time when this work had been submitted for review, neither of the two proposed
+papers by the reviewer were available (and in fact, IJCAI is taking place this
+week).
 
 \subsection{``Give examples of the alignment of ORO with OpenCyc''}
 
-Numerous predicates in {\tt commonsense.oro.owl} are defined in the 
-OpenCyc namespace: {\tt farFrom, near, hold-Underspecified, objectFoundInLocation}.
-
-Similarly, most of the upper classes in the ontology belong to OpenCyc 
-(like {\tt SpatialThing, PartiallyTangible, TemporalThing}...).
-
-Overall, about 50 entites (on the >180 defined in {\tt commonsense.oro.owl}) 
-come from OpenCyc.
+Numerous predicates in {\tt commonsense.oro.owl} are defined in the OpenCyc
+namespace: {\tt farFrom, near, hold-Underspecified, objectFoundInLocation} are
+some of examples. Similarly, most of the upper classes in our ontology belong
+to OpenCyc (e.g. {\tt SpatialThing, PartiallyTangible, TemporalThing},...).
+Overall, about 50 entities (from the more than 180 defined in {\tt
+commonsense.oro.owl}) come from OpenCyc.
 
 Since most of the upper classes are OpenCyc concepts, this should 
-guarantee to a certain extend the alignment of our ontology with other ontologies.
+guarantee, to a certain extend, the alignment of our ontology with other ontologies.
 
 \subsection{Typography and notation consistency}
 
 Typography has been throughly revised for better consistency. Notation variants have been
 made explicit (for instance, section 2.4).
 
-\subsection{``p.6, II.E. Explain "multi-lingual support"''}
+\subsection{``p.6, II.E. Explain ``multi-lingual support"''}
 
-The "multi-lingual support" has been reworded:
-
-``fast concept lookup, with possible multi-lingual support (through the
-{\tt @lang} XML annotation, labels of concept can be translated, and
-specific translations can be queried for)''
-
+The ``multi-lingual support" part has been reworded (Section 2.5.1).
 
 \subsection{``Points At: please describe how you manage the critical aspect of
 timing''}
 
-PointsAt relation is computed continuously during the interaction by 
-selecting the objects that "might" be pointed at by the human. The outcome
-of the computation (facts like "human1 pointsAt bottle1") are then
-continously updated in the knowledge base.
+SPARK is continuously updating the human non-verbal queues included in this
+work (i.e., looking at, pointing at, etc.). The outcome of these computation
+(facts like {\tt $\langle$human1 pointsAt bottle\_01$\rangle$}) are then
+constantly been sent to the knowledge base.
 
-In the current system, the decision on whether the human is pointing at an 
-object in a given time is left to the reasoning on the dialog or on the human gestures:
-when the dialogue module analyses a sentence like "give me this", it tries to
-resolve the atom "this" by querying the ontology.
+In the current approach, the timing aspect is managed during the analysis of
+dialogue. When the user makes reference to an object through demonstratives
+(e.g. this, that), the DIALOGS module queries the ontology for objects being
+pointed at. The assumption for this mechanism to work is that the human is
+constantly pointing while the dialog analysis takes place.  Both situation
+assessment and dialogue processing chains induce small delays, but these are
+roughly the same (below 200ms), and compensate for each other. 
 
-Both sitatuation assessement and dialogue processing chains induce 
-small delays, but these are roughly the same (below 200ms), and 
-compensate for each other.
+Section 3.1. and 5.3.3. clarify this point. 
 
 \subsection{``p.8, III.B.Location according to an object: the authors are
 kindly referred to the work done by, e.g., K. Sj\"o\"o or J. Kelleher''}
 
-Kelleher's work, as well as Blisard's, are now correctly cited in the section.
+Kelleher's work, as well as Blisard's, are now cited in the section.
 
 \subsection{``p.8, III.B. "creation of imaginary objects...hinted by verbal
 assertions..." -- this phenomenon is called presupposition accommodation''}
 
-We thank the reviewer for this input that has been added to the article.
+We thank the reviewer for this input, which has been added to the article.
 
 \subsection{``p.9, Alg. IV.1: the crucial bits are left out; please explain
-"GenerateDescription", "Ontology.Find", "Ontology.CheckEquivalent", and
-"Discrimination"''}
+``GenerateDescription", ``Ontology.Find", ``Ontology.CheckEquivalent", and
+``Discrimination"''}
 
 {\tt GenerateDescription} translates the parsing tree of each nominal group
 into statements. A set of rules (like the one for adjectives mentioned 
 in footnote, section 5.1) help with this task.
 
-The detailled algorithm is provided in appendix to this letter.
-We would be happy to add it to the paper as well if the editor want to consider it.
+The detailled algorithm is provided in appendix to this letter.  We would be
+happy to add it to the paper as well if the editor wants to consider it.
 
 {\tt Ontlogy.Find} and {\tt Ontlogy.CheckEquivalent} are simple, atomic calls to
 the ontology server. The first one send a SPARQL query build from the set of 
