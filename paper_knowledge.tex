@@ -92,7 +92,7 @@ knowledge from real-world perception and human-robot verbal and non-verbal
 interaction can actually enable a grounded and shared model of the world that
 is suitable for later high-level tasks such as dialogue understanding. We show how
 the anchoring process itself relies on the situated nature of human-robot
-interactions. We present an implementation, including a specialized symbolic
+interactions. We present an integrated approach, including a specialized symbolic
 knowledge representation approach based on Description Logics, and case studies
 on several robotic platforms that demonstrate these cognitive capabilities.
 \end{abstract}
@@ -105,9 +105,7 @@ on several robotic platforms that demonstrate these cognitive capabilities.
 
 A messy table, covered with cardboard boxes, books, video tapes... Thomas is
 moving out and is packing everything with the help of Jido, his robot
-(Fig.~\ref{fig|vpt}).
-
-``Jido, give me that'', says Thomas while looking at a box that contains a
+(Fig.~\ref{fig|vpt}). ``Jido, give me that'', says Thomas while looking at a box that contains a
 video tape. The robot smoothly grasps the tape, and hands it to the him.
 
 While this kind of interaction should hopefully sound quite familiar in a
@@ -314,7 +312,7 @@ ontologies, their approach offers robustness to ungrammatical or partial
 utterances. They validated the approach with an extensive user-study.
 
 Zender et al.~\cite{Zender2009} address the generation of referring expressions
-(\emph{GRE},~\cite{Dale1995}) in situated dialogue for topological knowledge.  They consider
+(\emph{GRE}~\cite{Dale1995}) in situated dialogue for topological knowledge.  They consider
 both the reference resolution and reference description tasks, and rely on
 OWL-DL representation and SPARQL\footnote{{\em SPARQL Protocol and RDF Query
 Language}, \url{http://www.w3.org/TR/rdf-sparql-query/}} to extract
@@ -880,7 +878,7 @@ the teddy bear is reachable, while the bottle is not.
 
 \begin{figure}[!t] 
 	\centering
-	\includegraphics[width=\columnwidth]{images/reach.jpg} 
+	\includegraphics[width=0.8\columnwidth]{images/reach.jpg} 
 	\caption{Different reaching postures for the human: the bottle and the 
 	box are reachable, while the teddy bear is not.} 
 	\label{fig::reach} 
@@ -1140,13 +1138,14 @@ algorithm of nominal groups is described in algorithm~\ref{algo|Resolution}.
 
 To resolve the nominal group \emph{The yellow banana} a set of partial
 statements that describe the concept is generated based on the grammatical
-parsing of the sentence (algorithm~\ref{algo|Resolution}(\ref{res.desc})). In the example, a banana (\stmt{?obj type Banana})
+parsing of the sentence (algorithm~\ref{algo|Resolution}(\ref{res.desc})). The parsed tree of each nominal group is translated into statements based on a set of rules.
+In the example, a banana (\stmt{?obj type Banana})
 that is yellow (\stmt{?obj hasColor yellow})\footnote{Predicates like
 \concept{hasColor} or \concept{hasSize} that bind \concept{banana\_01} to
 adjectives are extracted from a predefined database of $[Predicate \rightarrow
 AdjectiveCategory]$, and falls back on the generic \concept{hasFeature}
 predicate if the adjective is not known.}.  Based on these partial statements a
-query is sent to the ontology server to retrieve possible instances that match
+SPARQL query is sent to the ontology server to retrieve possible instances that match
 the description (algorithm~\ref{algo|Resolution}(\ref{res.onto})).
 
 In this first simple case, the concept \concept{banana\_01} is unambiguously
@@ -1392,14 +1391,11 @@ by the \emph{verbalization} module, and uttered to the human.
 \section{Experiments}
 
 This section presents several experiments where the different features of our
-approach are represented.
-
-Experiments have been conducted on two different platforms: the
+approach are represented. The experiments have been conducted on two different platforms: the
 \emph{Rosie} manipulator from the Technical Universtiy of Munich, a dual-arm,
 holonomic service robot, running the ROS\footnote{\emph{Robotic Operating
-System}, \url{http://www.ros.org}} middleware, and the \emph{Jido} robot~\cite{Alami1998a} from
-LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
-Genom/pocolibs} stack.
+System}, \url{http://www.ros.org}} middleware, and the \emph{Jido} robot~\cite{Alami1998a} from LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
+Genom/pocolibs} stack. Both platforms share the use of ORO, the ontology server proposed in this work.
 
 \subsection{\emph{Naming} experiment}
 \label{naming}

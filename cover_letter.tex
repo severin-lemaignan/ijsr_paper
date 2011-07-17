@@ -6,7 +6,7 @@
 
 \newcommand{\stmt}[1]{{\footnotesize $\langle$\stmttt#1\relax$\rangle$}}
 
-\title{Responses to reviewers' comments and list of modifications done\\ on paper SORO226\\
+\title{Answers to reviewers' comments and list of modifications done\\ on paper SORO226\\
 \LARGE{\textbf{Grounding the interaction: anchoring situated discourse in everyday human-robot interaction}}}
 \author{S\'everin Lemaignan \and Raquel Ros \and E. Akin Sisbot \and Rachid Alami \and Michael Beetz}
 
@@ -15,13 +15,11 @@
 
 \maketitle
 
-The authors would like to thank the reviewers for their constructive feedback
-that helped us to strengthen the paper.
+The authors would like to thank the reviewers for having accepted to review our work and their constructive feedback, which helped us to strengthen the paper.
 
 We next answer the reviewers comments and suggestions. Besides, each answer
 indicates the changes made in the paper to address the reviewers' concerns. An
-important number of language corrections have been made, and the paper has been
-proof-read by a native English speaker.
+important number of language corrections have been made with the collaboration of a native English speaker.
 
 Please also note that the overall length of the paper has actually 
 increased due to the use of the official Springer \LaTeX template.
@@ -83,9 +81,7 @@ here: \url{http://www.youtube.com/watch?v=IODx50uV_k4}
 
 The analysis of dialogue understanding we have followed has been inspired by
 Austin's \emph{speech acts}. Thus, we believe it is worthwhile to briefly mention
-them in the introduction as a theoretical ground of our work. 
-
-However, since we do not directly refer to them in the remainder of the paper,
+them in the introduction as a theoretical ground of our work. However, since we do not directly refer to them in the remainder of the paper,
 we refer to Austin's definitions in a footnote.
 
 \section{Reviewer 2}
@@ -127,8 +123,8 @@ with respect to the Dora robot by Hawes et al. (2011, ICRA) and Hanheide et al.
 (2011, IJCAI)''}
 
 A reference to the Dora robot has been added in section 2.1. However, at the
-time when this work had been submitted for review, neither of the two proposed
-papers by the reviewer were available (and in fact, IJCAI is taking place this
+time when this work had been submitted for review, neither of the two papers proposed
+by the reviewer were available (and in fact, IJCAI is taking place this
 week).
 
 \subsection{``Give examples of the alignment of ORO with OpenCyc''}
@@ -161,7 +157,7 @@ work (i.e., looking at, pointing at, etc.). The outcome of these computation
 constantly been sent to the knowledge base.
 
 In the current approach, the timing aspect is managed during the analysis of
-dialogue. When the user makes reference to an object through demonstratives
+dialogue. When the user makes reference to an object through demonstrative pronouns
 (e.g. this, that), the DIALOGS module queries the ontology for objects being
 pointed at. The assumption for this mechanism to work is that the human is
 constantly pointing while the dialog analysis takes place.  Both situation
@@ -175,8 +171,8 @@ kindly referred to the work done by, e.g., K. Sj\"o\"o or J. Kelleher''}
 
 Kelleher's work, as well as Blisard's, are now cited in the section.
 
-\subsection{``p.8, III.B. "creation of imaginary objects...hinted by verbal
-assertions..." -- this phenomenon is called presupposition accommodation''}
+\subsection{``p.8, III.B. creation of imaginary objects...hinted by verbal
+assertions... -- this phenomenon is called presupposition accommodation''}
 
 We thank the reviewer for this input, which has been added to the article.
 
@@ -186,18 +182,15 @@ We thank the reviewer for this input, which has been added to the article.
 
 {\tt GenerateDescription} translates the parsing tree of each nominal group
 into statements. A set of rules (like the one for adjectives mentioned 
-in footnote, section 5.1) help with this task.
+in footnote, section 5.1) help with this task. The detailed algorithm is provided in appendix to this letter.  We would be happy to add it to the paper as well if the editor wants to consider it.
 
-The detailled algorithm is provided in appendix to this letter.  We would be
-happy to add it to the paper as well if the editor wants to consider it.
-
-{\tt Ontlogy.Find} and {\tt Ontlogy.CheckEquivalent} are simple, atomic calls to
-the ontology server. The first one send a SPARQL query build from the set of 
-partial statement build at the {\tt GenerateDescription} step, the second
-one check for each candidate pair if {\tt candidate1 owl:sameAs candidate2}.
+{\tt Ontlogy.Find} and {\tt Ontlogy.CheckEquivalent} are atomic calls to
+the ontology server. The first one sends a SPARQL query based on the set of 
+partial statements built at the {\tt GenerateDescription} step. The second
+one checks if {\tt $\langle$candidate1 owl:sameAs candidate2$\rangle$} for each candidate pair.
 This check uses the classified knowledge model.
 
-The {\tt Discrimation} algorithm is explained in details in Ros2010. The
+The {\tt Discrimation} algorithm is explained in detail in Ros2010. The
 reference has been made more explicit.
 
 \subsection{``how does the system deal with restrictive information vs.
@@ -206,38 +199,30 @@ big")?''}
 
 When sentences like ``the yellow banana is big" are processed, they are
 recognized as statements to be added to the ontology because of the state verb ``to be''
-({\sc Dialogs} maintains a list of such verbs).
-
-The nominal group is first resolved as usual (``the yellow banana''), and a new statement
-is then generated that describe the new feature to be added to the concept.
-
-Please refer to the {\sc GenerateDescription} algorithm in appendix to see how the
+({\sc Dialogs} maintains a list of such verbs). The nominal group is first resolved as usual (``the yellow banana''), and a new statement is then generated describing the new feature to be added to the concept. Please refer to the {\sc GenerateDescription} algorithm in the appendix to see how the
 new statements are created.
 
 \subsection{``Mention work on Generation and Resolution of Referring Expressions''}
 
 Thanks for pointing out the work that has been done in this research community.
-Even if our contribution focuses more on the grounding of concepts from 
-multi-modal knowledge source, these contribution are of definitive 
-interest for us.
-
+Even if our current work focuses more on the grounding of concepts from 
+multi-modal knowledge sources, these contributions are of great interest to us for future work.
 A reference to Zender's work has been added to the \emph{Related work} 
-section, along with a reference to Dale and Reiter paper from 1995.
+section, along with a reference to the Dale and Reiter paper from 1995.
 
 \subsection{``Present an initial overview of the
 robot hardware and the common software architecture used in the systems''}
 
-Paragraph added in the section 6 introduction.
+A brief description of both platforms has been included in the introduction of Section 5.
 
 \subsection{``VI. which university in Munich? LMU or TUM?''}
 
-The study was conducted with TUM in Munich. This has been corrected in 
-the paper as well.
+The study was conducted with TUM in Munich. This information has been included in the paper.
 
 \subsection{``VI. please present the anecdote of unexpected behavior elsewhere
 or give some more context''}
 
-In order to shorten the paper, this section has been removed.
+To avoid increasing the length of the paper while providing more context about this anecdote, we have finally removed it.
 
 \section{Appendix}
 
@@ -303,8 +288,8 @@ In order to shorten the paper, this section has been removed.
 \end{pseudocode}
 
 The method called at (\ref{st.history}) consists in looking through sentences 
-that have been stored in the conversation history, then extracting their nominal
-group in order to retrieve the identifier of the most recently mentioned 
+that have been stored in the conversation history and extracting their nominal
+groups. From these we retrieve the identifier of the most recently mentioned 
 concept that holds the same characteristics as the nominal group that is being 
 processed (algorithm~\ref{algo|History}).
 
@@ -314,7 +299,7 @@ processed (algorithm~\ref{algo|History}).
 \COMMENT{Extract Nominal group from sentences stored in the history}\\
 \mathcal{H} \GETS \CALL{History.GetAllNominalGoup}{}\\
 \COMMENT{Generate description of the nominal group that is being processed.} \\
-\COMMENT{The adjective  "other" is to be removed before calling this routine} \\
+\COMMENT{The adjective  ``other" is to be removed before calling this routine} \\
 	\mathcal{G} \GETS \CALL{GenerateDescription}{group} \\ 
 	
 	candidates \GETS \mathcal{H} \cap \mathcal{G}\\
