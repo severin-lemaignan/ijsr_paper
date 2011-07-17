@@ -1483,19 +1483,19 @@ semantics and roles of objects in the scenario.
 	\label{tab|transcript_kimp}
 \end{figure}
 
-An unexpected example of what the symbolic reasoning layer brings to more
-traditional robotic architectures emerged during the \emph{Naming} experiment:
-the perception routines provided segmented blobs corresponding to objects along
-with their colors to update the information in ORO. At some point, ORO suddenly
-refused to add an object. What seemed at first a communication bug between
-modules, was actually the consequence of a consistency check by ORO: because of
-bad light conditions, the color recognition was not very reliable, and the same
-object was set to have two different colors at the same time. Since the
-\concept{hasColor} predicate we had decided to use was a functional predicate
-(\ie objects can have only one color), ORO inferred an inconsistency and
-discarded the new fact. This kind of logical failure can be used to improve
-low-level perception outcomes by ``closing the loop'' with high-level, symbolic
-knowledge.
+% An unexpected example of what the symbolic reasoning layer brings to more
+% traditional robotic architectures emerged during the \emph{Naming} experiment:
+% the perception routines provided segmented blobs corresponding to objects along
+% with their colors to update the information in ORO. At some point, ORO suddenly
+% refused to add an object. What seemed at first a communication bug between
+% modules, was actually the consequence of a consistency check by ORO: because of
+% bad light conditions, the color recognition was not very reliable, and the same
+% object was set to have two different colors at the same time. Since the
+% \concept{hasColor} predicate we had decided to use was a functional predicate
+% (\ie objects can have only one color), ORO inferred an inconsistency and
+% discarded the new fact. This kind of logical failure can be used to improve
+% low-level perception outcomes by ``closing the loop'' with high-level, symbolic
+% knowledge.
 
 \subsection{\emph{Spy Game} experiment}
 
