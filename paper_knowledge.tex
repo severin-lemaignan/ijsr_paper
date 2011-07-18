@@ -541,14 +541,14 @@ However, this first analysis sets a convenient reference frame to understand
 and evaluate knowledge representation systems, including the \textsc{ORO}
 knowledge management system we propose.
 
-\begin{figure}[!ht]
-\centering
-  \includegraphics[width=\columnwidth]{images/snapshot_oroview.png}
-  \caption{Live snapshot from the \emph{oro-view} viewer depicting the
-  knowledge model of the robot during an experiment. Dots represent
-  instances (ABox), while circles pyramids are classes (TBox)}
-  \label{fig|oro-view}
-\end{figure}
+%\begin{figure}[!ht]
+%\centering
+%  \includegraphics[width=\columnwidth]{images/snapshot_oroview.png}
+%  \caption{Live snapshot from the \emph{oro-view} viewer depicting the
+%  knowledge model of the robot during an experiment. Dots represent
+%  instances (ABox), while circles pyramids are classes (TBox)}
+%  \label{fig|oro-view}
+%\end{figure}
 
 \subsection{ORO Architecture}
 
@@ -626,10 +626,6 @@ of knowledge from these other sources. Moreover, it also enables knowledge
 exchange with other robots (for instance, the works previously mentioned by
 Daoutis and Tenorth rely on the same Cyc concepts).
 
-Figure~\ref{fig|oro-view} shows a snapshot of the knowledge model during an
-experiment. Both concepts from the common sense ontology and
-experiment-specific instances are visible.
-
 \subsection{Reasoning and dynamic knowledge structuring}
 
 As previously mentioned, ontologies in ORO are written in OWL. The
@@ -653,7 +649,7 @@ reasoning:
 		\concept{green}, \concept{orange}, \concept{black}...) \normalsize
 	\item generic SWRL ({\em Semantic Web Rule Language}) rules like: \par
 		\footnotesize \concept{looksAt(?agt, ?obj)} $\land$
-		\concept{pointsAt(?agt,?obj)} $\Rightarrow$ \concept{focusesOn(?agt, ?obj)}
+		\concept{pointsAt(?agt,?obj)} \par $\Rightarrow$ \concept{focusesOn(?agt, ?obj)}
 		\normalsize 
 	\end{itemize}
 
