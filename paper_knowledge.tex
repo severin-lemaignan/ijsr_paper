@@ -817,7 +817,8 @@ narrower field of view, the field of attention (FOA). Figure~\ref{fig::vis}
 shows the field of attention of a person with a green cone (narrower one). In
 this example only the grey box satisfies the \concept{looksAt} relation.
 
-\begin{figure}[!t] \centering
+\begin{figure}%[!t] 
+\centering
 \includegraphics[width=\columnwidth]{images/looks.jpg} \caption{Representation
 of the field of view (FOV) and the field of attention (FOA) of the human.}
 \label{fig::vis} \end{figure}
@@ -845,7 +846,7 @@ on the table. In the example, the bottle and the box are both reachable for the
 human, but the teddy bear is too far. Instead, from the robot's perspective,
 the teddy bear is reachable for it, while the bottle is not.
 
-\begin{figure}[!t] 
+\begin{figure}%[!t] 
 	\centering
 	\includegraphics[width=0.8\columnwidth]{images/reach.jpg} 
 	\caption{Different reaching postures for the human: the bottle and the 
@@ -957,7 +958,7 @@ input in natural language, grounds the concepts in the robot's knowledge and
 eventually translates the discourse in a set of queries or declarative OWL/RDF
 statements.
 
-\begin{figure}[!ht]
+\begin{figure}%[!ht]
 \centering
   \includegraphics[width=0.9\linewidth]{images/dialog_module_simple.png}
   \caption{The {\sc Dialogs} module has three main steps: the parsing,
@@ -973,7 +974,7 @@ into \emph{I am} and then parsed. The parser is a custom-made, rule-based (\ie
 grammar-free) tool that extracts the grammatical structure from the user's
 sentence. Figure~\ref{dialog|parser_output} shows an example of the raw output of the parser for a moderately complex sentence.
 
-\begin{figure}[!ht]
+\begin{figure}%[!ht]
 \begin{center}
 \scriptsize
 \begin{alltt}
@@ -1409,7 +1410,7 @@ the robot's belief state that not only contains abstract identifiers
 of the internal object representation used in plans, but also the
 semantics and roles of objects in the scenario.
 
-\begin{figure}[!ht]
+\begin{figure}%[!ht]
 \centering
 	\begin{tabular}{r|p{7cm}}
 	\chatN{rosie} & Servus! The Bavarian robot is up and fit! \\
@@ -1491,7 +1492,7 @@ current subset of objects is filtered again. The process is repeated until
 either obtaining a single object that fulfills all the descriptor values, or
 failing (\ie no object found). 
 
-\begin{figure}[!ht]
+\begin{figure}%[!ht]
 \centering
 \begin{scriptsize}
 \begin{tikzpicture} %[level/.style={sibling distance=30mm/#1},scale=0.8]
@@ -1574,7 +1575,7 @@ the interaction with the users.
 
 \subsubsection{Initial situation assessment}
 
-\begin{figure}[!t]
+\begin{figure}%[!t]
 \centering
   \subfigure[]
   {\includegraphics[width=0.95\linewidth]{images/situationAssessment1.png}\label{a}}
@@ -1700,7 +1701,7 @@ Robot's beliefs about Tom (\emph{Tom's model}):\\
 \subsubsection{Explicit disambiguation through verbal interaction and gestures}
 \label{disamb-gestures}
 
-\begin{figure}[!ht]
+\begin{figure}%[!ht]
   \centering
   \subfigure[]
   {\includegraphics[width=0.9\linewidth]{images/inTheBox1.jpg}\label{a}}
