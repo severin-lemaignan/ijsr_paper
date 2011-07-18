@@ -181,7 +181,7 @@ main components.
 (grouped under the term \emph{situation assessment}): these components are in
 charge of building and maintaining a coherent model of the physical world. This
 model is realistic in the sense that it relies on accurate 3D models of both
-manipulated objects and humans. It also has dedicated mechanisms to manage
+manipulable objects and humans. It also has dedicated mechanisms to manage
 disappearing or occluded objects.  The geometric model is used to compute
 several spatial properties of the scene that actually convert the original
 sensory data into symbolic beliefs, including relative locations of objects,
@@ -312,7 +312,7 @@ ontologies, their approach offers robustness to ungrammatical or partial
 utterances. They validated the approach with an extensive user-study.
 
 Zender et al.~\cite{Zender2009} address the generation of referring expressions
-(\emph{GRE}~\cite{Dale1995}) in situated dialogue for topological knowledge.  They consider
+(GRE~\cite{Dale1995}) in situated dialogue for topological knowledge.  They consider
 both the reference resolution and reference description tasks, and rely on
 OWL-DL representation and SPARQL\footnote{{\em SPARQL Protocol and RDF Query
 Language}, \url{http://www.w3.org/TR/rdf-sparql-query/}} to extract
@@ -423,32 +423,32 @@ leads us to the idea of \emph{knowledge-oriented architecture}, which is
 detailed later on.
 
 These points highlight some original aspects of a larger cognitive architecture
-that has been deployed and tested on three distinct robotic platforms
+that has been deployed and tested on several robotic platforms
 (including both humanoid robots and service robots), demonstrating the
 versatility and hardware-agnosticism of these developments.
 
-\subsection{Article overview}
+%\subsection{Article overview}
 
 In the next section we present the {\sc ORO}
 (\emph{OpenRobots Ontology} server) knowledge base. We present it first, along with its objectives,
 since it is the knowledge \textit{hub} of the system, used pervasively by other
 components.
-
-Section 3 presents {\sc SPARK} (for \emph{SPAtial Reasoning \& Knowledge}), a
+Section~\ref{spark} presents {\sc SPARK} (for \emph{SPAtial Reasoning \& Knowledge}), a
 module that merges perceptual information with a coherent geometric model and
 builds a symbolic interpretation of the world from the robot's point of view,
 as well as an individual symbolic model for each agent currently present in the
 environment. 
-
-Section 4 covers in detail the dialogue processing component.
-
-Section 5 presents three use-cases that were conducted on two different
-robotic platforms: the \emph{Naming} experiment, where a robot anchors new
+Section~\ref{dialog} covers in detail the dialogue processing component and its 
+relation with ORO.
+Section~\ref{experiments} presents three use-cases that were conducted on two 
+different robotic platforms: the \emph{Naming} experiment, where a robot anchors new
 knowledge in its model through verbal interaction; the \emph{Spy Game}, where
 either the user or the robot tries to guess which object the other player is
 thinking of; and a more complex experiment situated in an everyday setup, where
 the robot builds models for several agents and interacts with the users using
-this knowledge.
+this knowledge. 
+Finally, Section~\ref{conclusion} concludes and discusses the work presented 
+in this paper.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{ORO, a knowledge management platform} \label{cognitivekernel}
@@ -462,10 +462,9 @@ cultural and social context of the robot}, where information is a
 statements are always triples \stmt{subject predicate object}, \ie binary
 relations between entities.}. In practical terms, knowledge is made of
 statements that are \emph{contextualized}, if possible \emph{synthesized}, and
-\emph{limited} to a domain of validity.
-
-These three features have important consequences for the way a knowledge
-representation and storage system must be designed. Let us examine them:
+\emph{limited} to a domain of validity. These three features have important 
+consequences for the way a knowledge representation and storage system must 
+be designed. Let us examine them:
 
 \paragraph{Contextualizing} is the ability for a cognitive system to connect a
 fact with a \emph{cultural context}, an \emph{interpretive scope} and the set
@@ -488,7 +487,7 @@ visible for the robot and invisible for another agent), the underlying
 knowledge representation system must properly handle these interpretive
 frameworks.
 
-Note that the focus of the ORO platform is on enabling such context to be
+Note that the focus of ORO is on enabling such context to be
 effectively represented rather than actually identifying the current context.
 While several approaches for building contextualized knowledge are proposed in this
 paper (symbolic environment interpretation, perspective taking, grounded
@@ -508,7 +507,7 @@ continue with the previous example,  if we add the fact that the human that
 is sitting is a woman, the synthesis ``Peter is the name of the human'' is
 not valid anymore.
 
-\paragraph{Domain of validity}: its main role is to specify the scope in which
+\paragraph{Domain of validity} specifies the scope in which
  information is (believed to be) true. It covers several aspects: temporal,
 situational and probabilistic. While related to the previous concept of
 \emph{interpretive scopes}, the domain of validity addresses the question
@@ -620,7 +619,6 @@ reasoner honors this assumption as well.
 The first requirement identified in section~\ref{knowledge_representation}
 refers to the modeling of a cultural background, a common-sense knowledge
 assumed to be shared by all agents.
-
 The ORO server can be loaded with an initial set of statements which we call
 the \emph{OpenRobots Common Sense Ontology}. It defines a small set of concepts
 (and implicitly, a vocabulary) that can be used by all the modules of the robot
@@ -659,9 +657,8 @@ experiment-specific instances are visible.
 
 \subsection{Reasoning and dynamic knowledge structuring}
 
-As previously mentioned, ontologies in ORO are written in OWL, a language
-based on Description Logics (a decidable subset of first-order logic). The
-Pellet reasoner supports most of the OWL constructs and allows several type of
+As previously mentioned, ontologies in ORO are written in OWL. The
+Pellet reasoner supports most of the OWL constructs and allows several types of
 reasoning:
 
 \begin{itemize}
@@ -690,7 +687,6 @@ restrictions (except the SWRL rules) at run-time. This allows
 knowledge introspection and enables the robot to alter its own knowledge
 structures (the so-called \emph{T-Box} model) during its life-time by adding
 new constraints and properties to classes and predicates.
-
 The \emph{Naming} experiment (section~\ref{naming}) gives a simple example of
 such knowledge restructuring.
 
@@ -730,7 +726,7 @@ including:
 
 While these basic functionalities enable the incremental construction (and
 exploitation) of a consistent knowledge model, the \emph{Common Sense Ontology}
-helps build assertions that are related to previous one by offering
+helps build assertions that are related to previous ones by offering
 a predefined vocabulary.
 
 \subsubsection{Representation of alternative cognitive models}
@@ -749,7 +745,7 @@ models of the world.
 This feature actually allows us to consider the robot to be endowed with a
 \emph{theory of mind}~\cite{Scassellati2002}: the robot can explicitly model
 the belief state of its interactors, opening new possibilities for the control
-architecture. In section~\ref{dialog} we present how we use this feature to
+architecture. In section~\ref{exp:disambVPT} we present an example of how we use this feature to
 make sense of user sentences from his/her point of view. Moreover,
 these multiple models can be viewed as different interpretive scopes,
 allowing the robot to interpret the same reality from different points of view.
@@ -758,9 +754,8 @@ allowing the robot to interpret the same reality from different points of view.
 \label{categorization}
 
 We have implemented several algorithms (common ancestors, computation of the
-best discriminant, see~\cite{Ros2010b}) to help the robot cluster a set of
-concepts based on their symbolic similarities (common properties, common
-ancestors). One particular application of these functions is discrimination.
+best discriminant~\cite{Ros2010b}) to help the robot cluster a set of
+concepts based on their symbolic similarities. One particular application of these functions is discrimination.
 While interacting with a user, the robot quite often needs to clarify an
 ambiguity produced by its human partner. For instance, a user may refer to a
 ``bottle'' where two bottles are currently visible. Discrimination routines
@@ -768,13 +763,12 @@ can identify possible (symbolic) differences (\eg the color or the size of the
 bottles) that permit the robot to ask an accurate question to the user in order
 to solve the ambiguity. This discrimination can occur from the robot's
 perspective or from a specific agent's perspective. Usage of these
-categorization abilities are illustrated in the \emph{Spy Game}
-(section~\ref{spygame}).
+categorization abilities are illustrated in Sections~\ref{dialogs:disamb} and~\ref{spygame}.
 
 \subsubsection{Memory profiles}
 \label{memory}
 
-We have designed a simplified bio-inspired memory model that allows us to store
+We have designed a simplified bio-inspired memory model to store
 statements in different \emph{memory profiles}. These include \emph{short term
 memory} and \emph{long term memory}. Each profile is characterized with a
 lifetime, which is assigned to the stored facts. When the lifetime of a fact
@@ -783,8 +777,7 @@ expires, ORO automatically removes it.
 \subsubsection{The events framework} 
 \label{events} 
 
-Lastly, ORO allows external modules to be triggered when specific events occur,
- for instance, when a logical sentence becomes true or false, or if a new
+Lastly, ORO allows external modules to be triggered when specific events occur. For instance, when a logical sentence becomes true or false, or if a new
 instance of a certain class is added. One immediate application is reactive
 supervision: a component could for instance subscribe to events of kind
 \setstmt{?agent isVisible true, ?agent type Human}. As soon as the perception
@@ -798,11 +791,12 @@ Next sections describe how symbolic knowledge is actually produced and added to
 ORO.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Geometric reasoner for situation assessment} 
+\section{Geometric reasoner for situation assessment}
+\label{spark}
 
 Anchoring perceptions in a symbolic model requires perception abilities
-and their symbolic assessments. In this section we present
-SPARK (\emph{SPAtial Reasoning \& Knowledge}, \cite{Sisbot2011}), a situation assessment reasoner
+and their symbolic interpretation. In this section we present
+SPARK (\emph{SPAtial Reasoning \& Knowledge}~\cite{Sisbot2011}), a situation assessment reasoner
 that generates relevant symbolic information from the geometry of the
 environment with respect to relations between objects, robots and humans.
 Moreover, the notion of \emph{Perspective
@@ -830,14 +824,13 @@ models in ORO for further use at the decisional level.}:
 
 \item \emph{Sees}: An important ability to know about an agent is to predict
 ``what it can see'', \ie what is within its field of view (FOV). A robot being
-able to compute this information can then act accordingly. A typical example
+able to compute this information can then act accordingly. An example
 would be a clarification scenario where the human is searching for an object
-and the robot is able to infer that it is looking for the one that is not
+and the robot is able to infer that he/she is looking for the one that is not
 visible (otherwise the user would not be searching for it).
-
 In figure~\ref{fig::vis} the field of view of a person is illustrated with a
 grey cone (broader one). While he is able to see the two small boxes on the
-table in front of the him, the big box on his right is out of this FOV, and
+table in front of him, the big box on his right is out of his FOV, and
 therefore, he is not able to see it. 
 
 \item \emph{Looks At}: this relation corresponds to what the agent is focused
@@ -863,18 +856,16 @@ pointsAt object\_01} since the small one is not visible to the agent.  On the
 contrary, if the small object is in front of the big one, then both objects
 will satisfy the relation, which may generate an ambiguity (which object the
 agent refers to?) that should be solved through higher level reasoning (\eg
-context analysis or clarification through verbal interaction as shown later
-on).
+context analysis or clarification through verbal interaction).
 
 \item \emph{Reachable}: it allows the robot to estimate the agent's capability
 to reach an object, which is fundamental for task planning. For example, if the
 user asks the robot to give him/her an object, the robot must compute a transfer
 point where the user is able to get the object afterward. 
-
 Figure~\ref{fig::reach} shows different reachability postures for each object
-on the table. In the example, the bottle and the box are both reachable by the
+on the table. In the example, the bottle and the box are both reachable for the
 human, but the teddy bear is too far. Instead, from the robot's perspective,
-the teddy bear is reachable, while the bottle is not.
+the teddy bear is reachable for it, while the bottle is not.
 
 \begin{figure}[!t] 
 	\centering
@@ -896,19 +887,20 @@ article.
 
 \subsection{Locations}
 
-One way of referring to object's
-positions is based on a human's symbolic descriptors, instead of using their precise
-position. In fact, in many cases, this information is the most precise information available
- since we do not store the numeric coordinates of objects. The
-following relations are computed with respect to the position of the agents and
-the objects.
+One way of referring to object's positions is based on human's symbolic 
+descriptors, instead of using their precise position. In fact, in many cases, 
+this information is the most precise information available since humans do not 
+store the numeric coordinates of objects. These type of descriptors have been 
+studied in the context of language grounding 
+(\cite{O'Keefe1999,Matuszek2010,Regier2001,Kelleher2009,Blisard2005}). In this 
+work we focus on the following relations which are computed with respect to the 
+position of the agents and the objects:
 
 \begin{itemize} 
 
 \item \emph{Location according to an agent}: The predicate
 \concept{isLocatedAt} represents spatial locations between agents and objects.
-For example we say ``it is on my right, on your left, ...'' These type of direction commands are studied
-in the literature in the context of language grounding (\eg \cite{O'Keefe1999,Matuszek2010}). We compute these
+For example we say ``it is on my right, on your left, ...'' We compute these
 spatial locations by dividing the space around the referent (an agent) into $n$
 regions based on arbitrary angle values relative to the referent orientation.
 For example, for $n = 4$ we would have the space divided into \emph{front,
@@ -919,11 +911,8 @@ place.
 
 \item \emph{Location according to an object}: We can also refer to object
 locations with respect to other objects in the environment, such as \emph{above,
-next to, in}, etc. These types of relations are widely studied in language
-grounding (\eg \cite{Regier2001} presented different models to define the
-\emph{above} relation; \cite{Kelleher2009} introduced two computational models of topological and projective spatial prepositions; \cite{Blisard2005} employed contour points of segmented objects to determine \emph{front, behind, left,right} relations). In this work we use similar models based on the
-bounding boxes and center of mass of the objects to define three main relations
-(Figure~\ref{fig::sprelation}): 
+next to, in}, etc. In this work we compute three main relations based on the
+bounding box and center of mass of the objects (Figure~\ref{fig::sprelation}): 
 
 \begin{itemize}
 	\item \concept{isOn}: computes if an object $O_1$ is on another object $O_2$ by
@@ -952,14 +941,13 @@ bounding boxes and center of mass of the objects to define three main relations
 \end{itemize} 
 \end{itemize}
 
-To ensure the different agent's models are up-to-date, all these properties are
+To ensure the different agent models are up-to-date, all these properties are
 always computed on-line, each time the current state of the world changes.
 
 SPARK can be compared to the \emph{Grounded Situation Model} (GSM) introduced
 by Mavridis and Roy~\cite{Mavridis2005} in the sense that they both provide an
 amodal physical representation of the world used as a mediator between the
-sensor space and symbolic models. They have however a different set of
-features: while GSM enables representation of time and imaginary objects (whose
+sensor space and symbolic models. They have however different features: while GSM enables representation of time and imaginary objects (whose
 existence is hinted by verbal assertions from a human, also called
 \emph{presupposition accomodation}), SPARK offers a richer 3D model that
 enables the computation of several spatial relationships between
@@ -986,7 +974,7 @@ robotics field). Our main contribution here is the grounding (we call it
 \emph{resolution}) of concepts involved in the human discourse through the
 robot's own knowledge.
 
-We have developed a dedicated module called {\sc Dialogs} that processes human
+To this end we have developed a dedicated module called {\sc Dialogs} that processes human
 input in natural language, grounds the concepts in the robot's knowledge and
 eventually translates the discourse in a set of queries or declarative OWL/RDF
 statements.
@@ -1005,8 +993,7 @@ Figure~\ref{fig|dialog} shows the {\sc Dialogs} module architecture. The user's
 input is first pre-processed. For instance, \emph{I'm} constructs are expanded
 into \emph{I am} and then parsed. The parser is a custom-made, rule-based (\ie
 grammar-free) tool that extracts the grammatical structure from the user's
-sentence. Figure~\ref{dialog|parser_output} shows the raw output of the parser for a
-moderately complex sentence.
+sentence. Figure~\ref{dialog|parser_output} shows an example of the raw output of the parser for a moderately complex sentence.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1038,10 +1025,10 @@ the sentence \emph{resolution} (concepts grounding), the \emph{content
 analysis} (what is the intent of the utterance: information, question or
 desire) and the \emph{statement building} (translation into RDF statements).
 
-The sentence resolution has three steps: {\it(1)} pronouns and anaphora are
-replaced by the correct speaker ID and the ID of the last object spoken about
-(extracted from the dialogue history) respectively, {\it(2)} nominal groups are
-disambiguated and grounded (noun phrase resolution, \cf below), and {\it(3)}
+The sentence resolution has three steps: {\it(i)} pronouns and anaphora are
+replaced by the correct speaker ID and the ID of the last object referred to
+(extracted from the dialogue history) respectively, {\it(ii)} nominal groups are
+disambiguated and grounded (noun phrase resolution), and {\it(iii)}
 verbal groups are resolved and their associated \emph{thematic roles} are
 retrieved (verbal phrase resolution).
 
@@ -1078,7 +1065,7 @@ retrieved (verbal phrase resolution).
 
 As represented in Figure~\ref{fig|dialog}, interpretation tightly relies on the
 communication with the knowledge base. All the concepts the robot manipulates
-are stored in the \textit{ontology server} and retrieved through logical
+are stored in the ontology server and retrieved through logical
 queries, except for the verbs that are currently stored in a dedicated library
 (the \emph{action library} in the diagram).
 
@@ -1087,18 +1074,15 @@ queries, except for the verbs that are currently stored in a dedicated library
 %\label{examples}
 
 
-In order to better understand the overall process of the {\sc Dialogs} module and its relation with ORO, we next describe the different steps of the approach based on three examples. In these examples, we
-assume that some initial facts are present in the knowledge base, both in the
-robot's own model and in the human's model.  Since the robot tries to ground a
+In order to better understand the overall process of the {\sc Dialogs} module 
+and its relation with ORO, we next describe the different steps of the approach 
+based on three examples. In these examples we assume that some initial facts 
+are present in the knowledge base, both in the robot's own model and in the 
+human's model.  Since the robot tries to ground a
 human utterance, all queries are sent to the human model in order to interpret
 it from the human perspective. 
 
 \subsection{Informational content extraction}
-
-Figure~\ref{dialog|ex1} shows a first example of human discourse grounding and
-the extraction of informational content. We assume that the robot knowledge
-base only contains two initial statements in the human model. The user
-asserts a new one: ``The yellow banana is big!''. 
 
 \begin{figure}
     \centering
@@ -1131,10 +1115,12 @@ yellow banana'' is matched with the individual \concept{banana\_01}.
 \label{dialog|ex1}
 \end{figure}
 
+Figure~\ref{dialog|ex1} shows a first example of human discourse grounding and
+the extraction of informational content. We assume that the robot knowledge
+base only contains two initial statements in the human model. The user
+asserts a new one: ``The yellow banana is big!''. 
 We first want to match the nominal group \emph{The yellow banana} to an already
-known concept, and second to translate the property \emph{is big} into a
-predicate (\emph{hasSize}) to state its semantics. The general resolution
-algorithm of nominal groups is described in algorithm~\ref{algo|Resolution}.
+known concept (algorithm~\ref{algo|Resolution}), and second to translate the property \emph{is big} into a predicate (\emph{hasSize}) to state its semantics. 
 
 To resolve the nominal group \emph{The yellow banana} a set of partial
 statements that describe the concept is generated based on the grammatical
@@ -1238,7 +1224,7 @@ complement --- ``give it {\bf to me}''. The parser correctly handles these
 cases.}. Moreover, through the ontology we check that each holder of a
 role is semantically consistent. For instance, the action \emph{Give} must have a
 manipulable physical item (\concept{Artifact}) as direct object. Thus, if the
-concept the robot finds for the thematic role \concept{actsOnObject} can not be
+concept the robot finds for the thematic role \concept{actsOnObject} cannot be
 inferred to be an artifact, the robot goes back to the human saying it does not
 understand.
 
@@ -1255,6 +1241,7 @@ store it in the ontology server. The robot's decisional/executive layers can
 then decide whether to execute the order or not. 
 
 \subsection{Informational content extraction requiring clarification}
+\label{dialogs:disamb}
 \begin{figure}
     \centering
 	\begin{tabular}{p{7cm}}
@@ -1389,12 +1376,13 @@ by the \emph{verbalization} module, and uttered to the human.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments}
+\label{experiments}
 
 This section presents several experiments where the different features of our
 approach are represented. The experiments have been conducted on two different platforms: the
 \emph{Rosie} manipulator from the Technical Universtiy of Munich, a dual-arm,
 holonomic service robot, running the ROS\footnote{\emph{Robotic Operating
-System}, \url{http://www.ros.org}} middleware, and the \emph{Jido} robot~\cite{Alami1998a} from LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
+System}, \url{http://www.ros.org}} middleware; and the \emph{Jido} robot~\cite{Alami1998a} from LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
 Genom/pocolibs} stack. Both platforms share the use of ORO, the ontology server proposed in this work.
 
 \subsection{\emph{Naming} experiment}
@@ -1410,7 +1398,7 @@ Genom/pocolibs} stack. Both platforms share the use of ORO, the ontology server 
 \hspace{1.8cm} (a) \hspace{3.9cm} (b)
 \caption{(a) Rosie, looking for objects it may know, and (b) view from Willow
 Garage's RViz. The clusters of point are given a unique identifier by the
-perception that allows the supervision to create the link between the physical
+perception module. This allows the supervision module to create the link between the physical
 objects and their symbolic representation in ORO.} 
 \label{fig|kimpwatching}
 \end{figure}
@@ -1457,7 +1445,7 @@ semantics and roles of objects in the scenario.
 	\chatN{human} & Tableware\\
 	\chatN{rosie} & \emph{[\stmt{Mug subClassOf Tableware} added. Rosie already
 	knows about \emph{Tableware} (it belongs to the common-sense ontology), so
-	the interaction stops.]}\\
+	the description of this object ends.]}\\
 	& (...) \\
 	\chatN{rosie} &  What is the name of the black cluster on the table? \\
 	\chatN{human} & ``my\_laptop'' \\
@@ -1488,7 +1476,6 @@ semantics and roles of objects in the scenario.
 % knowledge.
 
 \subsection{\emph{Spy Game} experiment}
-
 \label{spygame}
 
 This game is based on the traditional children game ``I Spy''. The idea is to
@@ -1519,7 +1506,7 @@ Figure~\ref{fig|objectsSpyGame}. The game starts with the human user giving a
 first hint (communication is done through a keyboard and screen), allowing the
 robot to start the search filtering those objects that fulfill this first
 description. Based on this subset, ORO provides a descriptor (or set of
-descriptors) that allows a maximum discrimination among objects in the subset.
+descriptors) that allows maximum discrimination among objects in the subset.
 The robot queries the user about the value of the descriptor (or the most
 discriminant among the set of descriptors) and with this new information, the
 current subset of objects is filtered again. The process is repeated until
@@ -1569,7 +1556,7 @@ features (color, shape) are manually given in advance. Spatial relationships
 (\concept{front}, \concept{back}, \concept{left}, etc, and \concept{in},
 \concept{on} and \concept{next to}) and visibility (only visible objects for
 both agents can be considered in the game) are automatically computed on-line
-by \textsc{SPARK} (the geometric reasoner). Figure~\ref{fig|spyGameExample}
+by \textsc{SPARK}. Figure~\ref{fig|spyGameExample}
 shows an example of a round game.
 
 
@@ -1580,7 +1567,7 @@ shows an example of a round game.
 		\chatN{jido} & \emph{[retrieve possible objects: coke-bottle, yellow-bottle, orange-bottle, cup-with-handle]} \\
 	 			& \emph{[keep visible objects: coke-bottle, yellow-bottle, cup-with-handle]}\\
 				& \emph{[obtain discriminants: type, color.]}\\
-				& Which type of object is: bottle or cup? \\
+				& Which type of object it is: bottle or cup? \\
 		\chatN{human} & Bottle.\\
 		\chatN{jido} & \emph{[obtain possible objects: coke-bottle, yellow-bottle.]}\\
 				& \emph{[obtain discriminants: color.]}\\
@@ -1597,10 +1584,9 @@ shows an example of a round game.
 
 In order to illustrate some of different reasoning abilities of the robot presented in this paper, we have designed the following
 daily life situation. Tom and Jerry are moving to London, so they are packing
-things in boxes. The scenario takes places in the living-room, where Jido (our
-robot) is observing while they move things here and there. To assess the
+things in boxes. The scenario takes places in the living-room, where Jido is observing while they move things here and there. To assess the
 reasoning abilities of the robot they ask Jido for information (entered through
-keyboard). Ideally, the robot should also perform actions when required (\eg
+keyboard). Ideally, the robot should perform actions when required (\eg
 hand an object when asking ``give me...''). However, since it is out of the
 scope of this work, we do not include any motion from the robot's side. Similar
 to the \emph{Spy Game} scenario, perception of objects is done through a tag-based
@@ -1625,9 +1611,9 @@ the interaction with the users.
 \end{figure}
 
 First Tom enters the room with some of the things they need to pack: a
-toolbox and two videos. He leaves one of the videos (``Jido-E'') inside one of
+toolbox and two videos. He leaves one of the video tapes (``Jido-E'') inside one of
 the boxes (the cardboard box), and the other one (``Lord of the Robots'') on the
-table. We next describe how the situation assessment takes place, \ie how the
+table. We next describe how the situation assessment takes place at each step, \ie how the
 ontology is updated with the information obtained from the geometric reasoner
 SPARK.
 The initial information in ORO corresponds to:
@@ -1654,9 +1640,7 @@ The initial information in ORO corresponds to:
     \end{tabular}	             
 \end{center}
 
-Tom enters carrying several objects (Figure~\ref{fig|sitAssessRoman}a).
-He places a toolbox and a video tape on the table, and another video tape
-inside the box next to Jido and the leaves. (Figure~\ref{fig|sitAssessRoman}b). The following facts are computed and sent to ORO:
+Tom enters carrying several objects (Figure~\ref{fig|sitAssessRoman}a) and places them around. Then he leaves. (Figure~\ref{fig|sitAssessRoman}b). The following facts are computed and sent to ORO:
 
 \begin{center}
     \begin{tabular}{l}
@@ -1669,6 +1653,7 @@ inside the box next to Jido and the leaves. (Figure~\ref{fig|sitAssessRoman}b). 
 \end{center}
 
 \subsubsection{Implicit disambiguation through visual perspective taking}
+\label{exp:disambVPT}
 
 Tom enters the room again while carrying a big box (Figure~\ref{fig|vpt}). He
 approaches the table and asks Jido to handle him the video tape: ``Jido, can
@@ -1700,8 +1685,8 @@ non-visible objects are removed obtaining:
 
 Since only one object is available now, the robot infers
 that the human refers to it and can eventually execute the command, \ie give
-it to the human. Alternatively, the robot could first verify with the human if
-that was the object being referred to or not before proceeding to execute the
+it to the human. Alternatively, the robot could first verify with the human whether
+that was the object being referred to before proceeding to execute the
 action. Table~\ref{table|ptbeliefs} lists the robot's beliefs about itself and
 its human partner involved in this situation.
 
@@ -1763,7 +1748,7 @@ situation, there are two available boxes:
 However both are visible and the cognitive ambiguity resolution cannot be
 applied. The only option is to ask Jerry which box he is referring to: ``Which
 box, the toolbox or the cardboard box?'' Jerry could now simply answer the
-question. Instead, he decides to point at it while indicating: ``This box''
+question. Instead, he decides to point at it while indicating: ``That box''
 (Figure~\ref{fig|pointing}b). The robot's perception identifies the {\tt
 cardBoardBox} as being pointed at and looked at by the human and updates the
 ontology with this new information using a rule available in the commonsense
@@ -1775,7 +1760,7 @@ ontology:
 $\to$ \stmt{Jerry focusesAt carboardBox}\\
 \end{tabular}
 \end{center}
-In the meantime, the \textsc{Dialogs} module is processing the human verbal input. When trying to resolve the reference ``this'' it is able to merge\footnote{Due to synchronization issues, the user should perform the gesture (pointing at) before answering the robot's question and maintain it until the resolution process takes place.} both sources of information, verbal and gestural, to distinguish the box Jerry refers to:
+In the meantime, the \textsc{Dialogs} module is processing the human verbal input. When trying to resolve the reference ``that'' it is able to merge\footnote{Due to synchronization issues, the user should perform the gesture (pointing at) before answering the robot's question and maintain it until the resolution process takes place.} both sources of information, verbal and gestural, to distinguish the box Jerry refers to:
 \begin{center}
 \begin{tabular}{l}
 \stmt{Jerry focusesAt ?obj}\\
@@ -1783,11 +1768,10 @@ In the meantime, the \textsc{Dialogs} module is processing the human verbal inpu
 \end{tabular}
 \end{center}
 
-Finally, the \textsc{Dialogs} queries the ontology about the content of the box
+Finally, \textsc{Dialogs} queries the ontology about the content of the box
 and the question can be answered: ``Jido-E''. Note that the object's label is
 used instead of its ID. This way we enhance interaction using familiar names
-given by the users.
-
+given by the users:
 \begin{center}
 \begin{tabular}{l}
 \stmt{?obj isIn cardBoardBox}\\
@@ -1795,10 +1779,10 @@ given by the users.
 \end{tabular}
 \end{center}
 
-At this point Jerry wants to know where the other tape is, and that is exactly
-what he asks Jido: ``And where is the other tape?''. In this occasion, the
+At this point Jerry wants to know where the other video tape is, and that is exactly
+what he asks Jido: ``And where is the other video tape?''. In this occasion, the
 \textsc{Dialogs} module is able to interpret that Jerry is not referring to the
-video which they were just talking about, but to the other one:
+video tape which they were just talking about, but to the other one:
 
 \begin{center}
 \begin{tabular}{l}
@@ -1808,8 +1792,8 @@ video which they were just talking about, but to the other one:
 \end{tabular}
 \end{center}
 
-Since there is only one possible ``other'' video (there are only two videos in
-the scene), it can directly answer Jerry: ``The other tape is on the table and
+Since there is only one possible ``other'' video tape (there are only two video tapes in
+the scene), it can directly answer Jerry: ``The other video tape is on the table and
 next to the toolbox.''
 
 \begin{center}
@@ -1822,12 +1806,13 @@ next to the toolbox.''
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
+\label{conclusion}
 
 \subsection{Towards an event-driven, knowledge-oriented architecture for personal robotics}
 
-In this paper, we studied knowledge flows between three components: {\it(1)}
+In this paper, we have studied knowledge flows between three components: {\it(1)}
 {\sc ORO}, an ontology-based knowledge server that stores and maintains
-classified RDF statements produced by the other modules in agent-specific
+classified RDF statements produced by other modules in agent-specific
 models and allows information to be easily retrieved, either through queries or
 via an event system; {\it(2)} {\sc SPARK}, the grounded, human-aware 3D model
 of the environment that performs all the spatial reasoning within our
@@ -1844,10 +1829,10 @@ an architecture that we call \emph{knowledge-oriented}:
 
 \begin{itemize}
 \item{Knowledge is explicitly stored in one central and consistent repository
-of facts, accessible by all modules,}
+of facts, accessible by all modules.}
 \item{Knowledge is represented in a strict formalism (RDF statements) and
 with a clearly defined vocabulary (stated in the {\tt commonsense.oro.owl}
-ontology),}
+ontology).}
 \item{The first two points enable both a loosely-coupled
 architecture where modules can very easily be removed or replaced by other ones
 as long as they share the same semantics (modules are defined by the knowledge
@@ -1856,7 +1841,7 @@ they produce),}
 to supervision. By managing events at the same level as
 the reasoner, we take full advantage of the inference abilities of ORO to
 trigger events whose \textit{True} conditions can be inferred.}
-\item{Finally, this architecture allows for merging very different knowledge
+\item{Finally, this architecture allows for the combination of very different knowledge
 modalities in a single homogeneous environment, bringing mutual benefits to
 components. For instance, the dialogue processing module can perfectly run
 without any geometric perception, but its disambiguation routines can
@@ -1874,12 +1859,11 @@ way to produce new facts that may trigger in return physical behaviours.
 We believe that this \emph{knowledge-oriented} approach has a strong potential
 not only to enable rich human-robot interaction, but also as a broader approach
 to information alignment and fusion in complex robotic systems.
-
 The versatility of this paradigm could be illustrated by a simple imaginary
 scenario with a blind robot and a deaf robot. The blind robot does not see (no
-cameras or alike), but someone can verbally describe a scene to it, while the
-deaf robot has a good vision system but can not hear.  Without any
-changes to the software architecture described, supervisors of both robots would be able to perform equally well.
+cameras or alike), but someone can verbally describe a scene to it. On the other hand, the
+deaf robot has a good vision system, but cannot hear.  Without any
+changes to the software architecture described, supervision modules of both robots would be able to perform equally well.
 
 %(to actually implement this imaginary
 %situation, the blind robot would of course need \textit{a priori} 3D models
@@ -1931,9 +1915,8 @@ real experiments would be an interesting development.
 
 Amongst the other shortcomings of our architecture, neither the \emph{domain of
 validity} nor the context of a fact are represented in a satisfying way (we do
-store some kind of context -- the agent mental model for instance). Those
-informations are meta-informations on the knowledge, and the ORO framework,
-while it allows it through \emph{statement reification}, does not offer yet
+store some kind of context --the agent mental model for instance--). Those
+informations are meta-informations on the knowledge. While the ORO framework allows them through \emph{statement reification}, it does not offer yet
 a convenient way to store them. One obvious limitation that derives from
 the lack of efficient meta-knowledge is the absence of knowledge history.
 With ORO, the robot always lives in the present.
@@ -1962,7 +1945,7 @@ be recognized from natural language (section~\ref{processing_of_actions}).
 This constraint does not come from the resolution algorithm itself, but
 rather from the difficulty to automatically extract the thematic roles associated
 to a verb. 
-This could be improved by integrating a symbolic task
+This could be improved by linking a symbolic task
 planner to the \textsc{Dialogs} module to dynamically provide the list of
 actions that the robot can process, \ie actions for which the robot can produce
 a plan. Additionally, we could exploit on-line resources like
@@ -1972,7 +1955,7 @@ lexicon of English verbs along with their thematic roles.
 \subsubsection{Knowledge and embodiment}
 
 The three experiments that were presented in the paper all illustrate how the
-robot make use of its embodied nature to establish a meaningful communication
+robot makes use of its embodied nature to establish a meaningful communication
 with a human. Mainly, because the robot and the human share the same physical
 environment and they perceive each other, we are able to create a mutual
 context.
@@ -1985,48 +1968,48 @@ a broader symbolic system, \ie our architecture is not bound to the morphology o
 the low-level sensori-motor capabilities of a specific agent. 
 
 However, we can build a model of the ``human point of view'' because the robot
-perceives the human, and is able to deduce, at least partially, what the human
+perceives the human, and is able to estimate, at least partially, what the human
 perceives or not. We infer that a human focuses on some object because it points at it, looks at it, and besides, the object is visible to him. This relies on the embodied
-nature of the interaction. And this allows us, in turn, to understand the
-meaning of sentences like ``Give me this''.
+nature of the interaction. In turn, this allows us to understand the
+meaning of sentences like ``Give me that''.
 
 We hope that this contribution shows that considering embodiment as the most
 challenging and fruitful characteristic of robotics in regards to the whole AI
 community does not contradict with a formal, highly symbolic approach of the
 representation and decision problems that arise in robotics. 
 
-Let us conclude this article by a short glance back at Roy's list of challenges
-for human-robot dialogue: 
+Let us conclude this article briefly reviewing and linking Roy's list of challenges
+for human-robot dialogue with our current approach: 
 \begin{itemize}
 
 	\item While more modalities (especially, deictic gestures and social gazes)
 	can be added, we have actually proposed a \emph{cross-modal
-	representation system},
+	representation system}.
 
 	\item One of the main feature of the \textsc{Dialogs} module is its ability
 	to interactively ground concepts through disambiguation, bringing the
 	ability for the robot to \emph{associate words with perceptual and action
-	categories},
+	categories}.
 
 	\item The ORO knowledge base offers some support for the \emph{modeling of
-	context}, but a lot remains to be done in this respect,
+	context}, but a lot remains to be done in this respect.
 
 	\item \emph{Figuring out the right granularity of models} is partially
 	solved by supporting both a geometric reasoning level and a purely symbolic
 	level. Generally speaking, it appears that complex robotic systems need
-	to operate with a dynamic granularity, depending on the task to achieve,
+	to operate with a dynamic granularity, depending on the task to achieve.
 
 	\item \emph{Temporal modeling} is currently missing in our architecture,
 	and symbolic and geometric \emph{planning} is accomplished outside of the
 	knowledge representation loop we presented here. We see planning as an
 	essential tool to build predictive knowledge, and we are looking into this
-	direction,
+	direction.
 
 	\item Since we provide no time management, our system is currently not able
 	to \emph{match past (learned) experiences with the current interaction}.
 	This ability is obviously a key step for general action recognition, and
 	seems of particular importance for the robot to assess the state of the
-	interaction with the human,
+	interaction with the human.
 
 	\item Finally, Roy mentions \emph{the ability to take into account the
 	human perspective}: this is probably our main contribution which we are now
