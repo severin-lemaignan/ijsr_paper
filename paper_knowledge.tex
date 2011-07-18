@@ -84,7 +84,7 @@ interaction can actually enable a grounded and shared model of the world that
 is suitable for later high-level tasks such as dialogue understanding. We show how
 the anchoring process itself relies on the situated nature of human-robot
 interactions. We present an integrated approach, including a specialized symbolic
-knowledge representation approach based on Description Logics, and case studies
+knowledge representation system based on Description Logics, and case studies
 on several robotic platforms that demonstrate these cognitive capabilities.
 \end{abstract}
 
@@ -97,7 +97,18 @@ on several robotic platforms that demonstrate these cognitive capabilities.
 A messy table, covered with cardboard boxes, books, video tapes... Thomas is
 moving out and is packing everything with the help of Jido, his robot
 (Fig.~\ref{fig|vpt}). ``Jido, give me that'', says Thomas while looking at a box that contains a
-video tape. The robot smoothly grasps the tape, and hands it to the him.
+video tape. The robot smoothly grasps the tape, and hands it to him.
+
+\begin{figure}%[!ht] 
+	\centering
+	\includegraphics[width=1.0\linewidth]{images/pt.jpg} 
+	\caption{Interacting with
+	the robot in an everyday setup: the human asks for help in vague terms, the
+	robot takes into account the human's spatial perspective to refine its
+	understanding of the question.} 
+	\label{fig|vpt} 
+\end{figure}
+
 
 While this kind of interaction should hopefully sound quite familiar in a
 foreseeable future, our robots are not yet quite up to the task, neither
@@ -108,27 +119,31 @@ interaction: what are the prerequisites for such a sentence --``Jido,
 give me that''-- to be understood by the robot, correctly interpreted in the
 spatial context of the interaction, and eventually transformed into an action?
 
-The first step is to understand the meaning of the sentence. To this end, we must acquire the sentence, convert it into a useful syntactic form (probably through
-speech recognition), and understand the semantics of the sentence, \ie What is
-referred by ``\textit{Jido}''? What is ``\textit{give}''? What is
+The first step is to understand the meaning of the sentence. To this end, we
+must acquire the sentence, convert it into a useful syntactic form (probably
+through speech recognition), and understand the semantics of the sentence, \ie
+What is referred by ``\textit{Jido}''? What is ``\textit{give}''? What is
 ``\textit{me}''? And ``\textit{that}''?
 
-Working in a situated context, we need to \emph{resolve} these
-semantics atoms, \ie ground them in the sensory-motor space of the robot. For
-instance, ``\textit{this}'' is a demonstrative pronoun that refers in this
-context to the object the human is focusing on (whatever \textit{focusing}
-means). In this example Thomas is looking at something, which is a possible
-cue. But it could as well be pointing at something or making reference to some
-previously mentioned concept. 
+Working in a situated context, we need to \emph{resolve} these semantics atoms,
+\ie ground them in the sensory-motor space of the robot. For instance,
+``\textit{that}'' is a demonstrative pronoun that refers in this context to the
+object the human is focusing on.
 
 The next step is to extract and understand the \emph{intent} of the utterance
-as thought by the agent. In our example, Thomas obviously wants an action to be performed by the robot. The action parametrization is conveyed by the semantics attached to the words and the grammatical structure of the sentence. In our example, the type of action is
-given by the verb ``\textit{give}''. Assuming the robot has some procedural
-knowledge attached to this symbol, the action type can be considered as
-grounded for the robot. We can as well understand that the recipient of the
-action is the human, the performer is the robot itself, and the object acted
-upon is the tape. These are the basic \emph{thematic roles}~\cite{Gruber1965}
-that can be extracted from the sentence that allow for fully grounding the action.\footnote{This analysis has been inspired on the work of Austin et al.~\cite{Austin1962}, where this type of sentences correspond to \emph{speech acts}, comprising of \emph{locutionary act} (the meaning), \emph{illocutionary} (the intent) and possibly \emph{perlocutionary acts} (implicit speaker's expectation).}
+as thought by the agent. In our example, Thomas obviously wants an action to be
+performed by the robot. The action parametrization is conveyed by the semantics
+attached to the words and the grammatical structure of the sentence. In our
+example, the type of action is given by the verb ``\textit{give}''. Assuming
+the robot has some procedural knowledge attached to this symbol, the action
+type can be considered as grounded for the robot. We can as well understand
+that the recipient of the action is the human, the performer is the robot
+itself, and the object acted upon is the tape. The recipient, performer and object are three of the
+\emph{thematic roles}~\cite{Gruber1965} that qualify the \emph{give} action. They are necessary to fully ground the sentence\footnote{This analysis has been
+inspired on the work of Austin et al.~\cite{Austin1962}, where this type of
+sentences correspond to \emph{speech acts}, comprising of \emph{locutionary
+act} (the meaning), \emph{illocutionary} (the intent) and possibly
+\emph{perlocutionary acts} (implicit speaker's expectation).}.
 
 
 %\footnote{The third class of speech acts, the \emph{perlocutionary acts}, deal
@@ -148,28 +163,17 @@ that can be extracted from the sentence that allow for fully grounding the actio
 %the box.
 
 
-\begin{figure}%[!ht] 
-	\centering
-	\includegraphics[width=1.0\linewidth]{images/pt.jpg} 
-	\caption{Interacting with
-	the robot in an everyday setup: the human asks for help in vague terms, the
-	robot takes into account the human's spatial perspective to refine its
-	understanding of the question.} 
-	\label{fig|vpt} 
-\end{figure}
-
-
-
 \subsection{Approach}
 
-In this work we propose an approach aiming at grounding the interaction with users, verbal and non-verbal, following the steps described above. To this end, we have developed three distinct, inter-related cognitive components, which we believe fulfill the minimum requisites for situated human interaction. Figure~\ref{fig|overall-process} illustrates the general context, while
-Figure~\ref{fig|main-components} summarizes the interactions between these three
-main components.
+In this work we propose an approach aiming at grounding the interaction with
+users. Figure~\ref{fig|overall-process} illustrates the general contex. We have
+developed three distinct, inter-related cognitive components, as illustrated in
+Figure~\ref{fig|main-components}.
 
 \begin{inparaenum}[\itshape 1)]
 
 \item \emph{Physical environment modeling} and \emph{spatial reasoning}
-(grouped under the term \emph{situation assessment}): these components are in
+(grouped under the term \emph{situation assessment}): this component is in
 charge of building and maintaining a coherent model of the physical world. This
 model is realistic in the sense that it relies on accurate 3D models of both
 manipulable objects and humans. It also has dedicated mechanisms to manage
@@ -181,41 +185,29 @@ are also represented in the model, the same computations are applied to analyze
 the scene from each agent's point of view (\ie from their \emph{perspectives}).
 
 \item \emph{Knowledge representation and management}: the robot is endowed with
-an active knowledge base that provides a logically sound symbolic model of its
-beliefs of the world, as well as models for each cognitive agent the robot
-interacts with. Each of these models is independent and logically consistent,
-enabling reasoning on different perspectives of the world that would otherwise
-be considered inconsistent (for instance, an object can be visible for the
-robot but not for the human. This object can have at the same time the property
-\concept{isVisible \textbf{true}} and \concept{isVisible \textbf{false}} using
-two different models).  Our platform relies on OWL-DL\footnote{\emph{Web
-Ontology Language - Description Logics}, a decidable subset of the first-order
-logics, \url{http://www.w3.org/TR/owl2-primer/}} ontologies and features
-continuous storage, querying and event triggering over the pool of facts known
-by the robot.
+an active knowledge base that provides a symbolic model of its beliefs of the
+world, as well as models for each cognitive agent the robot interacts with.
+Used in combination with the situation assessment framework, this proves an
+essential feature (\cite{Roy2005,Kruijff2010}) to enable perspective-aware
+grounding of natural language.
 
-Used in combination with the situation assessment framework, the robot is thus
-able to maintain different symbolic models of the world, one per agent. This
-proves an essential feature (\cite{Roy2005,Kruijff2010}) to enable
-perspective-aware grounding of natural language as we will see in next
-sections.
+Our platform relies on OWL-DL\footnote{\emph{Web Ontology Language -
+Description Logics}, a decidable subset of the first-order logics,
+\url{http://www.w3.org/TR/owl2-primer/}} ontologies and features continuous
+storage, querying and event triggering over the pool of facts known by the
+robot.
 
-
-\item \emph{Dialogue input processing}: a subsystem which includes natural
-language parsing capabilities, disambiguation routines and interactive concept
+\item \emph{Dialogue processing}: the third component includes natural
+language parsing capabilities, interactive disambiguation routines and concept
 anchoring. We focused our efforts on three classes of utterances commonly found
 in human-robot interaction: \emph{statements} (\ie new facts the human wants to
 inform the robot), \emph{orders} (or more generically \emph{desires}) and
 \emph{questions on declarative knowledge} (whose answers do not require
-explicit planning). This would roughly cover the \emph{representative}
+planning or prediction)\footnote{This would roughly cover the \emph{representative}
 (sometimes referred as \emph{assertive}) and \emph{directive} illocutionary
-acts in Searle's~\cite{Searle1976} classification.
+acts in Searle's~\cite{Searle1976} classification.}.
 
 \end{inparaenum}
-
-Based on these three components we have developed several grounding mechanisms
-for situated verbal interaction and integrated them into a broader control
-architecture for indoor service robots. 
 
 \begin{figure}[!ht]
 \centering
@@ -267,13 +259,11 @@ paraphrased in the robotic context) definition of symbol grounding:
 robotic system"}, Coradeschi and Saffioti~\cite{Coradeschi2003} who focus on
 robotics and define the meaning of \emph{anchoring} as \emph{``the process of
 creating and maintaining the correspondence between symbols and sensor data
-that refer to the same physical object''}, Ziemke~\cite{Ziemke1999} who
-elaborates on the need of embodiment for symbol grounding, and
-Sloman~\cite{Sloman2007} who criticizes the \emph{``concept empricism"} that
-underlies symbol grounding.
+that refer to the same physical object''} and Ziemke~\cite{Ziemke1999} who
+elaborates on the need of embodiment for symbol grounding.
 
 Our contribution relates to two narrower fields: natural language in embodied
-interaction contexts and knowledge building and representation in robotic
+interaction contexts and knowledge acquisition and representation in robotic
 systems.
 
 Processing natural language in situated contexts is already an established
@@ -347,11 +337,11 @@ regarding scalability and management of more complex entities or interactions.
 Daoutis et al.~\cite{Daoutis2009} introduce one of the first complete
 architectures for grounded human-robot interaction. They successfully bind
 low-level percepts (including view-point independent SIFT based object
-recognition) to a high-level knowledge representation and reasoning system via
-a dedicated anchoring module. They base their knowledge model directly on the
-\textit{ResearchCyc} ontology (including the \textit{MicroTheories} concept),
-used in combination with the {\sc CycL} language. This enables second-order
-logic modeling and access to a large common-sense knowledge base.
+recognition) to a high-level knowledge representation and reasoning system.
+They base their knowledge model directly on the \textit{ResearchCyc} ontology
+(including the \textit{MicroTheories} concept), used in combination with the
+{\sc CycL} language. This enables second-order logic modeling and access to a
+large common-sense knowledge base.
 
 Beetz et al.~\cite{Beetz2010} proposes a cognitive architecture called
 \textsc{CRAM} (Cognitive Robot Abstract Machine) that integrates
@@ -377,15 +367,16 @@ Besides proposing a new integration model for sensor data, natural language and
 symbolic knowledge repositories, our work extends these previous contributions
 by tackling more realistic human-robot interactions: open speech; complex,
 dynamic, partially unknown human environments; and fully embodied (with arms,
-head, ability to move,...) autonomous robots that can perform manipulation.
+head, ability to move,...) autonomous robots that manipulate a large range of
+household objects.
 
-Four specific contributions are presented in this work: first, we introduce a
-novel and versatile knowledge base that models in a formal framework, based on
-first-order logics, not only the robot's own beliefs but also every other
-cognitive agent the robot interacts with.  This explicit modeling of other
-agents' belief states is used for the interaction and eases the implementation
-of various advanced cognitive behaviors like learning new concepts or
-interactive object discrimination.
+Three specific contributions are presented in this work: first, we introduce a
+versatile and light-weighted knowledge base that models in a formal framework,
+based on first-order logics, not only the robot's own beliefs but also every
+other cognitive agent the robot interacts with.  This explicit modeling of
+other agents' belief states is used for the interaction and eases the
+implementation of various advanced cognitive behaviors like
+False-Beliefs~\cite{Leslie2000} or interactive object discrimination.
 
 Second, we have implemented a framework to extract symbolic facts from complex
 real scenes. It is based on a 3D model of the world that the robot builds
@@ -398,20 +389,13 @@ Third, the same symbolic knowledge base enables richer language capabilities
 for the robot.  We propose a new approach to natural language grounding that is
 robust, situated and more generic than what can be found in previous work
 on situated language grounding. We present several examples that include
-generic recognition and semantic validation of thematic roles (\ie the
-semantic roles played by the different nominal groups around a verb), which
-can be translated into input for a symbolic task planner, or disambiguation
+recognition and semantic validation of thematic roles or disambiguation
 based on attention foci.
 
-Lastly, our architecture moves away from standard layered approaches. The way
-our different components interact together is not easily represented as a
-layered architecture because interactions among components are mostly
-bidirectional.  This is especially visible for the dialogue input processing:
-this component does not simply act as an alternative perceptual input to the
-symbolic database, but also actively queries previously acquired knowledge to
-disambiguate and validate the newly created symbolic knowledge. This behaviour
-leads us to the idea of \emph{knowledge-oriented architecture}, which is
-detailed later on.
+Communcation between these components is build as streams of symbolic facts,
+where knowledge that the robot manipulate is made explicit.
+This leads us to the idea of a \emph{knowledge-oriented architecture} which is
+discussed at the end of the article.
 
 These points highlight some original aspects of a larger cognitive architecture
 that has been deployed and tested on several robotic platforms
@@ -424,8 +408,8 @@ In the next section we present the {\sc ORO}
 (\emph{OpenRobots Ontology} server) knowledge base. We present it first, along with its objectives,
 since it is the knowledge \textit{hub} of the system, used pervasively by other
 components.
-Section~\ref{spark} presents {\sc SPARK} (for \emph{SPAtial Reasoning \& Knowledge}), a
-module that merges perceptual information with a coherent geometric model and
+Section~\ref{spark} presents {\sc SPARK} (for \emph{SPAtial Reasoning \& Knowledge}), the
+component that merges perceptual information with a coherent geometric model and
 builds a symbolic interpretation of the world from the robot's point of view,
 as well as an individual symbolic model for each agent currently present in the
 environment. 
@@ -732,6 +716,13 @@ agents' beliefs in separate models. All knowledge processing functions in the
 robot's primary model are equally available in every agent's model, which
 allows us to store and reason on different (and possibly globally inconsistent)
 models of the world.
+
+Each of these models is independent and logically consistent,
+enabling reasoning on different perspectives of the world that would otherwise
+be considered as globally inconsistent (for instance, an object can be visible for the
+robot but not for the human. This object can have at the same time the property
+\concept{isVisible \textbf{true}} and \concept{isVisible \textbf{false}} in
+two different models). 
 
 This feature actually allows us to consider the robot to be endowed with a
 \emph{theory of mind}~\cite{Scassellati2002}: the robot can explicitly model
@@ -1801,7 +1792,7 @@ next to the toolbox.''
 
 \subsection{Towards an event-driven, knowledge-oriented architecture for personal robotics}
 
-In this paper, we have studied knowledge flows between three components: {\it(1)}
+In this paper, we have studied knowledge streams between three components: {\it(1)}
 {\sc ORO}, an ontology-based knowledge server that stores and maintains
 classified RDF statements produced by other modules in agent-specific
 models and allows information to be easily retrieved, either through queries or
@@ -1821,7 +1812,7 @@ an architecture that we call \emph{knowledge-oriented}:
 \begin{itemize}
 \item{Knowledge is explicitly stored in one central and consistent repository
 of facts, accessible by all modules.}
-\item{Knowledge is represented in a strict formalism (RDF statements) and
+\item{Knowledge is represented in a strict formalism (OWL statements) and
 with a clearly defined vocabulary (stated in the {\tt commonsense.oro.owl}
 ontology).}
 \item{The first two points enable both a loosely-coupled
@@ -1831,7 +1822,7 @@ they produce),}
 \item{and a \emph{symbolic} reactive, event-driven approach
 to supervision. By managing events at the same level as
 the reasoner, we take full advantage of the inference abilities of ORO to
-trigger events whose \textit{True} conditions can be inferred.}
+trigger events whose \texttt{true} conditions can be inferred.}
 \item{Finally, this architecture allows for the combination of very different knowledge
 modalities in a single homogeneous environment, bringing mutual benefits to
 components. For instance, the dialogue processing module can perfectly run
@@ -1839,6 +1830,16 @@ without any geometric perception, but its disambiguation routines can
 transparently benefit from it when available (since richer symbolic
 descriptions of objects are then available).}
 \end{itemize}
+
+This architecture moves away from standard layered approaches: Interactions
+between components are mostly bidirectional and we do not have a concept of
+layers of abstraction (we do, however, have access to the robot lower levels
+to execute actions, but all cognition-related modules live at the same level).
+This is especially visible for the dialogue input processing: this component
+does not simply act as an alternative perceptual input to the symbolic
+database, but also actively queries previously acquired knowledge to
+disambiguate and validate the newly created symbolic knowledge.
+
 
 Regarding the anchoring question, this architecture is
 bidirectional. The components we described provide a \textit{bottom-up}
@@ -1867,7 +1868,9 @@ robotics and psychology. Our architecture provides easier-to-reach entry points
 to implement some classical psychology tests to robots. We presented
 experiments focused on issues related to perspective taking. By explicitly
 enabling independent modeling of the beliefs of each agent, our architecture is
-especially well suited to set up cognitive and psychological experiments (such as the \emph{False-Belief} experiment~\cite{Leslie2000}), which we plan to further explore.
+especially well suited to set up cognitive and psychological experiments (such
+as the \emph{False-Belief} experiment~\cite{Leslie2000}), which we plan to
+further explore.
 
 \subsection{Discussion}
 
