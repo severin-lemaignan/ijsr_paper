@@ -393,8 +393,8 @@ recognition and semantic validation of thematic roles or disambiguation
 based on attention foci.
 
 Communcation between these components is build as streams of symbolic facts,
-where knowledge that the robot manipulate is made explicit.
-This leads us to the idea of a \emph{knowledge-oriented architecture} which is
+where knowledge manipulated by the robot is made explicit.
+This leads us to the idea of a \emph{knowledge-oriented architecture}, which is
 discussed at the end of the article.
 
 These points highlight some original aspects of a larger cognitive architecture
@@ -1099,7 +1099,7 @@ the extraction of informational content. We assume that the robot knowledge
 base only contains two initial statements in the human model. The user
 asserts a new one: ``The yellow banana is big!''. 
 We first want to match the nominal group \emph{The yellow banana} to an already
-known concept (algorithm~\ref{algo|Resolution}), and second to translate the property \emph{is big} into a predicate (\emph{hasSize}) to state its semantics. 
+known concept (algorithm~\ref{algo|Resolution}), and second to translate the property \emph{is big} into a predicate ({\tt hasSize}) to state its semantics. 
 
 To resolve the nominal group \emph{The yellow banana} a set of partial
 statements that describe the concept is generated based on the grammatical
@@ -1396,7 +1396,7 @@ type it already knows. More precisely, the robot recursively asks the human for 
 accurately anchors perception in its symbolic model and it is able to reason
 about it.  The learning process starts over again with each unknown object. To
 further exploit the knowledge reasoner in this experiment, we ask the robot
-which object do not belong to a typical breakfast table, \ie we ask for the odd
+which object does not belong to a typical breakfast table, \ie we ask for the odd
 objects. In this case, it corresponds to objects that are neither of type
 \concept{Tableware} nor \concept{Food}. 
 
@@ -1828,13 +1828,13 @@ transparently benefit from it when available (since richer symbolic
 descriptions of objects are then available).}
 \end{itemize}
 
-This architecture moves away from standard layered approaches: Interactions
+This architecture moves away from standard layered approaches. Interactions
 between components are mostly bidirectional and we do not have a concept of
-layers of abstraction (we do, however, have access to the robot lower levels
-to execute actions, but all cognition-related modules live at the same level).
-This is especially visible for the dialogue input processing: this component
-does not simply act as an alternative perceptual input to the symbolic
-database, but also actively queries previously acquired knowledge to
+layers of abstraction (we do, however, have access to the robot lower level
+modules to execute actions, but all cognition-related modules live at the same
+level). This is especially visible for the dialogue input processing. This
+component does not simply act as an alternative perceptual input to the
+symbolic database, but also actively queries previously acquired knowledge to
 disambiguate and validate the newly created symbolic knowledge.
 
 
@@ -1866,7 +1866,7 @@ to implement some classical psychology tests to robots. We presented
 experiments focused on issues related to perspective taking. By explicitly
 enabling independent modeling of the beliefs of each agent, our architecture is
 especially well suited to set up cognitive and psychological experiments (such
-as the \emph{False-Belief} experiment~\cite{Leslie2000}), which we plan to
+as the \emph{False-Belief} experiment), which we plan to
 further explore.
 
 \subsection{Discussion}
