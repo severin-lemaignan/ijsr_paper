@@ -94,10 +94,10 @@ on several robotic platforms that demonstrate these cognitive capabilities.
 %\subsection{Situated speech acts}
 %\label{intro_example}
 
-A messy table, covered with cardboard boxes, books, video tapes... Thomas is
-moving out and is packing everything with the help of Jido, his robot
-(Fig.~\ref{fig|vpt}). ``Jido, give me that'', says Thomas while looking at a box that contains a
-video tape. The robot smoothly grasps the tape, and hands it to him.
+{\em A messy table, covered with cardboard boxes, books, video tapes... Thomas
+is moving out and is packing everything with the help of Jido, his robot.
+``Jido, give me that'', says Thomas while looking at a box that contains a
+video tape. The robot smoothly grasps the tape, and hands it to him.}
 
 \begin{figure}%[!ht] 
 	\centering
@@ -110,14 +110,14 @@ video tape. The robot smoothly grasps the tape, and hands it to him.
 \end{figure}
 
 
-While this kind of interaction should hopefully sound quite familiar in a
-foreseeable future, our robots are not yet quite up to the task, neither
-regarding natural language understanding nor plan-making and manipulation.
-To be combined together, those abilities require an unambiguous and shared
-representation of concepts (objects, agents, actions...) underlying the
-interaction: what are the prerequisites for such a sentence --``Jido,
-give me that''-- to be understood by the robot, correctly interpreted in the
-spatial context of the interaction, and eventually transformed into an action?
+While this kind of interaction (Fig.~\ref{fig|vpt}) should hopefully sound
+quite familiar in a foreseeable future, our robots are not yet quite up to the
+task, neither regarding natural language understanding nor plan-making and
+manipulation.  To be combined together, those abilities require an unambiguous
+and shared representation of concepts (objects, agents, actions...) underlying
+the interaction: what are the prerequisites for such a sentence --``Jido, give
+me that''-- to be understood by the robot, correctly interpreted in the spatial
+context of the interaction, and eventually transformed into an action?
 
 The first step is to understand the meaning of the sentence. To this end, we
 must acquire the sentence, convert it into a useful syntactic form (probably
@@ -130,7 +130,7 @@ Working in a situated context, we need to \emph{resolve} these semantics atoms,
 ``\textit{that}'' is a demonstrative pronoun that refers in this context to the
 object the human is focusing on.
 
-The next step is to extract and understand the \emph{intent} of the utterance
+The next step is to extract and understand the \emph{intended meaning} of the utterance
 as thought by the agent. In our example, Thomas obviously wants an action to be
 performed by the robot. The action parametrization is conveyed by the semantics
 attached to the words and the grammatical structure of the sentence. In our
@@ -365,10 +365,10 @@ interacting with humans.
 
 Besides proposing a new integration model for sensor data, natural language and
 symbolic knowledge repositories, our work extends these previous contributions
-by tackling more realistic human-robot interactions: open speech; complex,
-dynamic, partially unknown human environments; and fully embodied (with arms,
-head, ability to move,...) autonomous robots that manipulate a large range of
-household objects.
+by tackling more realistic human-robot interactions: less restricted speech
+understanding; ability to deal with complex, partially unknown human
+environments; and fully embodied (with arms, head,...) autonomous robots that
+manipulate a large range of household objects.
 
 Three specific contributions are presented in this work: first, we introduce a
 versatile and light-weighted knowledge base that models in a formal framework,
@@ -398,7 +398,7 @@ This leads us to the idea of a \emph{knowledge-oriented architecture}, which is
 discussed at the end of the article.
 
 These points highlight some original aspects of a larger cognitive architecture
-that has been deployed and tested on several robotic platforms
+that has been deployed and tested on several mobile robotic platforms
 (including both humanoid robots and service robots), demonstrating the
 versatility and hardware-agnosticism of these developments.
 
@@ -567,7 +567,7 @@ Knowledge is represented in ORO in the Description Logics formalism (using the
 OWL-DL --\emph{Web Ontology Language - Description Logics}-- language), as
 RDF (\emph{Resource Description Framework}) triples (for instance \stmt{robot
 isIn kitchen}). We use the Jena\footnote{\url{http://jena.sourceforge.net/}}
-framework as the underlying library to load and build in-memory OWL model. We
+framework as the underlying library to load and build an in-memory OWL model. We
 use it in conjunction with the
 Pellet\footnote{\url{http://clarkparsia.com/pellet/}} reasoner to ensure the
 continuous classification of the OWL concept graph: at run-time, newly added
@@ -577,7 +577,7 @@ inferred ones. For instance, if \stmt{socrates type Human} and \stmt{Human
 subClassOf Mortal} are asserted, the server transparently adds the inferred
 statement \stmt{socrates type Mortal}, and a later query retrieving all mortal
 entities would return \concept{socrates} as well. The language of the OWL
-family use the \emph{Open World Assumption} (if a fact can not be inferred as
+family make the \emph{Open World Assumption} (if a fact can not be inferred as
 true, it does not mean that it is inferred to be false), and the Pellet
 reasoner honors this assumption as well.
 
@@ -765,7 +765,7 @@ framework also takes advantage of the inference capabilities of ORO. Thus an
 event can be indirectly triggered if its triggering conditions can be inferred
 to be true.
 
-Next sections describe how symbolic knowledge is actually produced and added to
+The next sections describe how symbolic knowledge is actually produced and added to
 ORO.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -806,7 +806,7 @@ able to compute this information can then act accordingly. An example
 would be a clarification scenario where the human is searching for an object
 and the robot is able to infer that he/she is looking for the one that is not
 visible (otherwise the user would not be searching for it).
-In figure~\ref{fig::vis} the field of view of a person is illustrated with a
+In Figure~\ref{fig::vis} the field of view of a person is illustrated with a
 grey cone (broader one). While he is able to see the two small boxes on the
 table in front of him, the big box on his right is out of his FOV, and
 therefore, he is not able to see it. 
@@ -1009,7 +1009,7 @@ replaced by the correct speaker ID and the ID of the last object referred to
 (extracted from the dialogue history) respectively, {\it(ii)} nominal groups are
 disambiguated and grounded (noun phrase resolution), and {\it(iii)}
 verbal groups are resolved and their associated \emph{thematic roles} are
-retrieved (verbal phrase resolution).
+retrieved (verb phrase resolution).
 
 \small
 \begin{pseudocode}[ruled]{Resolution}{sentence, currentSpeaker}
@@ -1207,8 +1207,8 @@ concept the robot finds for the thematic role \concept{actsOnObject} cannot be
 inferred to be an artifact, the robot goes back to the human saying it does not
 understand.
 
-This second example  also shows the pronouns reference resolution: ``me'' is
-replaced by the id of the current speaker while ``you'' is replaced by
+This second example  also shows the pronoun reference resolution: ``me'' is
+replaced by the id of the current speaker, while ``you'' is replaced by
 \concept{myself} (\concept{myself} always represents the robot itself). When
 present, anaphoras (references to previous concepts like ``give me the banana, I
 like {\bf it}.'') are also resolved in the same step.
@@ -1345,24 +1345,27 @@ having to ask for more information to the human:
 %\end{enumerate}
 
  
-While no examples involving questions have been detailed, \emph{W-} questions
-and \emph{yes/no} questions can be processed in a similar way by
-\textsc{Dialogs}. For instance, a question like ``What is on the table?''
-is grounded (to extract the relation \concept{isOn} and to find what \emph{table}
+While no examples involving questions have been detailed, factual \emph{wh-}
+questions and polar (\emph{yes/no}) questions can be processed in a similar way
+by \textsc{Dialogs}. For instance, a question like ``What is on the table?'' is
+grounded (to extract the relation \concept{isOn} and to find what \emph{table}
 refers to) and transformed into the following kind of query: \concept{find ?var
-[\stmt{?var isOn table1}]}.  Answers are converted back to a full sentence
-by the \emph{verbalization} module, and uttered to the human.
+[\stmt{?var isOn table1}]}.  Answers are converted back to a full sentence by
+the \emph{verbalization} module, and uttered to the human.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments}
 \label{experiments}
 
 This section presents several experiments where the different features of our
-approach are represented. The experiments have been conducted on two different platforms: the
-\emph{Rosie} manipulator from the Technical Universtiy of Munich, a dual-arm,
-holonomic service robot, running the ROS\footnote{\emph{Robotic Operating
-System}, \url{http://www.ros.org}} middleware; and the \emph{Jido} robot~\cite{Alami1998a} from LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
-Genom/pocolibs} stack. Both platforms share the use of ORO, the ontology server proposed in this work.
+approach are represented. The experiments have been conducted on two different
+platforms: the \emph{Rosie} manipulator from the Technical Universtiy of
+Munich, a dual-arm, holonomic service robot, running the
+ROS\footnote{\emph{Robotic Operating System}, \url{http://www.ros.org}}
+middleware; and the \emph{Jido} robot~\cite{Alami1998a} from LAAS-CNRS, a
+similar, single-arm, service robot, running the LAAS's {\sc Genom/pocolibs}
+stack. Both platforms share the use of ORO, the ontology server described in
+this work.
 
 \subsection{\emph{Naming} Experiment}
 \label{naming}
@@ -1384,7 +1387,7 @@ objects and their symbolic representation in ORO.}
 
 The \emph{Naming} task uses ORO to anchor perception into the robot's knowledge
 through interaction with the user. This task has been implemented on the Rosie
-robot at Munich university.
+robot at TU Munich.
 
 The robot selects an unknown object from the table, shows it to the user, and
 asks about its name and type (Figure~\ref{fig|kimpwatching}). The user
@@ -1563,7 +1566,7 @@ shows an example of a round game.
 
 In order to illustrate some of different reasoning abilities of the robot presented in this paper, we have designed the following
 daily life situation. Tom and Jerry are moving to London, so they are packing
-things in boxes. The scenario takes places in the living-room, where Jido is observing while they move things here and there. To assess the
+things in boxes. The scenario takes places in the living room, where Jido is observing while they move things here and there. To assess the
 reasoning abilities of the robot they ask Jido for information (entered through
 keyboard). Ideally, the robot should perform actions when required (\eg
 hand an object when asking ``give me...''). However, since it is out of the
@@ -1796,7 +1799,7 @@ models and allows information to be easily retrieved, either through queries or
 via an event system; {\it(2)} {\sc SPARK}, the grounded, human-aware 3D model
 of the environment that performs all the spatial reasoning within our
 architecture, including reasoning involving motion planing (to compute
-reachability of object) and perspective taking, and {\it(3)} {\sc Dialogs}, a
+reachability of objects) and perspective taking, and {\it(3)} {\sc Dialogs}, a
 natural language processor that performs simple grammatical parsing of English
 language, grounds the semantic content of the utterance (if necessary, also
 interacts with the user to disambiguate), and eventually generates a RDF
@@ -1830,9 +1833,9 @@ descriptions of objects are then available).}
 
 This architecture moves away from standard layered approaches. Interactions
 between components are mostly bidirectional and we do not have a concept of
-layers of abstraction (we do, however, have access to the robot lower level
-modules to execute actions, but all cognition-related modules live at the same
-level). This is especially visible for the dialogue input processing. This
+layers of abstraction (we do, however, have access to the lower level modules
+of the robot to execute actions, but all cognition-related modules reside at the
+same level). This is especially visible for the dialogue input processing. This
 component does not simply act as an alternative perceptual input to the
 symbolic database, but also actively queries previously acquired knowledge to
 disambiguate and validate the newly created symbolic knowledge.
@@ -1842,17 +1845,18 @@ Regarding the anchoring question, this architecture is
 bidirectional. The components we described provide a \textit{bottom-up}
 grounding process: SPARK and \textsc{Dialogs} constantly build and push new
 symbolic contents about the world to ORO where it becomes accessible to
-decisional layers. In parallel, ORO relies on reasoning in a \textit{top-bottom}
+decisional layers. In parallel, ORO relies on reasoning in a \textit{top-down}
 way to produce new facts that may trigger in return physical behaviours. 
 
-We believe that this \emph{knowledge-oriented} approach has a strong potential
-not only to enable rich human-robot interaction, but also as a broader approach
-to information alignment and fusion in complex robotic systems.
-The versatility of this paradigm could be illustrated by a simple imaginary
-scenario with a blind robot and a deaf robot. The blind robot does not see (no
-cameras or alike), but someone can verbally describe a scene to it. On the other hand, the
-deaf robot has a good vision system, but cannot hear.  Without any
-changes to the software architecture described, supervision modules of both robots would be able to perform equally well.
+% We believe that this \emph{knowledge-oriented} approach has a strong potential
+% not only to enable rich human-robot interaction, but also as a broader approach
+% to information alignment and fusion in complex robotic systems.  The
+% versatility of this paradigm could be illustrated by a simple imaginary
+% scenario with a blind robot and a deaf robot. The blind robot does not see (no
+% cameras or alike), but someone can verbally describe a scene to it. On the
+% other hand, the deaf robot has a good vision system, but cannot hear.  Without
+% any changes to the software architecture described, supervision modules of both
+% robots would be able to perform equally well.
 
 %(to actually implement this imaginary
 %situation, the blind robot would of course need \textit{a priori} 3D models
@@ -1860,14 +1864,14 @@ changes to the software architecture described, supervision modules of both robo
 %the deaf robot would require at least some gesture interpretation to
 %understand orders).
 
-We hope as well that our contribution may contribute to fill the gap between
-robotics and psychology. Our architecture provides easier-to-reach entry points
-to implement some classical psychology tests to robots. We presented
-experiments focused on issues related to perspective taking. By explicitly
-enabling independent modeling of the beliefs of each agent, our architecture is
-especially well suited to set up cognitive and psychological experiments (such
-as the \emph{False-Belief} experiment), which we plan to
-further explore.
+% We hope as well that our contribution may contribute to fill the gap between
+% robotics and psychology. Our architecture provides easier-to-reach entry points
+% to implement some classical psychology tests to robots. We presented
+% experiments focused on issues related to perspective taking. By explicitly
+% enabling independent modeling of the beliefs of each agent, our architecture is
+% especially well suited to set up cognitive and psychological experiments (such
+% as the \emph{False-Belief} experiment), which we plan to
+% further explore.
 
 \subsection{Discussion}
 
@@ -1883,7 +1887,7 @@ model real-world interaction in a symbolic way, processable by the robot to
 make decisions}. In the paper we used several times the term \emph{grounding} to
 describe the process of binding percepts to symbols (later organized in a
 first-order logic framework).  We would like to relate it to
-Sloman~\cite{Sloman2007} stance against the \emph{``Symbol Grounding meme''},
+Sloman's~\cite{Sloman2007} stance against the \emph{``Symbol Grounding meme''},
 where he argues that symbolic grounding is bound to the representation of
 somatic concepts (\ie roughly, the sensori-motor relationships that the robot
 learns from its interaction with the world) which in turn severely constraints
@@ -1906,11 +1910,12 @@ real experiments would be an interesting development.
 
 Amongst the other shortcomings of our architecture, neither the \emph{domain of
 validity} nor the context of a fact are represented in a satisfying way (we do
-store some kind of context --the agent mental model for instance--). Those
-informations are meta-informations on the knowledge. While the ORO framework allows them through \emph{statement reification}, it does not offer yet
-a convenient way to store them. One obvious limitation that derives from
-the lack of efficient meta-knowledge is the absence of knowledge history.
-With ORO, the robot always lives in the present.
+store some kind of context --the agent's mental model for instance--). This
+information is meta-information on the knowledge. While the ORO framework
+allows them through \emph{statement reification}, it does not offer yet a
+convenient way to store them. One obvious limitation that derives from the lack
+of efficient meta-knowledge is the absence of knowledge history.  With ORO, the
+robot always lives in the present.
 
 Along the same lines, our current framework lacks a proper management of
 uncertainty which is essential for real world environments. A probabilistic
@@ -1959,10 +1964,11 @@ a broader symbolic system, \ie our architecture is not bound to the morphology o
 the low-level sensori-motor capabilities of a specific agent. 
 
 However, we can build a model of the ``human point of view'' because the robot
-perceives the human, and is able to estimate, at least partially, what the human
-perceives or not. We infer that a human focuses on some object because it points at it, looks at it, and besides, the object is visible to him. This relies on the embodied
-nature of the interaction. In turn, this allows us to understand the
-meaning of sentences like ``Give me that''.
+perceives the human, and is able to estimate, at least partially, what the
+human perceives or not. We infer that a human focuses on some object because
+he/she points at it, looks at it, and besides, the object is visible to him.
+This relies on the embodied nature of the interaction. In turn, this allows us
+to understand the meaning of sentences like ``Give me that''.
 
 We hope that this contribution shows that considering embodiment as the most
 challenging and fruitful characteristic of robotics in regards to the whole AI
