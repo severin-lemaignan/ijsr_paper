@@ -52,7 +52,7 @@
 \begin{document}
 %\linenumbers
 
-\title{Grounding the interaction: anchoring situated discourse in everyday human-robot interaction}
+\title{Grounding the Interaction: Anchoring Situated Discourse in Everyday Human-Robot Interaction}
 
 \author{
 S\'everin Lemaignan \and
@@ -89,7 +89,7 @@ on several robotic platforms that demonstrate these cognitive capabilities.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Grounding human interaction into robot knowledge}
+\section{Grounding Human Interaction Into Robot Knowledge}
 
 %\subsection{Situated speech acts}
 %\label{intro_example}
@@ -248,7 +248,7 @@ acts in Searle's~\cite{Searle1976} classification.}.
 %~ \item Finally, the \emph{content analysis} step extracts the \emph{intention} of the sentence and handles it. Orders, questions, statements (new information) are separately processed.
 %~ \end{enumerate}
 
-\subsection{Related work}
+\subsection{Related Work}
 
 Our work builds on top of years of work in the artificial intelligence
 community around the symbol grounding issue: we can mention
@@ -426,9 +426,9 @@ Finally, Section~\ref{conclusion} concludes and discusses the work presented
 in this paper.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{ORO, a knowledge management platform} \label{cognitivekernel}
+\section{ORO, a Knowledge Management Platform} \label{cognitivekernel}
 
-\subsection{On knowledge representation} \label{knowledge_representation}
+\subsection{On Knowledge Representation} \label{knowledge_representation}
 
 While \emph{knowledge} has no general definition that researchers agree on, for
 our own purposes we define knowledge as \emph{information interpreted in the
@@ -626,7 +626,7 @@ of knowledge from these other sources. Moreover, it also enables knowledge
 exchange with other robots (for instance, the works previously mentioned by
 Daoutis and Tenorth rely on the same Cyc concepts).
 
-\subsection{Reasoning and dynamic knowledge structuring}
+\subsection{Reasoning and Dynamic Knowledge Structuring}
 
 As previously mentioned, ontologies in ORO are written in OWL. The
 Pellet reasoner supports most of the OWL constructs and allows several types of
@@ -661,7 +661,7 @@ new constraints and properties to classes and predicates.
 The \emph{Naming} experiment (section~\ref{naming}) gives a simple example of
 such knowledge restructuring.
 
-\subsection{ORO features}
+\subsection{ORO Features}
 \label{features}
 
 Besides storing and reasoning about knowledge, we have developed in ORO several
@@ -670,7 +670,7 @@ features to manage knowledge at higher level:
 %each agent the robot interacts with, categorization capabilities, different
 %profiles of memory and events registration.
 
-\subsubsection{Base functionalities}
+\subsubsection{Base Functionalities}
 \label{base}
 
 ORO offers an extended set of methods to process facts at the triples level,
@@ -700,7 +700,7 @@ exploitation) of a consistent knowledge model, the \emph{Common Sense Ontology}
 helps build assertions that are related to previous ones by offering
 a predefined vocabulary.
 
-\subsubsection{Representation of alternative cognitive models}
+\subsubsection{Representation of Alternative Cognitive Models}
 \label{alterite}
 
 As pictured in Figure~\ref{fig|oro-overview}, ORO stores independent cognitive
@@ -743,7 +743,7 @@ to solve the ambiguity. This discrimination can occur from the robot's
 perspective or from a specific agent's perspective. Usage of these
 categorization abilities are illustrated in Sections~\ref{dialogs:disamb} and~\ref{spygame}.
 
-\subsubsection{Memory profiles}
+\subsubsection{Memory Profiles}
 \label{memory}
 
 We have designed a simplified bio-inspired memory model to store
@@ -752,7 +752,7 @@ memory} and \emph{long term memory}. Each profile is characterized with a
 lifetime, which is assigned to the stored facts. When the lifetime of a fact
 expires, ORO automatically removes it.
 
-\subsubsection{The events framework} 
+\subsubsection{The Events Framework} 
 \label{events} 
 
 Lastly, ORO allows external modules to be triggered when specific events occur. For instance, when a logical sentence becomes true or false, or if a new
@@ -769,7 +769,7 @@ Next sections describe how symbolic knowledge is actually produced and added to
 ORO.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Geometric reasoner for situation assessment}
+\section{Geometric Reasoner for Situation Assessment}
 \label{spark}
 
 Anchoring perceptions in a symbolic model requires perception abilities
@@ -933,7 +933,7 @@ enables the computation of several spatial relationships between
 objects and an effective implementation of perspective taking capabilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The natural language grounding process}
+\section{The Natural Language Grounding Process}
 \label{dialog}
 
 Verbal interaction with human presents two categories of challenges: syntactic
@@ -1061,7 +1061,7 @@ human's model.  Since the robot tries to ground a
 human utterance, all queries are sent to the human model in order to interpret
 it from the human perspective. 
 
-\subsection{Informational content extraction}
+\subsection{Informational Content Extraction}
 
 \begin{figure}
     \centering
@@ -1127,7 +1127,7 @@ server.
 % done for the main colours. Another example is the size: for known size
 % adjectives (big, small, etc.), the \concept{hasSize} predicate is being used.
 
-\subsection{Intentional content through verb resolution}
+\subsection{Intentional Content Through Verb Resolution}
 The sentence in the first example is built with the state verb \emph{be} at
 indicative. Let us examine a different example with an action verb at
 imperative mode (an order): ``Give me the banana". The process is
@@ -1219,7 +1219,7 @@ represented as human desires: the human desires a specific new situation.}), we
 store it in the ontology server. The robot's decisional/executive layers can
 then decide whether to execute the order or not. 
 
-\subsection{Informational content extraction requiring clarification}
+\subsection{Informational Content Extraction Requiring Clarification}
 \label{dialogs:disamb}
 \begin{figure}
     \centering
@@ -1364,7 +1364,7 @@ holonomic service robot, running the ROS\footnote{\emph{Robotic Operating
 System}, \url{http://www.ros.org}} middleware; and the \emph{Jido} robot~\cite{Alami1998a} from LAAS-CNRS, a similar, single-arm, service robot, running the LAAS's {\sc
 Genom/pocolibs} stack. Both platforms share the use of ORO, the ontology server proposed in this work.
 
-\subsection{\emph{Naming} experiment}
+\subsection{\emph{Naming} Experiment}
 \label{naming}
 
 \begin{figure}
@@ -1454,7 +1454,7 @@ semantics and roles of objects in the scenario.
 % low-level perception outcomes by ``closing the loop'' with high-level, symbolic
 % knowledge.
 
-\subsection{\emph{Spy Game} experiment}
+\subsection{\emph{Spy Game} Experiment}
 \label{spygame}
 
 This game is based on the traditional children game ``I Spy''. The idea is to
@@ -1559,7 +1559,7 @@ shows an example of a round game.
 	\label{fig|spyGameExample}
 \end{figure}
 
-\subsection{\emph{Moving to London} scenario}
+\subsection{\emph{Moving to London} Scenario}
 
 In order to illustrate some of different reasoning abilities of the robot presented in this paper, we have designed the following
 daily life situation. Tom and Jerry are moving to London, so they are packing
@@ -1573,7 +1573,7 @@ system and humans are detected through motion capture. We next describe in
 detail three situations where we can follow the internal robot's reasoning and
 the interaction with the users.
 
-\subsubsection{Initial situation assessment}
+\subsubsection{Initial Situation Assessment}
 
 \begin{figure}%[!t]
 \centering
@@ -1631,7 +1631,7 @@ Tom enters carrying several objects (Figure~\ref{fig|sitAssessRoman}a) and place
     \end{tabular}       
 \end{center}
 
-\subsubsection{Implicit disambiguation through visual perspective taking}
+\subsubsection{Implicit Disambiguation Through Visual Perspective Taking}
 \label{exp:disambVPT}
 
 Tom enters the room again while carrying a big box (Figure~\ref{fig|vpt}). He
@@ -1698,7 +1698,7 @@ Robot's beliefs about Tom (\emph{Tom's model}):\\
 \label{table|ptbeliefs}
 \end{table}
 
-\subsubsection{Explicit disambiguation through verbal interaction and gestures}
+\subsubsection{Explicit Disambiguation Through Verbal Interaction and Gestures}
 \label{disamb-gestures}
 
 \begin{figure}%[!ht]
@@ -1787,7 +1787,7 @@ next to the toolbox.''
 \section{Conclusion}
 \label{conclusion}
 
-\subsection{Towards an event-driven, knowledge-oriented architecture for personal robotics}
+\subsection{Towards an Event-Driven, Knowledge-Oriented Architecture for Personal Robotics}
 
 In this paper, we have studied knowledge streams between three components: {\it(1)}
 {\sc ORO}, an ontology-based knowledge server that stores and maintains
@@ -1876,7 +1876,7 @@ topics.  In this section, we discuss some of these limitations, possible
 extensions, and how this article contributes to the larger debate on symbol
 grounding for embodied agent.
 
-\subsubsection{Modeling the real world}
+\subsubsection{Modeling the Real World}
 
 The main challenge we address in this work can be formulated as \emph{How to
 model real-world interaction in a symbolic way, processable by the robot to
@@ -1929,7 +1929,7 @@ to~\cite{Jain2009}.
 % \fxfatal{situation assessment: we don't do any posture, gesture recognition, let be action recognition}
 % 
 
-\subsubsection{On thematic roles and action models}
+\subsubsection{On Thematic Roles and Action Models}
 
 The current implementation relies on a small, predefined set of action verbs that can
 be recognized from natural language (section~\ref{processing_of_actions}).
@@ -1943,7 +1943,7 @@ a plan. Additionally, we could exploit on-line resources like
 \textsc{VerbNet}~\cite{Kipper2008}, which provides a large machine-processable
 lexicon of English verbs along with their thematic roles.
 
-\subsubsection{Knowledge and embodiment}
+\subsubsection{Knowledge and Embodiment}
 
 The three experiments that were presented in the paper all illustrate how the
 robot makes use of its embodied nature to establish a meaningful communication
