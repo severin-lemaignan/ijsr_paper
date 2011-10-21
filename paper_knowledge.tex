@@ -1062,6 +1062,7 @@ human utterance, all queries are sent to the human model in order to interpret
 it from the human perspective. 
 
 \subsection{Informational Content Extraction}
+\label{informational_content_extraction}
 
 \begin{figure}
     \centering
@@ -1114,10 +1115,9 @@ SPARQL query is sent to the ontology server to retrieve possible instances that 
 the description (algorithm~\ref{algo|Resolution}(\ref{res.onto})).
 
 In this first simple case, the concept \concept{banana\_01} is unambiguously
-matched (since there is only one possible banana) and returned. Finally, we can now add
-the new information provided by the human, \ie the new statement
-\stmt{banana\_01 hasSize big}, to the human model in the ontology
-server.
+matched (since there is only one possible banana) and returned. Finally, we can
+now add the new information provided by the human, \ie the new statement
+\stmt{banana\_01 hasSize big}, to the human model in the ontology server.
 
 % The translation of \emph{yellow} to \stmt{hasColor yellow} is not obvious: in
 % the general case, we associate a adjective to the noun it characterizes with
@@ -1126,6 +1126,9 @@ server.
 % set the predicate associated to a category of adjectives: It is what has been
 % done for the main colours. Another example is the size: for known size
 % adjectives (big, small, etc.), the \concept{hasSize} predicate is being used.
+
+We discuss in section~\ref{modeling_real_world} how the initial knowledge (the
+existence of a yellow banana) can be acquired.
 
 \subsection{Intentional Content Through Verb Resolution}
 The sentence in the first example is built with the state verb \emph{be} at
@@ -1885,6 +1888,7 @@ extensions, and how this article contributes to the larger debate on symbol
 grounding for embodied agent.
 
 \subsubsection{Modeling the Real World}
+\label{modeling_real_world}
 
 The main challenge we address in this work can be formulated as \emph{How to
 model real-world interaction in a symbolic way, processable by the robot to
@@ -1911,6 +1915,23 @@ While the examples we develop are all based on symbols that have a physical
 meaning, the system deals equally well with abstract, \emph{exo-somatic},
 concepts like \emph{Time}, \emph{Event} or \emph{Place}. Demonstrating this in
 real experiments would be an interesting development.
+
+Note also that, as mentioned in section~\ref{spygame}, perception issues have
+been skipped in our experiments by using a tag-based object identification
+method. In section~\ref{informational_content_extraction}, we give an example
+where the human says ``the yellow banana is big''. It is assumed in the example
+that the robot already knows about a banana instance that is yellow. In our
+experiments, this kind of knowledge was either hard coded in scenario-specific
+ontologies (with facts like \stmt{BANANA1 type Banana} where \concept{BANANA1}
+is the id of the banana's tag) or taught to the robot with prescriptive
+sentences like ``Learn that this is a banana'' while pointing at the banana's
+tag.
+
+It would be interesting to broaden this approach with automatic classifiers
+(for colour, size, etc.). If the robot later discovers a yellowish and large
+object, an utterance like ``the yellow banana is big'' could be used to assert
+that this very object is in fact a banana. A similar approach has been 
+developed by~\cite{Vrecko2009}.
 
 Amongst the other shortcomings of our architecture, neither the \emph{domain of
 validity} nor the context of a fact are represented in a satisfying way (we do
