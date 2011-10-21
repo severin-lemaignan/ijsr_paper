@@ -166,9 +166,8 @@ act} (the meaning), \emph{illocutionary} (the intent) and possibly
 \subsection{Approach}
 
 In this work we propose an approach aiming at grounding the interaction with
-users. Figure~\ref{fig|overall-process} illustrates the general contex. We have
-developed three distinct, inter-related cognitive components, as illustrated in
-Figure~\ref{fig|main-components}.
+users (Figure~\ref{fig|overall-process} illustrates the general context). To this end, we have
+developed three distinct, inter-related cognitive components:
 
 \begin{inparaenum}[\itshape 1)]
 
@@ -209,19 +208,19 @@ acts in Searle's~\cite{Searle1976} classification.}.
 
 \end{inparaenum}
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \centering
   \includegraphics[width=0.8\linewidth]{images/grounding_robot.png}
   \caption{Generic model of cognitive abilities interactions for grounding}
   \label{fig|overall-process}
 \end{figure}
 
-\begin{figure}[!ht]
-\centering
-  \includegraphics[width=0.9\linewidth]{images/grounding.png}
-  \caption{The three main components of our architecture and their connections. Submodules are presented in subsequent sections.}
-  \label{fig|main-components}
-\end{figure}
+%\begin{figure}[!ht]
+%\centering
+%  \includegraphics[width=0.9\linewidth]{images/grounding.png}
+%  \caption{The three main components of our architecture and their connections. Submodules are presented in subsequent sections.}
+%  \label{fig|main-components}
+%\end{figure}
 
 %~ The system we describe here relies on two distinct activities that run concurrently and continuously: maintenance of a symbolic model from real world interpretation on one hand, and verbal interaction with agents on the other hand.
 %~ 
@@ -581,7 +580,7 @@ family make the \emph{Open World Assumption} (if a fact can not be inferred as
 true, it does not mean that it is inferred to be false), and the Pellet
 reasoner honors this assumption as well.
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \centering
   \includegraphics[width=0.8\linewidth]{images/oro_architecture.png}
   \caption{Overview of the ORO architecture.}
@@ -806,22 +805,24 @@ able to compute this information can then act accordingly. An example
 would be a clarification scenario where the human is searching for an object
 and the robot is able to infer that he/she is looking for the one that is not
 visible (otherwise the user would not be searching for it).
-In Figure~\ref{fig::vis} the field of view of a person is illustrated with a
+In Figure~\ref{fig::sparkRepresentations}\emph{a} the field of view of a person is illustrated with a
 grey cone (broader one). While he is able to see the two small boxes on the
 table in front of him, the big box on his right is out of his FOV, and
 therefore, he is not able to see it. 
 
 \item \emph{Looks At}: this relation corresponds to what the agent is focused
 on, \ie where its focus of attention is directed. This model is based on a
-narrower field of view, the field of attention (FOA). Figure~\ref{fig::vis}
+narrower field of view, the field of attention (FOA). 
+Figure~\ref{fig::sparkRepresentations}\emph{a}
 shows the field of attention of a person with a green cone (narrower one). In
 this example only the grey box satisfies the \concept{looksAt} relation.
 
-\begin{figure}%[!t] 
-\centering
-\includegraphics[width=\columnwidth]{images/looks.jpg} \caption{Representation
-of the field of view (FOV) and the field of attention (FOA) of the human.}
-\label{fig::vis} \end{figure}
+%\begin{figure}%[!t] 
+%\centering
+%\includegraphics[width=0.8\columnwidth]{images/looks.jpg} \caption{Representation
+%of the field of view (FOV) and the field of attention (FOA) of the human.}
+%\label{fig::vis} 
+%\end{figure}
 
 \item \emph{Points At}: verifies whether an object is pointed at by an agent.
 This relation is particularly useful during interaction when one of the agents
@@ -841,20 +842,33 @@ context analysis or clarification through verbal interaction).
 to reach an object, which is fundamental for task planning. For example, if the
 user asks the robot to give him/her an object, the robot must compute a transfer
 point where the user is able to get the object afterward. 
-Figure~\ref{fig::reach} shows different reachability postures for each object
+Figure~\ref{fig::sparkRepresentations}\emph{b} shows different reachability postures for each object
 on the table. In the example, the bottle and the box are both reachable for the
 human, but the teddy bear is too far. Instead, from the robot's perspective,
 the teddy bear is reachable for it, while the bottle is not.
 
-\begin{figure}%[!t] 
-	\centering
-	\includegraphics[width=0.8\columnwidth]{images/reach.jpg} 
-	\caption{Different reaching postures for the human: the bottle and the 
-	box are reachable, while the teddy bear is not.} 
-	\label{fig::reach} 
-\end{figure} 
+%\begin{figure}%[!t] 
+%	\centering
+%	\includegraphics[width=0.8\columnwidth]{images/reach.jpg} 
+%	\caption{Different reaching postures for the human: the bottle and the 
+%	box are reachable, while the teddy bear is not.} 
+%	\label{fig::reach} 
+%\end{figure} 
 
 \end{itemize}
+
+\begin{figure*}[!t]
+	\subfigure[]
+	{\includegraphics[width=0.35\linewidth]{images/looks.jpg} \label{(a)}} \quad
+	\subfigure[]
+	{\includegraphics[width=0.3\linewidth]{images/reach.jpg} \label{(b)}}\qquad	
+	\subfigure[]
+	{\includegraphics[width=0.25\linewidth]{images/spatial_relation.png} \label{(c)}} 
+	
+	\caption{(a) Field of view (FOV) and the field of attention (FOA) of the human. (b) Different reaching postures for the human. (c) Spatial relations between two objects: A) \concept{isOn} relation, B) \concept{isIn} relation, and C) \concept{isNextTo} relation.}
+	\label{fig::sparkRepresentations}
+\end{figure*} 
+
 
 While the first three relations (\concept{sees}, \concept{looksAt} and
 \concept{pointsAt}) are computed through a model based approach, the latter one
@@ -891,7 +905,8 @@ place.
 \item \emph{Location according to an object}: We can also refer to object
 locations with respect to other objects in the environment, such as \emph{above,
 next to, in}, etc. In this work we compute three main relations based on the
-bounding box and center of mass of the objects (Figure~\ref{fig::sprelation}): 
+bounding box and center of mass of the objects 
+(Figure~\ref{fig::sparkRepresentations}\emph{c}): 
 
 \begin{itemize}
 	\item \concept{isOn}: computes if an object $O_1$ is on another object $O_2$ by
@@ -909,13 +924,13 @@ bounding box and center of mass of the objects (Figure~\ref{fig::sprelation}):
 	two bottles). Thus, the relation between the dimensions and the distances of
 	the objects are taken into account.  
 
-\begin{figure} 
-	\centering
-	\includegraphics[width=0.8\columnwidth]{images/spatial_relation.png}
-	\caption{Spatial relations between two objects: A) \concept{isOn} relation, 
-	B) \concept{isIn} relation, and C) \concept{isNextTo} relation.} 
-	\label{fig::sprelation} 
-\end{figure}
+%\begin{figure} 
+%	\centering
+%	\includegraphics[width=0.6\columnwidth]{images/spatial_relation.png}
+%	\caption{Spatial relations between two objects: A) \concept{isOn} relation, 
+%	B) \concept{isIn} relation, and C) \concept{isNextTo} relation.} 
+%	\label{fig::sprelation} 
+%\end{figure}
 
 \end{itemize} 
 \end{itemize}
@@ -953,12 +968,7 @@ robotics field). Our main contribution here is the grounding (we call it
 \emph{resolution}) of concepts involved in the human discourse through the
 robot's own knowledge.
 
-To this end we have developed a dedicated module called {\sc Dialogs} that processes human
-input in natural language, grounds the concepts in the robot's knowledge and
-eventually translates the discourse in a set of queries or declarative OWL/RDF
-statements.
-
-\begin{figure}%[!ht]
+\begin{figure}[!t]
 \centering
   \includegraphics[width=0.9\linewidth]{images/dialog_module_simple.png}
   \caption{The {\sc Dialogs} module has three main steps: the parsing,
@@ -968,7 +978,10 @@ statements.
   \label{fig|dialog}
 \end{figure}
 
-Figure~\ref{fig|dialog} shows the {\sc Dialogs} module architecture. The user's
+To this end we have developed a dedicated module called {\sc Dialogs} that processes human
+input in natural language, grounds the concepts in the robot's knowledge and
+eventually translates the discourse in a set of queries or declarative OWL/RDF
+statements. Figure~\ref{fig|dialog} shows the {\sc Dialogs} module architecture. The user's
 input is first pre-processed. For instance, \emph{I'm} constructs are expanded
 into \emph{I am} and then parsed. The parser is a custom-made, rule-based (\ie
 grammar-free) tool that extracts the grammatical structure from the user's
@@ -1052,48 +1065,79 @@ queries, except for the verbs that are currently stored in a dedicated library
 %\section{Technical analysis}
 %\label{examples}
 
-
 In order to better understand the overall process of the {\sc Dialogs} module 
 and its relation with ORO, we next describe the different steps of the approach 
 based on three examples. In these examples we assume that some initial facts 
-are present in the knowledge base, both in the robot's own model and in the 
-human's model.  Since the robot tries to ground a
-human utterance, all queries are sent to the human model in order to interpret
-it from the human perspective. 
+are present in the knowledge base (section~\ref{modeling_real_world} discusses how 
+the initial knowledge can be acquired), both in the robot's own model and in the human's model.  Since the robot tries to ground a human utterance, all queries are sent to the human model in order to interpret it from the human perspective. 
 
 \subsection{Informational Content Extraction}
 \label{informational_content_extraction}
 
+%\begin{figure}
+%    \centering
+%	\begin{tabular}{p{7cm}}
+%	\emph{Initial knowledge model of} \texttt{human\_01}\\
+%	\hline
+%    	\hspace{0.3cm}\stmt{banana\_01 type Banana} \\
+%    	\hspace{0.3cm}\stmt{banana\_01 hasColor yellow}\\
+%	
+%	\vspace{0.5em}
+%	\emph{Human input}\\
+%	\hline
+%	\hspace{0.3cm}``The yellow banana is big!'' \\
+%
+%	\vspace{0.5em}
+%	\emph{Generated partial statements}\\
+%	\hline
+%	\hspace{0.3cm}\stmt{?obj type Banana} \\
+%    	\hspace{0.3cm}\stmt{?obj hasColor yellow} \\
+%    	\hspace{0.7cm}$\Rightarrow$ \concept{?obj = banana\_01}\\
+%
+%	\vspace{0.5em}
+%	\emph{Newly created statements}\\
+%	\hline
+%	\hspace{0.3cm}\stmt{banana\_01 hasSize big} \\
+%	\end{tabular}
+%\caption{First example of natural language grounding: the nominal group ``the
+%yellow banana'' is matched with the individual \concept{banana\_01}.
+%``$\Rightarrow$'' represents the output of the ontology server.}
+%\label{dialog|ex1}
+%\end{figure}
+
 \begin{figure}
     \centering
-	\begin{tabular}{p{7cm}}
-	\emph{Initial knowledge model of} \texttt{human\_01}\\
-	\hline
-    	\hspace{0.3cm}\stmt{banana\_01 type Banana} \\
-    	\hspace{0.3cm}\stmt{banana\_01 hasColor yellow}\\
+%	\begin{tabular}{p{0.5\columnwidth} | p{0.5\columnwidth}}}
+	\begin{tabular}{l|l}
+	\emph{Initial knowledge} \texttt{human\_01} &
+	\emph{Human input}\\	
 	
-	\vspace{0.5em}
-	\emph{Human input}\\
 	\hline
-	\hspace{0.3cm}``The yellow banana is big!'' \\
 
-	\vspace{0.5em}
-	\emph{Generated partial statements}\\
+    	\stmt{banana\_01 type Banana} &
+	``The yellow banana is big!'' \\
+	
+    	\stmt{banana\_01 hasColor yellow} & \\
+	\vspace{0.5em}\\
 	\hline
-	\hspace{0.3cm}\stmt{?obj type Banana} \\
-    	\hspace{0.3cm}\stmt{?obj hasColor yellow} \\
-    	\hspace{0.7cm}$\Rightarrow$ \concept{?obj = banana\_01}\\
 
-	\vspace{0.5em}
+	\emph{Generated partial statements} &
 	\emph{Newly created statements}\\
 	\hline
-	\hspace{0.3cm}\stmt{banana\_01 hasSize big} \\
+
+	\stmt{?obj type Banana} &
+	\hspace{0.2cm}\stmt{banana\_01 hasSize big} \\
+	
+    	\stmt{?obj hasColor yellow} & \\
+    	\hspace{0.2cm}$\Rightarrow$ \concept{?obj = banana\_01}\\
+
+	\hline
 	\end{tabular}
-\caption{First example of natural language grounding: the nominal group ``the
-yellow banana'' is matched with the individual \concept{banana\_01}.
+\caption{First example: content extraction.
 ``$\Rightarrow$'' represents the output of the ontology server.}
 \label{dialog|ex1}
 \end{figure}
+
 
 Figure~\ref{dialog|ex1} shows a first example of human discourse grounding and
 the extraction of informational content. We assume that the robot knowledge
@@ -1127,8 +1171,6 @@ now add the new information provided by the human, \ie the new statement
 % done for the main colours. Another example is the size: for known size
 % adjectives (big, small, etc.), the \concept{hasSize} predicate is being used.
 
-We discuss in section~\ref{modeling_real_world} how the initial knowledge (the
-existence of a yellow banana) can be acquired.
 
 \subsection{Intentional Content Through Verb Resolution}
 The sentence in the first example is built with the state verb \emph{be} at
@@ -1136,48 +1178,80 @@ indicative. Let us examine a different example with an action verb at
 imperative mode (an order): ``Give me the banana". The process is
 described in Figure~\ref{dialog|ex2}.
 
+%\begin{figure}
+%    \centering
+%	\begin{tabular}{p{7cm}}
+%	\emph{Initial knowledge model of} \texttt{human\_01}\\
+%	\hline
+%    	\hspace{0.3cm}\stmt{banana\_01 type Banana} \\
+%    	\hspace{0.3cm}\stmt{banana\_01 hasColor yellow}\\
+%	\end{tabular} \\
+%
+%	\vspace{0.5em}
+%
+%	\begin{tabular}{p{7cm}}
+%	\emph{Human input}\\
+%	\hline
+%    	\hspace{0.3cm}``Give me the banana.'' \\
+%	\end{tabular} \\
+%
+%	\vspace{0.5em}
+%
+%	\begin{tabular}{p{7cm}}
+%	\emph{Generated partial statements}\\
+%	\hline
+%    	\hspace{0.3cm}\stmt{?obj type Banana} \\
+%	\hspace{0.7cm}$\Rightarrow$ \concept{?obj = banana\_01}\\
+%
+%	\end{tabular} \\
+%
+%	\vspace{0.5em}
+%
+%	\begin{tabular}{p{7cm}}
+%	\emph{Newly created statements}\\
+%	\hline
+%    	\hspace{0.3cm}\stmt{human\_01 desires situation\_a3f74} \\
+%    	\hspace{0.3cm}\stmt{situation\_a3f74 type Give} \\
+%    	\hspace{0.3cm}\stmt{situation\_a3f74 performedBy myself} \\
+%    	\hspace{0.3cm}\stmt{situation\_a3f74 actsOnObject banana\_01} \\
+%    	\hspace{0.3cm}\stmt{situation\_a3f74 receivedBy human\_01} \\
+%	\end{tabular}
+%
+%\caption{Second example: processing an order.}
+%\label{dialog|ex2}
+%\end{figure}
+
 \begin{figure}
     \centering
-	\begin{tabular}{p{7cm}}
-	\emph{Initial knowledge model of} \texttt{human\_01}\\
-	\hline
-    	\hspace{0.3cm}\stmt{banana\_01 type Banana} \\
-    	\hspace{0.3cm}\stmt{banana\_01 hasColor yellow}\\
-	\end{tabular} \\
-
-	\vspace{0.5em}
-
-	\begin{tabular}{p{7cm}}
+	\begin{tabular}{l|l}
+	\emph{Initial knowledge} \texttt{human\_01} &
 	\emph{Human input}\\
+	
 	\hline
-    	\hspace{0.3cm}``Give me the banana.'' \\
-	\end{tabular} \\
-
-	\vspace{0.5em}
-
-	\begin{tabular}{p{7cm}}
-	\emph{Generated partial statements}\\
+	
+    	\stmt{banana\_01 type Banana} &
+	``Give me the banana.'' \\
+	
+    	\stmt{banana\_01 hasColor yellow} & \\
+	\vspace{0.5em}\\
 	\hline
-    	\hspace{0.3cm}\stmt{?obj type Banana} \\
-	\hspace{0.7cm}$\Rightarrow$ \concept{?obj = banana\_01}\\
-
-	\end{tabular} \\
-
-	\vspace{0.5em}
-
-	\begin{tabular}{p{7cm}}
+    	
+	\emph{Generated partial statements} &
 	\emph{Newly created statements}\\
 	\hline
-    	\hspace{0.3cm}\stmt{human\_01 desires situation\_a3f74} \\
-    	\hspace{0.3cm}\stmt{situation\_a3f74 type Give} \\
-    	\hspace{0.3cm}\stmt{situation\_a3f74 performedBy myself} \\
-    	\hspace{0.3cm}\stmt{situation\_a3f74 actsOnObject banana\_01} \\
-    	\hspace{0.3cm}\stmt{situation\_a3f74 receivedBy human\_01} \\
+    	\stmt{?obj type Banana} & 
+	\stmt{human\_01 desires sit\_a3} \\
+	
+	\hspace{0.2cm}$\Rightarrow$ \concept{?obj = banana\_01}
+    	& \stmt{sit\_a3 performedBy myself} \\
+    	& \stmt{sit\_a3 actsOnObject banana\_01} \\
+    	& \stmt{sit\_a3 receivedBy human\_01} \\
 	\end{tabular}
 
 \caption{Second example: processing an order.}
 \label{dialog|ex2}
 \end{figure}
+
 
 \label{processing_of_actions}
 
@@ -1486,8 +1560,7 @@ perspective taking abilities~\cite{Moll2006}.
 The scenario for this game (Figure~\ref{fig|spyGameScenario}) consists on a
 face-to-face interaction where the human thinks of an object present in the
 environment, while the robot queries the human until either discovering the
-object or giving up~\cite{Ros2010a}. A categorization example is presented in
-Figure~\ref{fig|objectsSpyGame}. The game starts with the human user giving a
+object or giving up~\cite{Ros2010a}. The game starts with the human user giving a
 first hint (communication is done through a keyboard and screen), allowing the
 robot to start the search filtering those objects that fulfill this first
 description. Based on this subset, ORO provides a descriptor (or set of
@@ -1498,29 +1571,29 @@ current subset of objects is filtered again. The process is repeated until
 either obtaining a single object that fulfills all the descriptor values, or
 failing (\ie no object found). 
 
-\begin{figure}%[!ht]
-\centering
-\begin{scriptsize}
-\begin{tikzpicture} %[level/.style={sibling distance=30mm/#1},scale=0.8]
-	%[edge from parent fork down,
-	%every node/.style={fill=black!30,rounded corners},
-	%[parent anchor=east,child anchor=west,grow=east,
-	%edge from parent/.style={thick,draw}]
-	\node {Artifact}
-	child {node {Tableware}
-		child {node {Bottle}}
-		child {node {Cup}}
-		}
-	child {node {GameObject}}
-	child {node {Furniture}
-			child {node {Table}}
-			child {node {Chair}}
-			child {node {Shelf}}};
-\end{tikzpicture}
-\end{scriptsize}
-\caption{Example of object categorization used in the scenario.}
-\label{fig|objectsSpyGame}			
-\end{figure}
+%\begin{figure}%[!ht]
+%\centering
+%\begin{scriptsize}
+%\begin{tikzpicture} %[level/.style={sibling distance=30mm/#1},scale=0.8]
+%	%[edge from parent fork down,
+%	%every node/.style={fill=black!30,rounded corners},
+%	%[parent anchor=east,child anchor=west,grow=east,
+%	%edge from parent/.style={thick,draw}]
+%	\node {Artifact}
+%	child {node {Tableware}
+%		child {node {Bottle}}
+%		child {node {Cup}}
+%		}
+%	child {node {GameObject}}
+%	child {node {Furniture}
+%			child {node {Table}}
+%			child {node {Chair}}
+%			child {node {Shelf}}};
+%\end{tikzpicture}
+%\end{scriptsize}
+%\caption{Example of object categorization used in the scenario.}
+%\label{fig|objectsSpyGame}			
+%\end{figure}
 
 %Thing
 %Object
@@ -1543,7 +1616,6 @@ features (color, shape) are manually given in advance. Spatial relationships
 both agents can be considered in the game) are automatically computed on-line
 by \textsc{SPARK}. Figure~\ref{fig|spyGameExample}
 shows an example of a round game.
-
 
 \begin{figure}
 \centering
@@ -1581,19 +1653,31 @@ the interaction with the users.
 
 \subsubsection{Initial Situation Assessment}
 
-\begin{figure}%[!t]
+\begin{figure*}
 \centering
-  \subfigure[]
-  {\includegraphics[width=0.95\linewidth]{images/situationAssessment1.png}\label{a}}
-  \subfigure[]
-  {\includegraphics[width=0.95\linewidth]{images/situationAssessment2.png}\label{b}}
-	\caption{Situation assessment during initialization: a) before placing the
-	objects on the table, and b) after placing them. In each image the snapshots
-	correspond to: real environment (top-left sub-image); processed image to
-	identify the tagged objects (bottom-left sub-image); and the 3D environment
-	(right sub-image).}
-	\label{fig|sitAssessRoman}
-\end{figure}
+	\subfigure[]
+	{\includegraphics[width=0.3\linewidth]{images/situationAssessment1.png}\label{(a)}}
+	\subfigure[]
+	{\includegraphics[width=0.3\linewidth]{images/situationAssessment2.png}\label{(b)}}
+	\subfigure[]
+  	{\includegraphics[width=0.3\linewidth]{images/inTheBox2.jpg}\label{c}}
+	\caption{Situation assessment during initialization (before (a) and after (b) placing the objects on the table). In each image the snapshots correspond to: real environment (top-left sub-image); processed image to identify the tagged objects (bottom-left sub-image); and the 3D environment (right sub-image).(c) Jerry asks Jido for the content of the box while pointing at it.}
+	\label{fig|movingToLondon}
+\end{figure*}
+
+%\begin{figure}%[!t]
+%\centering
+%  \subfigure[]
+%  {\includegraphics[width=0.95\linewidth]{images/situationAssessment1.png}\label{a}}
+%  \subfigure[]
+%  {\includegraphics[width=0.95\linewidth]{images/situationAssessment2.png}\label{b}}
+%	\caption{Situation assessment during initialization: a) before placing the
+%	objects on the table, and b) after placing them. In each image the snapshots
+%	correspond to: real environment (top-left sub-image); processed image to
+%	identify the tagged objects (bottom-left sub-image); and the 3D environment
+%	(right sub-image).}
+%	\label{fig|sitAssessRoman}
+%\end{figure}
 
 First Tom enters the room with some of the things they need to pack: a
 toolbox and two videos. He leaves one of the video tapes (``Jido-E'') inside one of
@@ -1602,19 +1686,14 @@ table. We next describe how the situation assessment takes place at each step, \
 ontology is updated with the information obtained from the geometric reasoner
 SPARK.
 The initial information in ORO corresponds to:
-
 \begin{center}
-    \begin{tabular}{l}
-      \stmt{table type Table}\\
-      \stmt{cardBoardBox type Box}\\
-      \stmt{toolbox type Box}\\
-      \stmt{videoTape1 type VideoTape}\\
-      \stmt{videoTape1 label "Lord of the Robots"}\\
-      \stmt{videoTape2 type VideoTape}\\
-      \stmt{videoTape2 label "Jido-E"}\\
-      \stmt{Tom type Human}\\
-      \stmt{Jerry type Human}
-    \end{tabular}
+    \begin{tabular}{ll}
+      \stmt{table type Table} & \stmt{Tom type Human}\\
+      \stmt{cardBoardBox type Box} & \stmt{Jerry type Human}\\
+      \stmt{toolbox type Box} & \stmt{videoTape1 type VideoTape}\\
+      \stmt{videoTape2 type VideoTape} & \stmt{videoTape2 label "Jido-E"}   
+      \end{tabular}
+      \stmt{videoTape1 label "Lord of the Robots"}
 \end{center}
 \vspace{0.10cm}
 	SPARK detects that there is a cardboard box on the table. It thus sends the fact to ORO:
@@ -1624,17 +1703,13 @@ The initial information in ORO corresponds to:
       \stmt{cardBoardBox isOn table}
     \end{tabular}	             
 \end{center}
-
-Tom enters carrying several objects (Figure~\ref{fig|sitAssessRoman}a) and places them around. Then he leaves. (Figure~\ref{fig|sitAssessRoman}b). The following facts are computed and sent to ORO:
-
+Tom enters carrying several objects (Figure~\ref{fig|movingToLondon}a) and places them around. Then he leaves. (Figure~\ref{fig|movingToLondon}b). The following facts are computed and sent to ORO:
 \begin{center}
-    \begin{tabular}{l}
-      \stmt{toolbox isOn table}\\
-      \stmt{videoTape1 isOn table}\\
-      \stmt{videoTape1 isNextTo toolbox}\\
-      \stmt{toolbox isNextTo videoTape1}\\
-      \stmt{videoTape2 isIn cardBoardBox}
-    \end{tabular}       
+    \begin{tabular}{ll}
+      \stmt{toolbox isOn table} & \stmt{toolbox isNextTo videoTape1}\\
+      \stmt{videoTape1 isOn table} & \stmt{videoTape2 isIn cardBoardBox}
+      \end{tabular}
+      \stmt{videoTape1 isNextTo toolbox}
 \end{center}
 
 \subsubsection{Implicit Disambiguation Through Visual Perspective Taking}
@@ -1644,19 +1719,15 @@ Tom enters the room again while carrying a big box (Figure~\ref{fig|vpt}). He
 approaches the table and asks Jido to handle him the video tape: ``Jido, can
 you give me the video tape''. The \textsc{Dialogs} module queries the ontology to
 identify the object the human is referring to:
-
 \begin{center} 
 \stmt{?obj type VideoTape} 
 \end{center}
-
 There are two video tapes in the scene: one on
 the table, and another one inside the cardboard box. Thus, the knowledge 
 base returns both: 
-
 \begin{center}
 \hspace{0.7cm}$\Rightarrow$ \concept{?obj = [videoTape1, videoTape2]}
 \end{center}
-
 However, only one is visible for Tom (the one on the
 table). Thus, although there is an ambiguity from the robot's perspective
 (since it can see both video tapes), based on the perspective of its human
@@ -1707,29 +1778,27 @@ Robot's beliefs about Tom (\emph{Tom's model}):\\
 \subsubsection{Explicit Disambiguation Through Verbal Interaction and Gestures}
 \label{disamb-gestures}
 
-\begin{figure}%[!ht]
-  \centering
-  \subfigure[]
-  {\includegraphics[width=0.9\linewidth]{images/inTheBox1.jpg}\label{a}}
-  \subfigure[]
-  {\includegraphics[width=0.9\linewidth]{images/inTheBox2.jpg}\label{b}}
-\caption{(a) Jerry asks Jido for the content of the box and (b) points at it.}
-  \label{fig|pointing}
-\end{figure}
+%\begin{figure}%[!ht]
+%  \centering
+%  \subfigure[]
+%  {\includegraphics[width=0.9\linewidth]{images/inTheBox1.jpg}\label{a}}
+%  \subfigure[]
+%  {\includegraphics[width=0.9\linewidth]{images/inTheBox2.jpg}\label{b}}
+%\caption{(a) Jerry asks Jido for the content of the box and (b) points at it.}
+%  \label{fig|pointing}
+%\end{figure}
 
-Figure~\ref{fig|pointing}a depicts the third situation where Jerry enters the
+In this last situation Jerry enters the
 living room without knowing where Tom had placed the video tapes. So he first
 asks Jido: ``What's in the box?''. Before the robot can answer the question it
 has to figure out which box Jerry is talking about. Similar to the previous
 situation, there are two available boxes: 
-
 \begin{center}
 \begin{tabular}{l}
 \stmt{?obj type Box}\\
 \hspace{0.7cm}$\Rightarrow$ \concept{?obj = [cardBoardBox, toolbox]}
 \end{tabular}
 \end{center}
-
 However both are visible and the cognitive ambiguity resolution cannot be
 applied. The only option is to ask Jerry which box he is referring
 to\footnote{Note that Jerry is using the definite article \emph{the}: the robot
@@ -1737,14 +1806,13 @@ has to determine which box is relevant. {\sc Dialogs} supports other kinds of
 quantification (existantial -- \emph{some} --, universal -- \emph{all} -- , explicit cardinality), as expressed by the combination of definite/indefinite and
 singular/plural forms of articles.}: ``Which box, the toolbox or the cardboard box?''
 Jerry could now simply answer the question. Instead, he decides to point at it
-while indicating: ``That box'' (Figure~\ref{fig|pointing}b). The robot's
+while indicating: ``That box'' (Figure~\ref{fig|movingToLondon}c). The robot's
 perception identifies the {\tt cardBoardBox} as being pointed at and looked
 at by the human and updates the ontology with this new information using a
 rule available in the commonsense ontology:
-
 \begin{center}
-\begin{tabular}{l}
-\stmt{Jerry pointsAt carboardBox}\\
+\begin{tabular}{r}
+\stmt{Jerry pointsAt carboardBox}, 
 \stmt{Jerry looksAt carboardBox}\\
 $\to$ \stmt{Jerry focusesAt carboardBox}\\
 \end{tabular}
@@ -1772,7 +1840,6 @@ At this point Jerry wants to know where the other video tape is, and that is exa
 what he asks Jido: ``And where is the other video tape?''. In this occasion, the
 \textsc{Dialogs} module is able to interpret that Jerry is not referring to the
 video tape which they were just talking about, but to the other one:
-
 \begin{center}
 \begin{tabular}{l}
 \stmt{?obj type VideoTape}\\
@@ -1784,10 +1851,9 @@ video tape which they were just talking about, but to the other one:
 Since there is only one possible ``other'' video tape (there are only two video tapes in
 the scene), it can directly answer Jerry: ``The other video tape is on the table and
 next to the toolbox.''
-
 \begin{center}
 \begin{tabular}{l}
-\stmt{videoTape1 isOn table}\\
+\stmt{videoTape1 isOn table}, 
 \stmt{videoTape1 isNextTo toolbox}
 \end{tabular}
 \end{center}
@@ -1911,31 +1977,28 @@ concept may (or may not) be \textit{a priori} available to the robot as a
 pre-loaded ontology (what we previously called the cultural background of the
 robot).
 
+Note also that perception issues have been solved in our experiments by using a tag-based object identification
+method. In section~\ref{informational_content_extraction} we give an example
+where the human says ``the yellow banana is big''. It is assumed in the example
+that the robot already knows about a banana instance that is yellow. In our
+experiments, this kind of knowledge was either hard coded in scenario-specific
+ontologies (\eg \stmt{banana\_01 type Banana} where \concept{banana\_01}
+is the id of the banana's tag) or taught to the robot with prescriptive
+sentences like ``Learn that this is a banana'' while pointing at the banana's
+tag. It would be interesting to extend this approach with automatic classifiers
+(for colour, size, etc.). If the robot later discovers a yellowish and large
+object, an utterance like ``the yellow banana is big'' could be used to assert
+that this object is a banana.  A similar approach focused on the combination of visual perception and communication modalities to achieve visual learning has been 
+developed by~\cite{Vrecko2009}.
+
 While the examples we develop are all based on symbols that have a physical
 meaning, the system deals equally well with abstract, \emph{exo-somatic},
 concepts like \emph{Time}, \emph{Event} or \emph{Place}. Demonstrating this in
 real experiments would be an interesting development.
 
-Note also that, as mentioned in section~\ref{spygame}, perception issues have
-been skipped in our experiments by using a tag-based object identification
-method. In section~\ref{informational_content_extraction}, we give an example
-where the human says ``the yellow banana is big''. It is assumed in the example
-that the robot already knows about a banana instance that is yellow. In our
-experiments, this kind of knowledge was either hard coded in scenario-specific
-ontologies (with facts like \stmt{BANANA1 type Banana} where \concept{BANANA1}
-is the id of the banana's tag) or taught to the robot with prescriptive
-sentences like ``Learn that this is a banana'' while pointing at the banana's
-tag.
-
-It would be interesting to broaden this approach with automatic classifiers
-(for colour, size, etc.). If the robot later discovers a yellowish and large
-object, an utterance like ``the yellow banana is big'' could be used to assert
-that this very object is in fact a banana. A similar approach has been 
-developed by~\cite{Vrecko2009}.
-
 Amongst the other shortcomings of our architecture, neither the \emph{domain of
 validity} nor the context of a fact are represented in a satisfying way (we do
-store some kind of context --the agent's mental model for instance--). This
+store some kind of context --the agent's mental model for instance). This
 information is meta-information on the knowledge. While the ORO framework
 allows them through \emph{statement reification}, it does not offer yet a
 convenient way to store them. One obvious limitation that derives from the lack
