@@ -1728,13 +1728,17 @@ situation, there are two available boxes:
 \end{center}
 
 However both are visible and the cognitive ambiguity resolution cannot be
-applied. The only option is to ask Jerry which box he is referring to: ``Which
-box, the toolbox or the cardboard box?'' Jerry could now simply answer the
-question. Instead, he decides to point at it while indicating: ``That box''
-(Figure~\ref{fig|pointing}b). The robot's perception identifies the {\tt
-cardBoardBox} as being pointed at and looked at by the human and updates the
-ontology with this new information using a rule available in the commonsense
-ontology:
+applied. The only option is to ask Jerry which box he is referring
+to\footnote{Note that Jerry is using the definite article \emph{the}: the robot
+has to determine which box is relevant. {\sc Dialogs} supports other kinds of
+quantification (existantial -- \emph{some} --, universal -- \emph{all} -- , explicit cardinality), as expressed by the combination of definite/indefinite and
+singular/plural forms of articles.}: ``Which box, the toolbox or the cardboard box?''
+Jerry could now simply answer the question. Instead, he decides to point at it
+while indicating: ``That box'' (Figure~\ref{fig|pointing}b). The robot's
+perception identifies the {\tt cardBoardBox} as being pointed at and looked
+at by the human and updates the ontology with this new information using a
+rule available in the commonsense ontology:
+
 \begin{center}
 \begin{tabular}{l}
 \stmt{Jerry pointsAt carboardBox}\\
